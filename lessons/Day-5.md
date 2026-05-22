@@ -336,3 +336,110 @@ If you can answer all 5, mark **Asset vs Liability** and **Income vs Wealth** as
 You're 5 days in. You've learned how to measure your finances (cash flow, net worth), how growth and decay compound over time (compound interest), how inflation eats nominal numbers (real return), how to evaluate "now vs later" decisions (time value of money), and now — what should actually be accumulating in your life (assets, not liabilities).
 
 Two more days. Tomorrow you'll learn to evaluate any "opportunity" — and spot the fakes. **Day 6: Risk vs Return.**
+
+---
+
+## 🕌 The Islamic Perspective
+
+The Sahaba (RA) lived this lesson with their own hands. The Prophet ﷺ taught it explicitly. The Quran assumes it. *Wealth itself isn't evil — what matters is what kind of wealth, how it was earned, and what it's used for.*
+
+### Wealth in Islam is neutral, not condemned
+
+Modern asceticism often confuses Islam with "being poor is holy." That's not the Islamic position. Wealth is **neutral**. It becomes either *halal mubarak* (blessed and beneficial) or *haram* (forbidden) based on:
+
+1. How it was earned (halal trade vs riba vs theft)
+2. How it's stored (productive assets vs idle hoarding)
+3. How it's spent (on real needs and others vs extravagance and pride)
+
+The Prophet ﷺ said:
+
+> *"How blessed is wealth that is in the hand of a righteous man."* (Musnad Ahmad, Sahih al-Adab al-Mufrad)
+
+Wealth in the hands of someone who fears Allah, uses it justly, and remembers the rights of others (zakat, sadaqah, family, community) is a *gift* — not something to apologize for.
+
+### Khadijah (RA) — wealthy businesswoman, employer of the Prophet ﷺ
+
+Before Islam, **Khadijah bint Khuwaylid (RA)** was one of the wealthiest businesspeople in Makkah. She owned and managed extensive trading caravans. She *hired* the young Muhammad ﷺ — before his prophethood — to manage her trade to Syria, because his reputation as *Al-Amin* (the trustworthy) was already established.
+
+She was wealthy *and* righteous *and* a woman. None of these were in tension. When she heard of the Prophet's ﷺ honesty and ability, she didn't just hire him — she eventually proposed marriage to him. She then funded the early years of Islam with her wealth.
+
+**Lesson:** the very first major patron of Islam was a wealthy businesswoman. Her assets — her caravans, her capital — were *productive assets in your sense from today*. They generated income. She used that income on family, community, and the cause she believed in. That is the model.
+
+### Abdul Rahman bin Awf (RA) — from refugee to richest Sahabi
+
+This is perhaps the most relevant story in this entire course for someone in your situation.
+
+Abdul Rahman bin Awf (RA) migrated from Makkah to Madinah during the Hijrah. He arrived **with literally nothing**. The Ansari Sahabi Sa'd ibn al-Rabi' (RA), out of brotherhood, offered him half of his wealth, half of his property, even offered to divorce one of his wives so Abdul Rahman could marry her.
+
+Abdul Rahman's response is legendary:
+
+> *"May Allah bless you in your wealth and your family. Just show me the way to the market."*
+
+He didn't want charity. He wanted **access to honest trade**. He went to the marketplace, started by trading small items — yogurt, butter, cheese. Through hard work, integrity, and Allah's barakah, he built one of the great fortunes of early Islam.
+
+When he died, his wealth was so vast that *just his daughters' shares of inheritance each amounted to 80,000 dinars*. He had funded armies, freed slaves, fed entire communities.
+
+The Prophet ﷺ once described seeing him in a dream: *"I saw Abdul Rahman bin Awf entering Paradise crawling [slowly, because of the accountability for his wealth]."* Abdul Rahman wept when he heard this — and gave away even more.
+
+**Lesson for you:** you came into this lesson with debt and a skill, like Abdul Rahman came to Madinah with no money but his ability. *His path to wealth was the market — productive trade, honest exchange, building real assets one transaction at a time.* That's the path Day 5 just laid out for you in modern terms. The model is 1,400 years old.
+
+### Uthman ibn Affan (RA) — the wealthy companion
+
+**Uthman (RA)**, the third Caliph, was a prosperous trader before Islam and an even more generous one afterward. His most famous act of charity is recorded:
+
+The Prophet ﷺ arrived in Madinah and found a freshwater well — **Bir Ruma** — owned by a Jewish merchant who was charging the Muslims to draw water. The Prophet ﷺ said:
+
+> *"Whoever buys the well of Ruma and lets the Muslims share it [free] — Paradise will be his."*
+
+Uthman (RA) approached the owner. The owner refused to sell all of it but agreed to sell half. Uthman bought half. Then, when his half was open to the Muslims, no one used the merchant's half — and Uthman eventually bought the rest. He converted the entire well to a *waqf* (charitable endowment) for the Muslim community.
+
+**The well still exists today**, near Madinah — and produces income still credited to Uthman's name 1,400 years later. The income from the trees and farmland around it still goes to charity, in his name, as a continuous sadaqah.
+
+That's the highest form of "asset" in Islamic thinking: **an asset that produces ongoing benefit to others, even after the owner has died**. Sadaqah jariyah (continuous charity).
+
+### Abu Bakr (RA) — wealth given, position taken
+
+**Abu Bakr al-Siddiq (RA)** was a wealthy merchant in Makkah before Islam. After accepting Islam, he progressively spent his wealth on freeing enslaved Muslims (including Bilal RA, who was being tortured), supporting the Prophet ﷺ's mission, and funding the early community.
+
+When the Prophet ﷺ called for contributions to the expedition of Tabuk, Umar (RA) — who had also given generously — said he had brought half his wealth. Then Abu Bakr brought *everything*.
+
+The Prophet ﷺ asked Abu Bakr: *"What have you left for your family?"*
+Abu Bakr replied: *"I have left for them Allah and His Messenger."*
+
+This is the highest possible relationship with wealth: **earn it through halal trade, build it into a productive asset, and then deploy it for what matters most.** Earn → invest → deploy → eternal reward.
+
+### The Prophet ﷺ himself — Al-Amin, the trader
+
+Before prophethood, the Prophet ﷺ was known throughout Makkah by one nickname: **Al-Amin** — "The Trustworthy." His trade was so honest, his deliveries so reliable, his pricing so fair, that this title was given to him by even his enemies.
+
+He was a businessman. He understood markets. He partnered with Khadijah's (RA) trading enterprise. He demonstrated through his own life that *deep spirituality and successful commerce are not in tension*.
+
+After prophethood, when he was given immense wealth (booty, gifts, governance income), he redistributed almost all of it. The man who shaped human history slept on a mat that left marks on his back, sometimes had nothing in the house to eat, yet had passed billions through his hands.
+
+The lesson: **the goal isn't to accumulate wealth as identity. The goal is to be a competent steward — earn well, manage well, give well.**
+
+### Practical takeaway
+
+When you list your "assets" tonight, ask the deeper Islamic question alongside the Kiyosaki one:
+
+| Modern question | Islamic addition |
+|---|---|
+| Does this put money in my pocket? | Is the source of that money halal? |
+| Is this a real asset? | Am I a steward of it or its servant? |
+| What's my net worth? | What part of this wealth produces ongoing benefit for others? |
+| What's my income vs wealth ratio? | Have I paid the zakat due on my wealth this year? |
+
+The Sahaba weren't poor by accident. Many were wealthy. They were *exemplary* not because they had nothing, but because they understood **what wealth is for**.
+
+---
+
+## 📚 References & Sources
+
+- **Robert Kiyosaki** — *Rich Dad Poor Dad* (1997). The "asset puts money in your pocket" framing is the most popular formulation. Note: his book has critics (some of his specific recommendations are questionable), but the core asset/liability mental model is genuinely useful.
+- **Morgan Housel** — *The Psychology of Money* (2020). For the income-vs-wealth distinction and "the highest form of wealth is not having to do what you don't want to."
+- **Naval Ravikant** — *"How to Get Rich (without getting lucky)"* tweetstorm, 2018. Reformulated as the *Almanack of Naval Ravikant* by Eric Jorgenson (2020, free PDF online). For the "skill as your biggest asset" framing.
+- **Daniel Vassallo** — *Small Bets* community / writings ([dvassallo.com](https://dvassallo.com)). For productizing skill as an asset class.
+- **Pieter Levels** — [levels.io](https://levels.io). The original "indie maker" — turning developer skill into income-producing assets.
+- **Charlie Munger** — *Poor Charlie's Almanack*. For the income-vs-wealth distinction at a more sophisticated level.
+- **Sahaba biographies:** Ibn Hisham's *Sirah*, Ibn Sa'd's *Tabaqat al-Kubra*, Ibn al-Athir's *Usd al-Ghabah*, and the modern accessible compilation by Khalid Muhammad Khalid — *Men Around the Messenger* (الرجال حول الرسول). The Abdul Rahman bin Awf, Uthman, Khadijah, and Abu Bakr stories are taken from these traditional sources.
+- **Hadith citations:** Musnad Ahmad and Adab al-Mufrad on "wealth in the hands of a righteous man"; multiple sahih narrations on the well of Ruma; Sahih Bukhari on Abu Bakr's generosity at Tabuk.

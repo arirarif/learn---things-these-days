@@ -289,3 +289,103 @@ From now on, when someone shows you a "big number," you'll instinctively:
 4. **Check the risk** before believing it at all
 
 That's the mental toolkit. Tomorrow we sharpen the distinction between what makes you wealthy and what doesn't — **Assets vs Liabilities + Income vs Wealth.**
+
+---
+
+## 🕌 The Islamic Perspective
+
+Time value of money is the *intellectual root* of why riba is prohibited in Islam — and also why certain "deferred payment" structures are *permitted*. The distinction is subtle, important, and worth understanding deeply.
+
+### Why riba is forbidden — the "charging for time alone" problem
+
+Modern finance treats time itself as a saleable commodity: lend money, charge for the passage of time, period. The whole TVM framework you learned today rests on this idea: today's taka is worth more than tomorrow's, so the lender should be compensated for the wait.
+
+Islamic finance accepts the *observation* — yes, time has value, yes, money loses purchasing power over time — but **rejects the conclusion** that you can charge a fixed predetermined amount for it in a pure money loan.
+
+The Quranic rule:
+
+> *"Allah has permitted trade and forbidden riba."* (Quran 2:275)
+
+The key word is *trade*. In a trade transaction, real value is exchanged — goods, services, productive partnership. You can take a *risk* on the future. You can share profit and loss. But you cannot lend 100 and contractually require 110 back, regardless of what happens in between. **That's charging for pure time — and the Quran calls it riba.**
+
+### What IS allowed — deferred payment in real transactions
+
+Here's where it gets interesting. The same principle that forbids interest *permits* something that looks similar to outsiders but is structurally different: **deferred-payment sales (Murabaha)**.
+
+**Example:**
+- You want to buy a laptop today, but you can't pay 60,000 BDT now.
+- A conventional bank would lend you 60,000 at, say, 15% APR. You pay 6,000 interest over the year. **Haram.**
+- An Islamic bank does this instead: it *buys* the laptop for 60,000, takes ownership for a moment, then *sells* it to you for 66,000 — payable in 12 monthly installments of 5,500. **Halal.**
+
+To a naive observer these look identical (you pay 6,000 extra in both cases). But the Islamic structure is fundamentally different:
+
+1. The bank takes **actual ownership** of the laptop — even briefly — and during that moment, bears the risk if the laptop breaks
+2. It's a **sale**, not a loan. The 6,000 markup is a *price difference*, not interest on money
+3. The price is fixed at the start — the bank doesn't earn more if you delay or less if you prepay
+4. The transaction is tied to a **real asset**, not pure money creation
+
+The deeper principle: *you may price the same good differently when paid now vs paid later*. That's commerce. What you may **not** do is treat money itself as the good being sold.
+
+### The famous hadith of the young camel
+
+There's a beautiful narration that illuminates this perfectly:
+
+> Abu Rafi' (RA) reported: "The Messenger of Allah ﷺ borrowed a young camel (bakr) from a man. Then camels of zakat came to him. He commanded me to repay the man with his camel. I said, 'I do not find but a strong, mature camel.' The Prophet ﷺ said, 'Give it to him. The best of people is the one who is best in repayment.'" (Sahih Muslim 1600)
+
+The Prophet ﷺ borrowed a young camel and returned a more valuable mature one. **Wasn't that interest?**
+
+No — and this is the legal nuance that defines Islamic finance:
+
+- The extra value (the older, better camel) was **NOT pre-conditioned** in the original loan
+- It was given as a *gift / generous repayment*, at the borrower's discretion
+- If the lender had *required* a better camel as a condition → that would be riba
+- Because it was the Prophet's ﷺ own initiative → it was the *opposite*: a virtue of generous repayment
+
+This is why scholars say: **the predetermined excess is what makes it riba, not the excess itself.** If you borrow 100,000 BDT from a friend and later, out of gratitude, give them an extra 5,000 *unprompted*, that's permissible — even praised. If they *required* the 5,000 in the original contract, it becomes riba.
+
+### How this applies to TVM in your life
+
+Today you learned to discount future cash flows. The Islamic mindset uses the same tool — but with adjusted ethics:
+
+| When evaluating... | TVM math says... | Islamic adjustment |
+|---|---|---|
+| A client offering to pay you later for a discount | Compute PV with your discount rate | Same — this is real trade, fine |
+| A loan with interest | "Just compare nominal returns" | Forbidden; don't borrow / lend with interest |
+| A Murabaha (Islamic finance markup) | "Compare to conventional rate" | Permitted; it's a real sale, not riba |
+| A "guaranteed 20% per year" deposit | "High yield, sounds good" | Likely riba in disguise; investigate the underlying contract |
+| Profit-share investment (Mudaraba/Musharaka) | "Variable returns are risky" | Permitted and encouraged — risk-sharing is the halal model |
+
+The lesson: **TVM is a measurement tool, not an ethical justification**. You can use the math to evaluate any deal — but the *category* of the deal (loan vs trade vs partnership) is what determines whether it's halal.
+
+### The Sahaba's approach to deferred payments
+
+The Sahaba (RA) were active traders. They engaged in deferred-payment sales, partnerships, and lease agreements. The historical records show extensive use of:
+
+- **Salam** — paying now for goods to be delivered later (forward sale)
+- **Murabaha** — cost-plus sale
+- **Mudaraba / Qirad** — profit-sharing partnership (Abdul Rahman bin Awf (RA) famously used this)
+
+What's absent from their commercial life? Interest-bearing money loans for profit. That's the line that didn't get crossed — even though Arab pre-Islamic society had been heavily reliant on it.
+
+### Practical takeaway
+
+When someone offers you a financial product and the time-value math seems favorable — pause and ask the second question Islam adds:
+
+> *"Is the return tied to a real asset or productive activity, with shared risk — or is someone just charging for the passage of time?"*
+
+If the former: probably halal, evaluate normally.
+If the latter: likely riba, walk away regardless of how good the rate looks.
+
+---
+
+## 📚 References & Sources
+
+- **Brealey, Myers, Allen** — *Principles of Corporate Finance*. The standard graduate-level reference for TVM math.
+- **CFA Institute curriculum** — Time Value of Money is the foundational section of CFA Level I. Standardized formulas used in this lesson.
+- **Khan Academy** — *Time Value of Money* video series. Free, clear, accurate.
+- **The Plain Bagel (YouTube)** — Richard Coffin's videos on present value and discount rates.
+- **Mufti Taqi Usmani** — *An Introduction to Islamic Finance* (1998). The definitive accessible reference on Murabaha, Salam, and the distinction between interest and permissible time-related pricing.
+- **AAOIFI Shariah Standards** — official rulings on Murabaha, deferred-payment sales, and what constitutes permissible markup.
+- **Yusuf al-Qaradawi** — *Fiqh al-Zakat* and various works on contemporary Islamic finance — for the underlying jurisprudential discussions.
+- **Quranic citations:** 2:275 ("Allah has permitted trade and forbidden riba").
+- **Hadith citations:** Sahih Muslim 1600 (the young camel narration — *the best repayer*).

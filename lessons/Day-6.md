@@ -352,3 +352,119 @@ You now carry a built-in fraud detector. The schemes and pitches that catch most
 One more day. Tomorrow we cover **Halal vs Haram Finance** — bringing the Shariah lens to everything you've learned — and we synthesize the whole 7-day course into a unified framework you'll carry forward.
 
 See you for Day 7.
+
+---
+
+## 🕌 The Islamic Perspective
+
+Everything you learned today — the risk-return spectrum, the scam detection framework, the seven red flags — Islam codified the underlying principles **1,400 years before modern financial regulation existed**. The categories of forbidden transactions in Islamic law map almost perfectly onto the modern categories of "scams" and "destructive speculation." This isn't coincidence — it's confirmation that Allah's wisdom anticipated exactly the financial pathologies we'd later face.
+
+### Gharar — the divine prohibition of "Tier 5–6" structures
+
+**Gharar** (الغرر) means "excessive uncertainty" or "deception by ambiguity." The Prophet ﷺ explicitly prohibited it:
+
+> Abu Hurayrah (RA) reported: *"The Messenger of Allah ﷺ forbade the sale of gharar."* (Sahih Muslim 1513)
+
+What's gharar in practice?
+- Buying a fish before it's caught
+- Selling crops before they're ripe (with full uncertainty)
+- Contracts where the price, quantity, or delivery is unclear
+- **Pure speculation on price movements with no underlying asset transfer**
+
+Recognize that last one? It's exactly the structure of modern forex trading, day trading, binary options, leveraged crypto trading. **All Tier 5–6 instruments from today's lesson** — by the standard of classical Islamic jurisprudence, they are gharar. Forbidden 14 centuries ago, before anyone even invented the word "forex."
+
+### Maysir — the gambling prohibition
+
+In **Surah Al-Ma'idah (5:90–91)**:
+
+> *"O you who believe! Intoxicants, gambling, idols, and divining arrows are abominations from the work of Satan. So avoid them, that you may be successful. Satan only wants to cause animosity and hatred among you through intoxicants and gambling and to turn you away from the remembrance of Allah and from prayer. So will you not desist?"*
+
+Notice the categorization — Allah ﷻ places gambling alongside intoxicants and idol worship. Why so severe? Because gambling is wealth gained by chance, not by productive effort. It corrodes the entire economic moral fabric.
+
+**What looks like Tier 5–6 from today's lesson is structurally maysir:**
+- Day trading where you're just betting on short-term price moves
+- "Forex signals" — paying to bet on currency direction
+- Pump-and-dump groups
+- Lottery, casino, sports betting
+- Speculative crypto trading divorced from any project fundamentals
+
+The Quran didn't list these specifically. It didn't have to. The *principle* — pure chance-based wealth without productive activity — was identified and forbidden.
+
+### Eating wealth unjustly — the broad prohibition
+
+> *"And do not consume one another's wealth unjustly..."* (Quran 2:188)
+
+> *"O you who believe! Do not consume one another's wealth unjustly, but only [in lawful] business by mutual consent."* (Quran 4:29)
+
+Every scam, every Ponzi, every MLM that promises returns that mathematically can't be sustained — they are all **unjust consumption of others' wealth**. The early entrants eat the deposits of the later entrants. That's not "investment" — it's the Quran's definition of forbidden transaction.
+
+### The truthful merchant — the highest commercial dignity
+
+The Prophet ﷺ said:
+
+> *"The truthful and trustworthy merchant will be with the prophets, the truthful, and the martyrs on the Day of Judgment."* (Sunan al-Tirmidhi 1209, classed Sahih by al-Albani)
+
+Think about who's listed here: **prophets, truthful witnesses, and martyrs**. The Prophet ﷺ placed honest traders in the company of the highest spiritual ranks. Why? Because honesty in commerce is so rare, so difficult, and so consequential — it requires the same character that prophethood does.
+
+The flip side, the Prophet ﷺ said:
+
+> *"Both parties [to a sale] have the option [to cancel] as long as they have not parted. If they speak the truth and make things clear, they will be blessed in their sale. But if they conceal anything or lie, the blessing of their sale will be wiped out."* (Sahih Bukhari 2079)
+
+Transparency is the structural antidote to scams. **Islamic commercial law was the world's first systematic consumer protection framework** — built on the principle that both parties must know what they're agreeing to, with full disclosure.
+
+### The Prophet's ﷺ own protection from financial harm
+
+The Prophet ﷺ taught a beautiful supplication for protection from financial entanglements:
+
+> *"Allahumma akfini bi halalika 'an haramika, wa aghnini bi fadlika 'amman siwak."*
+> *"O Allah, suffice me with Your halal so I have no need for Your haram, and enrich me with Your bounty so I have no need of anyone besides You."* (Sunan al-Tirmidhi 3563, Hasan)
+
+Why is this dua relevant to Day 6? Because the *psychological doorway* into scams is desperation or greed. When someone is financially stretched, they become susceptible to "guaranteed high returns" pitches. This dua addresses both — asking Allah for halal sufficiency (eliminating the desperation) and for independence from anyone (eliminating the greed for "easy" gains).
+
+### The Sahaba's response to financial fitnah
+
+When the Prophet ﷺ established the Madinan economy, the Companions immediately abandoned riba-based transactions and pre-Islamic gambling practices (which had been widespread). There's no recorded case of a Sahabi arguing "but this scheme is different" or "let me see if I can profit from this one." Their response was *sami'na wa ata'na* — "we hear and we obey."
+
+This is the model: **when you understand a transaction is structurally forbidden, walk away regardless of how attractive it looks**. Don't try to engineer exceptions for yourself.
+
+### The seven red flags — mapped to Islamic principles
+
+| Today's Red Flag | Islamic principle violated |
+|---|---|
+| Returns above 20-25% claimed as typical | Likely riba or gharar — sustainable real returns from halal trade rarely exceed this |
+| "Guaranteed" high returns | Riba — guarantees on capital-plus-return is structurally interest |
+| FOMO / pressure to join now | Gharar (incomplete information) + ihtikar mindset (manipulating decisions) |
+| Earning more from recruiting than from products | Eating wealth unjustly — recruits are the "product" |
+| Returns from the system, not real assets | Gharar — no underlying real economic activity |
+| You can't explain where returns come from | Lack of transparency (the Bukhari hadith above) |
+| Consistently positive, no down periods | Likely fraud — real productive activity has fluctuations |
+
+**Every red flag from modern scam detection maps onto something the Quran or Sunnah already prohibited.** When you follow the seven red flags, you're aligned with Islamic teaching even if you didn't realize it.
+
+### Practical takeaway
+
+Day 6 gave you the scam detector. Islam gave you something deeper: *a values framework that makes scams structurally unattractive in the first place*.
+
+A Muslim who genuinely internalizes Islamic finance principles — *seeking halal sufficiency, avoiding gharar, avoiding maysir, trusting Allah's barakah over schemes* — is *naturally* protected from 99% of the financial fraud you encounter today. Not because they're smarter, but because they're operating from a different value system that recognizes "fast, easy, guaranteed money" as a spiritual red flag, not just a financial one.
+
+The Quran told us this 1,400 years before Bernie Madoff was born:
+
+> *"And what is the life of this world but a deceiving enjoyment?"* (Quran 3:185)
+
+Scams work because they exploit our desire for shortcuts. Islam's antidote: there are no shortcuts to halal wealth. *Trade, partnership, honest work, patience, trust in Allah's barakah.* Boring is good. Slow is good. The Prophet ﷺ became Al-Amin not by genius schemes but by **consistent honest dealing over many years**.
+
+---
+
+## 📚 References & Sources
+
+- **Burton Malkiel** — *A Random Walk Down Wall Street* (1973, updated regularly). The single best treatment of why most active investing underperforms — and why the "guaranteed strategies" people try to sell don't work.
+- **Veritasium (Derek Muller)** — *"Survivorship Bias"* video on YouTube (2014). The most accessible explanation of why we systematically overestimate winning strategies.
+- **Daniel Kahneman** — *Thinking, Fast and Slow* (2011). Chapters on availability bias, overconfidence, and why humans systematically misjudge risk.
+- **Diana B. Henriques** — *The Wizard of Lies* (2011). Detailed examination of the Bernie Madoff Ponzi scheme — the largest in history. Every red flag we learned today was missed by sophisticated investors for decades.
+- **Bangladesh Securities and Exchange Commission (BSEC)** — official investor alerts and enforcement actions. Worth periodically reviewing.
+- **The Plain Bagel (YouTube)** — Richard Coffin's videos on risk-return tradeoffs and spotting investment scams.
+- **CFA Institute curriculum** — the standard reference for risk-return analysis at the institutional level.
+- **Mufti Taqi Usmani** — *An Introduction to Islamic Finance*. For the rigorous treatment of gharar and maysir prohibitions.
+- **Imam al-Nawawi** — *Riyad al-Salihin*, sections on truthful trade and transactions. Classical hadith compilation.
+- **Quranic citations:** Surah Al-Ma'idah 5:90–91 (intoxicants/gambling); Surah Al-Baqarah 2:188 and An-Nisa 4:29 (consuming wealth unjustly); Surah Aal Imran 3:185 (deceiving life of this world).
+- **Hadith citations:** Sahih Muslim 1513 (prohibition of gharar sales); Sunan al-Tirmidhi 1209 (truthful merchant with prophets); Sahih Bukhari 2079 (transparency in trade); Sunan al-Tirmidhi 3563 (the dua for halal sufficiency).

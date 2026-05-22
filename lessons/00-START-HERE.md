@@ -81,6 +81,22 @@ The course is in English because that's what you asked for. All the math, exampl
 
 Bengali terms for key concepts are included in parentheses so you can connect English finance vocabulary to the Bengali you already think in.
 
+## Two sections at the end of every lesson
+
+Two recurring sections are at the bottom of every lesson — they're as important as the main lesson:
+
+### 🕌 The Islamic Perspective
+
+Every concept in this course already exists in Islamic teaching — often more clearly and centuries earlier than in modern finance literature. The Quran addresses debt, tracking, fairness in trade, prohibition of interest, and the right relationship with wealth in remarkable detail. The Sunnah of the Prophet ﷺ and the lives of the Sahaba (RA) demonstrate these principles in real-life practice — Khadijah (RA) the businesswoman, Abdul Rahman bin Awf (RA) the trader who came to Madinah with nothing, Uthman ibn Affan (RA) the wealthy companion who funded armies, and many others.
+
+At the end of each lesson, **the "Islamic Perspective" section** ties the day's concept to specific Quranic verses, authentic Hadith, and Sahaba examples — so you see that what you're learning isn't *just* modern finance, it's the practical wisdom that Islam built into its economic system 1,400 years ago.
+
+### 📚 References & Sources
+
+Knowledge has lineage. The frameworks in this course didn't come from nowhere — they're drawn from books, blogs, lectures, and centuries of accumulated economic understanding. **At the end of each lesson, the "References & Sources" section credits where the ideas came from** — so you can go deeper if a topic interests you, and so you know what's quoted from whom.
+
+This is also a form of *amanah* (trust) — when an idea isn't original, saying so honestly is the right thing to do.
+
 ---
 
 > **"You don't learn finance from articles. You learn it by sitting with one idea long enough that it becomes part of how you see the world. This course is 7 sittings."**

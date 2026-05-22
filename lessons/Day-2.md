@@ -321,3 +321,78 @@ Two practical takeaways carrying forward:
 2. **Don't let high-interest debt sit untouched.** Cover the interest at minimum. The math of compounding doesn't sleep just because you're not looking.
 
 Tomorrow: **Inflation + Real Return.** Why "I'm saving" isn't the same as "I'm getting wealthier."
+
+---
+
+## 🕌 The Islamic Perspective
+
+Of all the financial concepts in this course, compound interest is the one Islam addresses **most directly and most severely**. Understanding why requires sitting with these verses carefully.
+
+### Riba — the original prohibition
+
+The Quran prohibits *riba* (interest) in extraordinarily strong language, with explicit warnings about its compounding nature:
+
+> *"O you who believe! Do not consume riba, doubled and multiplied, but fear Allah that you may be successful."* (Quran 3:130)
+
+Notice the specific phrase: **"doubled and multiplied"** — *adʿāfan muḍāʿafah*. The Quran isn't just prohibiting any interest. It's specifically warning about **interest that compounds upon itself**. This was revealed over 1,400 years ago — exactly the mathematical force you learned about today.
+
+The more comprehensive prohibition is in **Surah Al-Baqarah, verses 2:275–279** — the longest passage on a single economic topic in the Quran:
+
+> *"Those who consume riba will not stand [on the Day of Judgment] except as one stands who is being beaten by Satan into insanity... Allah has permitted trade and forbidden riba... If you do not [stop consuming riba], then be informed of war from Allah and His Messenger."* (Quran 2:275, 2:279, summarized)
+
+This is the **only** category of sin in the Quran where Allah declares "war" upon the doer. That's the seriousness with which the divine system treats the very force you saw today destroying wealth exponentially.
+
+### Why "doubled and multiplied" matters mathematically
+
+In **Surah Ar-Rum (30:39)**:
+
+> *"And whatever you give for interest to increase within the wealth of people will not increase with Allah. But what you give in zakat, desiring the countenance of Allah — those are the multipliers."* (Quran 30:39)
+
+The contrast is stunning: **riba doesn't compound with Allah; zakat does**. The Quran inverts the worldly math. What looks like growth (interest) is destruction. What looks like loss (giving) is the real multiplier.
+
+And then **Surah Al-Baqarah 2:276**:
+
+> *"Allah destroys riba and gives increase for charities..."*
+
+Even the verb is precise — *yamhaqu* — "to wipe out gradually." The same compound force that builds debt is what Allah promises to dismantle for those who don't transact in it.
+
+### The Prophet ﷺ on riba
+
+The Prophet ﷺ said:
+
+> *"The curse of Allah is upon the one who consumes riba, the one who feeds it (pays it), the one who writes it down, and the witnesses to it — they are all equal."* (Sahih Muslim 1598)
+
+Notice — not just the lender. Everyone involved in the transaction. This is why scholars say even working at a conventional bank that primarily deals in interest carries spiritual risk (though there is scholarly nuance about non-interest roles).
+
+### The Sahaba's response
+
+When the riba prohibition was finalized in the late Madinan period, the Sahaba's response was immediate and total. There's no recorded case of a Companion arguing "but I'm so close to making my interest-based deal work" or "let me finish this one transaction." The response was *sami'na wa ata'na* — "we hear and we obey." Trade arrangements were restructured. Debts owed (where they were the lender) had only the principal collected; the interest portion was forfeited.
+
+This is the model: when you understand the system Allah designed, you don't bargain with the prohibition. You restructure your life around it.
+
+### Practical takeaway for today
+
+When you computed today the destructive math of compound interest — that 50,000 BDT credit card balance becoming 15 lakh over 30 years — you weren't just doing math. You were *seeing* what Allah ﷻ revealed 14 centuries ago. The math validates the revelation.
+
+For your own life right now: the chit-fund loan at 60% APR isn't just "high interest." It's the most explicitly forbidden category of wealth in Islam. Even if you can't pay it off today, **understand that the system you're trapped in is precisely the one the Quran warned about**. Every minimum-interest payment that prevents the principal from growing is an act consistent with Islamic teaching — covering the harm even while you can't yet eliminate it.
+
+The conventional financial world will tell you "interest is just how money works." Today's lesson — and the Quran — say something different: *interest is what compound math reveals to be the most destructive financial force in human life*, and Allah explicitly forbade it.
+
+> The Prophet ﷺ said: *"O Allah, I seek refuge in You from sin and debt."* When asked why he so frequently sought refuge from debt, he replied: *"When a man is in debt, he speaks and tells lies, and he promises and breaks his promise."* (Bukhari 832, Sahih)
+
+The harm of riba and the harm of debt are linked in the Sunnah itself.
+
+---
+
+## 📚 References & Sources
+
+- **Khan Academy** — *Compound Interest* video series. The cleanest free explanation available, with worked examples.
+- **Morgan Housel** — *The Psychology of Money* (2020), Chapter 4 "Confounding Compounding." Excellent on Warren Buffett's wealth being almost entirely due to time, not investing skill.
+- **Albert Einstein** — the famous quote ("Compound interest is the eighth wonder of the world...") is widely attributed but its actual origin is disputed. Probably apocryphal but the underlying math is genuinely his caliber of insight.
+- **Bogleheads Wiki** — for the Rule of 72 and long-term return modeling.
+- **Standard finance textbooks** — Brealey, Myers, Allen, *Principles of Corporate Finance*. For the math behind compounding formulas.
+- **Mufti Taqi Usmani** — *An Introduction to Islamic Finance*. For the riba prohibition's deeper context and modern application.
+- **Quranic citations:** 3:130, 2:275–279, 30:39, 2:276.
+- **Hadith citations:** Sahih Muslim 1598 (curse on all parties to riba); Sahih Bukhari 832 (Prophet's refuge from debt).
+
+If you want one external thing to watch today after this lesson, watch Khan Academy's compound interest series. It will reinforce everything visually.

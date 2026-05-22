@@ -275,3 +275,83 @@ You now have a lens that most people in your country don't carry. From today on,
 This is what real financial literacy looks like: not knowing more numbers, but knowing how to read the numbers other people show you.
 
 Tomorrow: **Time Value of Money.** A deeper version of what we touched on today — and the basis for evaluating any financial decision that involves "now versus later."
+
+---
+
+## 🕌 The Islamic Perspective
+
+Inflation as we know it — a continuous loss of purchasing power in fiat currency — is largely a modern phenomenon, tied to paper money systems. Islam's monetary system was built differently, with several features that addressed inflation centuries before economists named it.
+
+### The gold dinar / silver dirham — built-in inflation resistance
+
+For most of Islamic history, the monetary standard was the **gold dinar** (~4.25g gold) and the **silver dirham** (~2.975g silver). Because the supply of gold and silver couldn't be expanded arbitrarily by a central authority, this system was *naturally* resistant to the kind of currency debasement that drives modern inflation.
+
+The Prophet ﷺ said:
+
+> *"There will come a time when nothing will be of use except the dinar and the dirham."* (Musnad Ahmad, considered authentic by some scholars)
+
+Whatever one thinks of literal interpretations, the underlying principle holds: **commodity money holds value over generations; fiat money usually doesn't**. The grandfather story at the beginning of today's lesson (10,000 BDT in 1980 vs 2025) is impossible under a dinar standard.
+
+### Justice in weights and measures — the Quranic principle
+
+A core economic principle in the Quran is **fairness in measurement and value**:
+
+> *"And give full measure when you measure, and weigh with an even balance. That is the best [way] and best in result."* (Quran 17:35)
+
+> *"Woe to those who give less [than due]. Who, when they take a measure from people, take in full. But if they give by measure or by weight to them, they cause loss. Do they not think that they will be resurrected for a tremendous Day?"* (Quran 83:1–4)
+
+Modern inflation is, in a sense, a *systemic violation* of these principles — currency holders are repaid in units of less real value than what they lent or saved. The Islamic system saw this danger and structurally prevented it through commodity money.
+
+### Ihtikar — the prohibition of hoarding
+
+The Prophet ﷺ explicitly forbade **ihtikar** (hoarding goods to drive up prices, causing artificial inflation):
+
+> *"No one hoards but a wrongdoer."* (Sahih Muslim 1605)
+
+> *"Whoever hoards food for forty days seeking thereby a high price, then he has nothing to do with Allah, and Allah has nothing to do with him."* (Musnad Ahmad)
+
+Modern inflation in essential goods (food, energy, housing) is often driven by exactly this kind of behavior — supply manipulation, speculative buying, monopolistic hoarding. Islam prohibited the supply-side cause 14 centuries before contemporary regulators tried to control it.
+
+### Umar (RA) — the early economic regulator
+
+Umar ibn al-Khattab (RA), as the second Caliph, was famously hands-on with market oversight. He would walk the markets of Madinah at night, inspect weights and measures, set up the **Diwan** (state treasury and accounting institution), and intervene against unjust pricing.
+
+When asked about price-setting, his position aligned with the Prophet's ﷺ — generally markets should set prices freely, but **manipulation, hoarding, and unjust transactions** are to be stopped. This is essentially modern anti-trust + consumer protection law, established 1,400 years ago.
+
+### Zakat — the divine inflation hedge
+
+This is the most beautiful design element of the Islamic economic system regarding inflation:
+
+> *"Take from their wealth a charity (zakat) by which you purify them and cause them to increase."* (Quran 9:103)
+
+Zakat is **2.5% per year on stored wealth above the nisab threshold**. Why annually? Because *wealth that sits is wealth that loses to inflation* — and zakat forces it back into circulation, into the hands of those who will spend it on real goods. The Islamic system thus has a built-in mechanism that:
+
+1. Discourages dead-weight cash hoarding (which loses to inflation anyway)
+2. Recycles capital to the productive economy
+3. Forces wealthy holders to either invest productively or pay zakat
+
+Zakat is, among many other things, a **counter-inflationary monetary policy** built directly into Islamic law.
+
+### Practical takeaway
+
+You learned today that cash loses ~9% per year to inflation. The Islamic system offers two complementary protections:
+
+1. **Stable money** (historically dinar/dirham; today, allocating to assets that hold real value — productive equity, real estate, or even physical gold/silver as wealth grows)
+2. **Zakat-mindset** — don't *let* wealth sit dead. Either it's working (in business, in halal investments, supporting your family) or it's flowing out (zakat, sadaqah, helping others). Money sitting at 0% is doubly painful: it loses to inflation, and it earns no spiritual return either.
+
+The Islamic answer to inflation isn't pessimism — it's **velocity**. Keep wealth moving through productive halal channels.
+
+---
+
+## 📚 References & Sources
+
+- **Bangladesh Bureau of Statistics (BBS)** — [bbs.gov.bd](https://bbs.gov.bd) — official inflation data referenced in this lesson.
+- **Bangladesh Bank** — for historical taka monetary data and inflation reports.
+- **Investopedia** — for definitions and standard explanations of inflation and real return.
+- **The Bogleheads Wiki** — section on inflation-adjusted returns and "real" vs "nominal" framing.
+- **Saifedean Ammous** — *The Bitcoin Standard* (2018). For the historical case that commodity-backed money is more stable than fiat. (Note: separate from any cryptocurrency claims; the historical sections on the gold standard are well-researched.)
+- **The Plain Bagel (YouTube)** — accessible English explanations of how inflation actually works.
+- **Mufti Taqi Usmani** — *An Introduction to Islamic Finance*. For discussion of Islamic monetary principles.
+- **Quranic citations:** 17:35, 83:1–4, 9:103.
+- **Hadith citations:** Sahih Muslim 1605 (no one hoards but a wrongdoer); Musnad Ahmad (hoarding for 40 days); Musnad Ahmad (dinar and dirham hadith).
+- **Historical reference:** Umar ibn al-Khattab's establishment of the Diwan (recorded in *Tarikh al-Tabari* and other classical historical works).

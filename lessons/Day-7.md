@@ -425,3 +425,171 @@ Day 6: Risk vs Return ✓
 Day 7: Halal vs Haram + Synthesis ✓
 
 **Welcome to the path.**
+
+---
+
+## 🕌 The Islamic Perspective — Expanded
+
+Today's lesson already integrates Islamic teaching throughout, but for the closing day of the course, let's go a little deeper into the Sunnah and the lives of the Sahaba (RA) — to show that what you've learned isn't just a theoretical framework, but a *lived practice* with 1,400 years of working models.
+
+### The Prophet's ﷺ daily dua against financial harm
+
+Earlier we mentioned the Prophet's ﷺ supplication for halal sufficiency. Here it is in full, with the situation in which he taught it:
+
+**Ali ibn Abi Talib (RA) reported:** A man came to me and said: "I have to make a payment which I am unable to make." Ali (RA) told him: "Shall I not teach you words which the Messenger of Allah ﷺ taught me, with which, if you owed a debt as large as Mount Sayr, Allah would arrange for it to be paid off for you?" The man said: "Of course!" Ali (RA) said: "Say:
+
+> *"Allahumma akfini bi halalika 'an haramika, wa aghnini bi fadlika 'amman siwak."*
+>
+> *"O Allah, suffice me with what You have made halal so I have no need for what You have made haram, and enrich me by Your bounty so I have no need for anyone besides You."*
+
+(Sunan al-Tirmidhi 3563, classed Hasan)
+
+**This is the single most relevant dua for everyone in this course.** Whatever financial situation you're in — debt, low income, unstable freelance work, family pressures — this is what the Prophet ﷺ taught a struggling believer to say. Memorize it. Recite it after every prayer. Especially during this learning journey.
+
+### Another Prophetic dua for financial well-being
+
+> *"Allahumma inni a'udhu bika min al-hammi wa al-hazani, wa al-'ajzi wa al-kasali, wa al-bukhli wa al-jubni, wa dala'id-dayni wa ghalabatir-rijal."*
+>
+> *"O Allah, I seek refuge in You from worry and grief, from incapacity and laziness, from miserliness and cowardice, from the burden of debt and being overpowered by men."*
+
+(Sahih Bukhari 6369)
+
+**Notice what the Prophet ﷺ groups together:** the *burden of debt* is mentioned alongside grief, weakness, and cowardice. The spiritual harm of being trapped in debt is real and recognized in the Sunnah — which is why our roadmap addresses debt as something to gradually unwind, not ignore.
+
+### Khadijah (RA) — the businesswoman who funded Islam
+
+We mentioned her on Day 5. Here's what's worth lingering on for Day 7's lens:
+
+When the Prophet ﷺ received the first revelation in the cave of Hira and came home shaking and afraid, it was **Khadijah (RA)** — using both her wisdom and her wealth — who covered him, comforted him, took him to her cousin Waraqah ibn Nawfal to confirm what had happened, and then **funded the entirety of the early Islamic mission** for the next 10+ years.
+
+Without her business success, the early years of Islam would have had no financial cushion. The wealth she had built through honest trade became the *operational backbone* of the world's most important spiritual movement.
+
+The Prophet ﷺ said:
+
+> *"Allah has not given me a better wife than Khadijah."* (Musnad Ahmad)
+
+And years after her death, when he received a gift, he would send portions to her old friends — saying *"these were her friends."* The dignity she gained was eternal because it was rooted in honest wealth, used for righteous purposes.
+
+### Abdul Rahman bin Awf (RA) — Mudaraba in action
+
+We told his arrival story on Day 5 — "show me the market." Let's see the *kind of business he built*:
+
+Abdul Rahman (RA) was famous for using **Mudaraba and Musharaka partnerships** in his trade. He would partner with other Sahaba — they'd contribute capital or expertise, agree on profit-share ratios, and trade together. He didn't borrow money at interest (riba — forbidden). He didn't lend at interest. He *partnered*.
+
+When his caravans returned to Madinah, you could hear them coming from miles away — 700 camels laden with goods, the sound shaking the city. His business was so profitable that he could fund armies, free slaves, and feed thousands during famines — all from honest trade partnerships.
+
+**This is the practical example of why Mudaraba/Musharaka is the heart of Islamic finance.** Risk shared. Profit shared. Effort respected. Capital respected. No riba.
+
+When Abdul Rahman (RA) died at age 72, his estate was so vast that the inheritance of just his four wives (each receiving 1/8 each, then divided) was reportedly *80,000 dinars per wife*. Yet his last act — before death — was to free 30 slaves. The Prophet ﷺ said of him:
+
+> *"O Allah, give Abdul Rahman bin Awf to drink from the Salsabil of Paradise."* (Sahih traditions)
+
+This is the model: **wealth earned through halal partnerships, used to liberate others and serve Allah's cause.**
+
+### Uthman ibn Affan (RA) — the strategic philanthropist
+
+We mentioned the well of Ruma on Day 5. Three more lessons from Uthman's (RA) financial life worth knowing:
+
+1. **The Army of Distress (Jaysh al-Usrah)** — The Battle of Tabuk required outfitting an army during severe drought. The Prophet ﷺ called for contributions. Uthman (RA) gave **900 camels and 100 horses fully equipped, plus 1,000 gold dinars**. The Prophet ﷺ said:
+   > *"Whatever Uthman does after this day will not harm him."* (Sunan al-Tirmidhi 3701)
+
+2. **He systematized waqf (charitable endowment)** — well-resourced believers buying productive assets and dedicating their income permanently to community benefit. This is the original "endowment" model used today by universities and foundations — Uthman (RA) pioneered the structure 14 centuries earlier.
+
+3. **He set the model of being a wealthy ruler without using office for gain** — as Caliph, he refused state stipends for himself, living from his pre-Caliphate trade wealth. Public service without using it for personal enrichment.
+
+### Abu Bakr al-Siddiq (RA) — wealth's highest purpose
+
+When Abu Bakr (RA) gave everything for the Tabuk campaign:
+
+> The Prophet ﷺ asked: *"What have you left for your family?"*
+> Abu Bakr (RA) replied: *"I have left for them Allah and His Messenger."* (Sunan Abi Dawud 1678)
+
+And on his death-bed, Abu Bakr (RA) instructed his daughter Aisha (RA): *"Return whatever I took from the bayt al-mal (treasury) above what's needed for my burial."* Even on his last day, his concern was the *amanah* (trust) of public wealth.
+
+### The Sahaba's overall financial pattern
+
+Look at the Sahaba's relationship with wealth and notice the pattern:
+
+| Stage | Approach |
+|---|---|
+| Pre-Islam many of them were poor or modest | Worked, traded, built |
+| After Islam they earned through halal means | Trade, partnerships, war booty distribution |
+| As wealth grew | Increased zakat, sadaqah, supporting Islam |
+| As community needed | Funded armies, freed slaves, built infrastructure |
+| At death | Most had given away the majority |
+
+The wealth wasn't the goal. It was the *tool*. The goal was Allah's pleasure and the Ummah's benefit.
+
+### The Prophet ﷺ's distinctive approach to debt
+
+The Prophet ﷺ took debt very seriously. There are multiple authentic narrations showing:
+
+- He refused to perform the funeral prayer over a deceased person who had unpaid debts (until Abu Qatada RA volunteered to pay them). (Sahih Bukhari 2289)
+- He prayed against debt frequently
+- He warned that the soul of a believer is "suspended" by their debt until it's paid (Sunan Ibn Majah 2413, Hasan)
+
+**Why?** Because debt creates dependencies that compromise *amanah* (trust) and `aql` (sound judgment). A heavily indebted person becomes susceptible to bad decisions, lies, broken promises — the Prophet ﷺ said exactly this. (See Day 2's Islamic Perspective on this hadith.)
+
+This is why our roadmap addresses debt — gradually, with awareness — even though the user's chosen priority is learning-first. *Knowing* about debt's spiritual weight is part of the learning. Eventually clearing it is part of the journey.
+
+### Final synthesis with Islamic perspective
+
+The 10 concepts you mastered in this course:
+
+| Concept | Islamic teaching it aligns with |
+|---|---|
+| Cash flow tracking | Quran 2:282 — write down financial dealings |
+| Net worth measurement | Zakat requires knowing your wealth; *amanah* in stewardship |
+| Compound interest avoidance | Quran 3:130 explicit prohibition of "doubled and multiplied" riba |
+| Inflation awareness | Historical dinar/dirham stability; zakat circulates wealth |
+| Real return thinking | Honest measurement in trade (Quran 17:35) |
+| Time value of money | Riba forbidden as charging for time alone; murabaha allows time-related pricing tied to real assets |
+| Asset/liability distinction | Khadijah, Abdul Rahman, Uthman built real assets, not lifestyle liabilities |
+| Income vs wealth | Wealth is a tool, not identity (Abu Bakr's example) |
+| Risk vs return + scam detection | Gharar and maysir forbidden — divine protection from fraud |
+| Halal vs haram structures | The system that wraps all of the above |
+
+You've learned a complete personal finance curriculum *that runs entirely parallel to Islamic teaching*. You don't have to choose between being a Muslim and being financially literate. They're the **same path** — and the deeper you go in either, the more you'll see the convergence.
+
+> The Prophet ﷺ said: *"The hand which gives is better than the hand which receives. Begin (with charity) for those whose dependents you have."* (Sahih Bukhari 1429)
+
+The whole course's purpose ultimately: get to a place where your hand is the giving hand. Not for status. Not for show. For Allah's pleasure, for your family's security, for your Ummah's benefit, for the eternal reward of *sadaqah jariyah*.
+
+---
+
+## 📚 References & Sources
+
+This is the synthesis day, so references span all topics. The most important ones:
+
+### Islamic finance foundations
+- **Mufti Taqi Usmani** — *An Introduction to Islamic Finance* (1998). The most accessible, rigorous English-language introduction. Mufti Usmani sits on the boards of major Islamic banks worldwide.
+- **AAOIFI (Accounting and Auditing Organization for Islamic Financial Institutions)** — official Shariah Standards. The international reference body.
+- **Imam al-Nawawi** — *Riyad al-Salihin*, sections on commerce and ethics. Classical compilation of authentic hadith.
+- **Ibn Qudamah** — *Al-Mughni*. Detailed Hanbali jurisprudence on financial matters (also relevant cross-school).
+- **Yusuf al-Qaradawi** — *The Lawful and the Prohibited in Islam* (Al-Halal wal-Haram fil-Islam). Comprehensive treatment of halal/haram across all life domains, with detailed financial sections.
+
+### Sahaba biographies (for the stories cited)
+- **Ibn Hisham** — *Al-Sirah al-Nabawiyyah*. The classical biography of the Prophet ﷺ.
+- **Ibn Sa'd** — *Al-Tabaqat al-Kubra*. Detailed records of the Companions.
+- **Ibn al-Athir** — *Usd al-Ghabah fi Ma'rifat al-Sahaba*. Biographical dictionary of all known Sahaba.
+- **Khalid Muhammad Khalid** — *Men Around the Messenger* (الرجال حول الرسول). Accessible modern compilation, available in English translation.
+
+### Modern personal finance (where the course's non-Islamic frameworks came from)
+- **Morgan Housel** — *The Psychology of Money*
+- **Robert Kiyosaki** — *Rich Dad Poor Dad*
+- **Ramit Sethi** — *I Will Teach You to Be Rich*
+- **Naval Ravikant** — *How to Get Rich* tweetstorm (and *Almanack of Naval Ravikant* by Eric Jorgenson)
+- **Burton Malkiel** — *A Random Walk Down Wall Street*
+- **John Bogle** — *The Little Book of Common Sense Investing*
+
+### Free online resources
+- **Khan Academy Finance** ([khanacademy.org/economics-finance-domain](https://www.khanacademy.org/economics-finance-domain))
+- **The Bogleheads Wiki and Forum** ([bogleheads.org](https://www.bogleheads.org))
+- **IslamQA** ([islamqa.info](https://islamqa.info)) — answered fiqh questions on financial matters; useful but check the responding scholar's qualifications for any specific ruling
+- **Wahed Invest blog** — modern halal investing education
+
+### Quranic and Hadith verifications
+
+All Quranic citations in this course were checked against multiple Tafasir (Ibn Kathir, al-Tabari, al-Qurtubi). All hadith citations include their source collection and grade where commonly available. For specific fiqh applications to your own life, please consult a qualified scholar — this course is an educational starting point, not a substitute for direct guidance.
+
+> *"And say: 'My Lord, increase me in knowledge.'"* (Quran 20:114)

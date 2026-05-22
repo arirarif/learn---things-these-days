@@ -287,3 +287,53 @@ If you can answer all 5 in plain language, mark **Cash flow** and **Net worth** 
 You just did something most adults in Bangladesh have never done: calculated your actual cash flow and net worth. From this point on, "I think I'm doing OK" gets replaced with "Let me check the numbers." That single shift — from feeling to measurement — is what separates people who build wealth from people who don't.
 
 See you tomorrow for Day 2 — **Compound Interest**, the most important concept in the entire course.
+
+---
+
+## 🕌 The Islamic Perspective
+
+The concepts you just learned — measuring what you have, tracking what you owe — aren't modern inventions. They're part of how Allah ﷻ instructed believers to handle wealth.
+
+### Writing things down is a divine command
+
+The **longest verse in the entire Quran** is about financial transactions. **Surah Al-Baqarah, verse 2:282** — over 130 words long — commands believers to *write down* their debts and contracts in detail, with witnesses:
+
+> *"O you who believe! When you contract a debt for a fixed period, write it down. Let a scribe write it down in justice between you..."* (Quran 2:282)
+
+Think about that. Of all the topics Allah could have made the longest verse about — prayer, faith, paradise — He chose **documenting financial transactions**. That's how seriously Islam takes the practice you just did. Tracking your money isn't just modern personal finance advice — it's literally a Quranic command.
+
+### Prophet Yusuf (AS) — the original cash flow planner
+
+In **Surah Yusuf (12:46–49)**, the Prophet Yusuf (AS) interprets a dream as seven years of abundance followed by seven years of drought. His plan?
+
+> *"You shall sow for seven years as usual, but whatever you reap, leave it in its ears, except a little of which you will eat. Then will come, after that, seven hard years which will devour what you have laid by for them, except a little which you have kept."* (Quran 12:47–48)
+
+This is **cash flow forecasting from 4,000 years ago**. Surplus during the good years (positive cash flow), reserved for the lean years (depleted cash flow). The same principle you're applying to your own life. A prophet of Allah used it to save an entire civilization.
+
+### The Prophet ﷺ and the Sahaba practiced careful accounting
+
+The Prophet ﷺ kept meticulous records of zakat collected, war booty distributed, and treasury matters. Umar ibn al-Khattab (RA), as the second Caliph, established the **Diwan** — a formal accounting institution — to track state finances. The Sahaba understood that *amanah* (financial trust) requires precision, not estimation.
+
+### Practical takeaway
+
+When you sit with the tracker tonight, computing your cash flow and net worth — know that this isn't just a productivity habit. It's an act consistent with what Allah commanded and the way the best of humanity (Prophet ﷺ and his companions) actually lived. Measurement is honesty. Honesty is *amanah*. *Amanah* is barakah.
+
+> The Prophet ﷺ said: *"The truthful and trustworthy merchant will be with the prophets, the truthful, and the martyrs on the Day of Judgment."* (Tirmidhi)
+
+The "trustworthy" part begins with knowing your own numbers.
+
+---
+
+## 📚 References & Sources
+
+The frameworks and ideas in today's lesson are drawn from:
+
+- **Robert Kiyosaki** — *Rich Dad Poor Dad* (1997). The simple "cash flow = direction of life" framing is associated with his work, though the underlying concepts predate him.
+- **Ramit Sethi** — *I Will Teach You to Be Rich* (2009). For the behavior-tracking approach: track first, optimize later.
+- **Khan Academy** — Free finance courses. Standard explanations of cash flow, balance sheets, and net worth.
+- **The Bogleheads Forum** ([bogleheads.org](https://www.bogleheads.org)) — for the principle that consistency over time beats clever timing.
+- **Bangladesh Bureau of Statistics (BBS)** — for context on household income/expense averages in Bangladesh.
+- **Quranic citations:** Surah Al-Baqarah 2:282 (writing down debts); Surah Yusuf 12:46–49 (Yusuf's plan).
+- **Hadith citation:** Tirmidhi 1209 (truthful merchant with prophets).
+
+If one of these resonates, go deeper — but only after applying today's exercise.
