@@ -1,0 +1,14 @@
+Month,Cash on hand,Bank balance,Savings account,DPS / FDR,Sanchaypatra,Stocks (DSE),Other assets,TOTAL ASSETS,Credit card debt,Personal loan,Market/Chit loan,Family loan,Other debt,TOTAL DEBTS,NET WORTH,Change vs last month
+2026-05,0,0,0,0,0,0,0,=SUM(B2:H2),0,0,0,0,0,=SUM(I2:M2),=I2-N2,—
+2026-06,,,,,,,,=SUM(B3:H3),,,,,,=SUM(I3:M3),=I3-N3,=O3-O2
+2026-07,,,,,,,,=SUM(B4:H4),,,,,,=SUM(I4:M4),=I4-N4,=O4-O3
+2026-08,,,,,,,,=SUM(B5:H5),,,,,,=SUM(I5:M5),=I5-N5,=O5-O4
+2026-09,,,,,,,,=SUM(B6:H6),,,,,,=SUM(I6:M6),=I6-N6,=O6-O5
+2026-10,,,,,,,,=SUM(B7:H7),,,,,,=SUM(I7:M7),=I7-N7,=O7-O6
+2026-11,,,,,,,,=SUM(B8:H8),,,,,,=SUM(I8:M8),=I8-N8,=O8-O7
+2026-12,,,,,,,,=SUM(B9:H9),,,,,,=SUM(I9:M9),=I9-N9,=O9-O8
+2027-01,,,,,,,,=SUM(B10:H10),,,,,,=SUM(I10:M10),=I10-N10,=O10-O9
+2027-02,,,,,,,,=SUM(B11:H11),,,,,,=SUM(I11:M11),=I11-N11,=O11-O10
+2027-03,,,,,,,,=SUM(B12:H12),,,,,,=SUM(I12:M12),=I12-N12,=O12-O11
+2027-04,,,,,,,,=SUM(B13:H13),,,,,,=SUM(I13:M13),=I13-N13,=O13-O12
+2027-05,,,,,,,,=SUM(B14:H14),,,,,,=SUM(I14:M14),=I14-N14,=O14-O13

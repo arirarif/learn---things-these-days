@@ -1,0 +1,22 @@
+# Claude Code working files
+.claude/
+.sixth/
+
+# Backup files
+*.bak
+*-backup-*.json
+finance-tracker-backup-*.json
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*~
+
+# Memory (private workspace)
+memory/

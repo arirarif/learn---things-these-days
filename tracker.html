@@ -1,0 +1,2695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finance Learning Tracker</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0f1115; --bg-card: #1a1d24; --bg-elev: #232732;
+  --border: #2d323f; --text: #e6e8ee; --text-dim: #9ca3b3;
+  --accent: #6ea8fe; --accent-2: #8b5cf6;
+  --green: #4ade80; --red: #f87171; --orange: #fb923c; --yellow: #fbbf24;
+  --pink: #ec4899; --cyan: #22d3ee;
+}
+[data-theme="light"] {
+  --bg: #f6f7fa; --bg-card: #ffffff; --bg-elev: #f0f2f7;
+  --border: #e2e5ec; --text: #1a1d24; --text-dim: #5a6273;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans Bengali", "SolaimanLipi", Roboto, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.55; min-height: 100vh;
+}
+header { background: var(--bg-card); border-bottom: 1px solid var(--border); padding: 12px 20px; position: sticky; top: 0; z-index: 100; }
+.header-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+h1 { font-size: 1.25rem; font-weight: 700; }
+h1 .accent { color: var(--accent); }
+nav { display: flex; gap: 2px; flex-wrap: wrap; }
+nav button { background: transparent; border: 1px solid transparent; color: var(--text-dim); padding: 7px 11px; font-size: 0.85rem; border-radius: 6px; cursor: pointer; font-weight: 500; }
+nav button:hover { background: var(--bg-elev); color: var(--text); }
+nav button.active { background: var(--accent); color: white; border-color: var(--accent); }
+.header-actions { display: flex; gap: 6px; }
+.header-actions button { background: var(--bg-elev); border: 1px solid var(--border); color: var(--text); padding: 6px 10px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+main { padding: 22px; max-width: 1320px; margin: 0 auto; }
+section.view { display: none; }
+section.view.active { display: block; }
+.card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; margin-bottom: 14px; }
+.card h2 { font-size: 1.12rem; margin-bottom: 12px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.card h2 .badge { font-size: 0.7rem; padding: 2px 8px; background: var(--bg-elev); border-radius: 10px; color: var(--text-dim); font-weight: 500; }
+.card h3 { font-size: 0.98rem; margin: 14px 0 8px; font-weight: 600; }
+.grid { display: grid; gap: 14px; }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+.grid-4 { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
+.stat { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+.stat .label { color: var(--text-dim); font-size: 0.78rem; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.05em; }
+.stat .value { font-size: 1.55rem; font-weight: 700; line-height: 1.15; }
+.stat .delta { font-size: 0.8rem; margin-top: 4px; color: var(--text-dim); }
+.stat.danger .value { color: var(--red); }
+.stat.warn .value { color: var(--orange); }
+.stat.good .value { color: var(--green); }
+.stat.info .value { color: var(--accent); }
+.stat.pink .value { color: var(--pink); }
+.stat.cyan .value { color: var(--cyan); }
+.stat.purple .value { color: var(--accent-2); }
+table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+th, td { padding: 8px 9px; text-align: left; border-bottom: 1px solid var(--border); }
+th { color: var(--text-dim); font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; }
+td.right, th.right { text-align: right; }
+input, select, textarea {
+  background: var(--bg-elev); border: 1px solid var(--border); color: var(--text);
+  padding: 7px 10px; border-radius: 6px; font-size: 0.9rem; font-family: inherit; width: 100%;
+}
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); }
+input[type=range] { padding: 0; }
+table input { padding: 4px 6px; }
+button.primary { background: var(--accent); color: white; border: none; padding: 9px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.9rem; }
+button.primary:hover { background: #5a92e8; }
+button.ghost { background: transparent; border: 1px solid var(--border); color: var(--text); padding: 6px 11px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+button.ghost:hover { background: var(--bg-elev); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+.form-row.three { grid-template-columns: 1fr 1fr 1fr; }
+.form-row.four { grid-template-columns: 1fr 1fr 1fr 1fr; }
+.form-row.full { grid-template-columns: 1fr; }
+@media (max-width: 600px) { .form-row, .form-row.three, .form-row.four { grid-template-columns: 1fr; } }
+label { display: block; font-size: 0.8rem; color: var(--text-dim); margin-bottom: 4px; }
+.checklist-item { display: flex; align-items: flex-start; gap: 10px; padding: 7px 0; cursor: pointer; user-select: none; }
+.checklist-item input[type=checkbox] { width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0; cursor: pointer; }
+.checklist-item.done span { text-decoration: line-through; color: var(--text-dim); }
+.progress-bar { background: var(--bg-elev); height: 8px; border-radius: 4px; overflow: hidden; margin: 6px 0; }
+.progress-bar .fill { background: var(--green); height: 100%; transition: width 0.4s; }
+.day-block { margin-bottom: 12px; padding: 12px; background: var(--bg-elev); border-radius: 8px; }
+.day-block h4 { margin-bottom: 6px; color: var(--accent); }
+.file-list { list-style: none; }
+.file-list li { padding: 11px; margin-bottom: 6px; background: var(--bg-elev); border-radius: 8px; cursor: pointer; transition: background 0.15s; border: 1px solid transparent; }
+.file-list li:hover, .file-list li.active { background: var(--bg-card); border-color: var(--accent); }
+.file-list .file-num { color: var(--accent); font-weight: 700; margin-right: 8px; }
+.file-list .file-desc { font-size: 0.8rem; color: var(--text-dim); margin-top: 3px; }
+.reader { display: grid; grid-template-columns: 280px 1fr; gap: 14px; }
+@media (max-width: 768px) { .reader { grid-template-columns: 1fr; } }
+.reader-content { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 22px; max-height: 82vh; overflow-y: auto; }
+.reader-content h1 { font-size: 1.5rem; margin: 0 0 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+.reader-content h2 { font-size: 1.2rem; margin: 22px 0 10px; color: var(--accent); }
+.reader-content h3 { font-size: 1.05rem; margin: 16px 0 7px; }
+.reader-content h4 { margin: 12px 0 6px; }
+.reader-content p { margin: 8px 0; }
+.reader-content ul, .reader-content ol { margin: 8px 0 8px 22px; }
+.reader-content li { margin: 4px 0; }
+.reader-content code { background: var(--bg-elev); padding: 1px 5px; border-radius: 3px; font-family: "JetBrains Mono", Consolas, monospace; font-size: 0.88em; }
+.reader-content pre { background: var(--bg-elev); padding: 12px; border-radius: 6px; overflow-x: auto; margin: 10px 0; }
+.reader-content blockquote { border-left: 3px solid var(--accent); padding: 6px 14px; margin: 12px 0; background: var(--bg-elev); color: var(--text-dim); font-style: italic; }
+.reader-content table { margin: 10px 0; font-size: 0.88rem; }
+.reader-content table th { background: var(--bg-elev); }
+.reader-content a { color: var(--accent); text-decoration: none; }
+.reader-content a:hover { text-decoration: underline; }
+.reader-content hr { border: none; border-top: 1px solid var(--border); margin: 18px 0; }
+.note-card { background: var(--bg-elev); border-radius: 8px; padding: 13px; margin-bottom: 9px; border-left: 3px solid var(--accent); }
+.note-card .note-date { font-size: 0.76rem; color: var(--text-dim); margin-bottom: 5px; }
+.note-card .note-content { white-space: pre-wrap; word-wrap: break-word; }
+.note-card .note-tags { margin-top: 8px; display: flex; gap: 5px; flex-wrap: wrap; }
+.empty { text-align: center; color: var(--text-dim); padding: 28px; background: var(--bg-elev); border-radius: 8px; }
+.stage-tracker { display: flex; gap: 4px; margin: 10px 0; }
+.stage-tracker .stage { flex: 1; padding: 9px 5px; text-align: center; background: var(--bg-elev); border-radius: 6px; font-size: 0.76rem; font-weight: 600; color: var(--text-dim); border: 2px solid transparent; }
+.stage-tracker .stage.current { border-color: var(--accent); color: var(--text); }
+.stage-tracker .stage.done { background: var(--green); color: white; }
+.banner { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: white; padding: 15px 20px; border-radius: 12px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.banner .banner-text { font-weight: 600; font-size: 1.02rem; }
+.banner .banner-sub { font-size: 0.84rem; opacity: 0.9; margin-top: 2px; font-weight: 400; }
+svg.chart { width: 100%; height: 220px; }
+svg.chart text { fill: var(--text-dim); font-size: 10px; }
+svg.chart .grid { stroke: var(--border); stroke-dasharray: 2,3; opacity: 0.5; }
+svg.chart .line { fill: none; stroke: var(--accent); stroke-width: 2; }
+svg.chart .dot { fill: var(--accent); }
+svg.chart .area { fill: var(--accent); opacity: 0.15; }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 0.74rem; font-weight: 600; }
+.tag.kill { background: rgba(248, 113, 113, 0.2); color: var(--red); }
+.tag.high { background: rgba(251, 146, 60, 0.2); color: var(--orange); }
+.tag.med  { background: rgba(251, 191, 36, 0.2); color: var(--yellow); }
+.tag.low  { background: rgba(74, 222, 128, 0.2); color: var(--green); }
+.tag.note { background: var(--bg-card); color: var(--text-dim); cursor: pointer; }
+.tag.note.active { background: var(--accent); color: white; }
+.tag.tier { background: rgba(139, 92, 246, 0.2); color: var(--accent-2); }
+.icon-btn { background: transparent; border: none; color: var(--text-dim); cursor: pointer; padding: 4px; font-size: 0.95rem; }
+.icon-btn:hover { color: var(--red); }
+hr.thin { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
+.row-flex { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.budget-row { display: grid; grid-template-columns: 1.5fr 1fr 1fr 2fr 0.5fr; gap: 10px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); }
+.budget-row.header { font-size: 0.78rem; color: var(--text-dim); text-transform: uppercase; font-weight: 600; }
+@media (max-width: 700px) { .budget-row { grid-template-columns: 1fr 1fr; } .budget-row.header { display: none; } }
+.goal-card { background: var(--bg-elev); border-radius: 10px; padding: 14px; margin-bottom: 10px; border-left: 4px solid var(--accent); }
+.goal-card.done { border-left-color: var(--green); }
+.goal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+.goal-name { font-weight: 600; }
+.goal-amount { color: var(--text-dim); font-size: 0.88rem; }
+.streak-icon { display: inline-block; font-size: 1.6rem; vertical-align: middle; margin-right: 5px; }
+.kbd { display: inline-block; padding: 1px 6px; border-radius: 4px; background: var(--bg-elev); border: 1px solid var(--border); font-size: 0.74rem; font-family: monospace; }
+.toast { position: fixed; bottom: 20px; right: 20px; background: var(--bg-card); border: 1px solid var(--accent); padding: 12px 18px; border-radius: 8px; box-shadow: 0 4px 14px rgba(0,0,0,0.3); z-index: 200; animation: slideUp 0.25s ease-out; }
+@keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.simulator-result { background: var(--bg-elev); padding: 12px; border-radius: 8px; margin-top: 10px; }
+.simulator-result table { font-size: 0.85rem; }
+.lang-toggle { display: inline-flex; background: var(--bg-elev); border-radius: 6px; padding: 2px; }
+.lang-toggle button { padding: 4px 10px; border: none; background: transparent; color: var(--text-dim); cursor: pointer; border-radius: 4px; font-size: 0.82rem; font-weight: 600; }
+.lang-toggle button.active { background: var(--accent); color: white; }
+.income-source-tag { display: inline-block; padding: 1px 7px; border-radius: 10px; font-size: 0.72rem; background: var(--bg-card); color: var(--text-dim); }
+.concept-card { background: var(--bg-elev); border-radius: 10px; padding: 14px; margin-bottom: 10px; border-left: 4px solid var(--border); }
+.concept-card.learning { border-left-color: var(--yellow); }
+.concept-card.mastered { border-left-color: var(--green); }
+.concept-header { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.concept-title { font-weight: 600; font-size: 1.02rem; }
+.concept-title .num { color: var(--accent); margin-right: 6px; }
+.concept-status-select { width: auto; padding: 4px 8px; font-size: 0.82rem; }
+.concept-desc { color: var(--text-dim); font-size: 0.88rem; margin: 6px 0 8px; }
+.concept-actions { display: flex; gap: 6px; margin-top: 6px; }
+.concept-notes-area { display: none; margin-top: 10px; }
+.concept-card.expanded .concept-notes-area { display: block; }
+.study-card { background: var(--bg-elev); border-radius: 10px; padding: 14px; margin-bottom: 10px; border-left: 4px solid var(--accent-2); }
+.study-card.done { border-left-color: var(--green); opacity: 0.85; }
+.study-row { display: grid; grid-template-columns: 1fr auto auto auto; gap: 10px; align-items: center; }
+@media (max-width: 700px) { .study-row { grid-template-columns: 1fr; } }
+.debt-mini { background: var(--bg-elev); padding: 12px; border-radius: 8px; }
+.debt-mini-row { display: flex; justify-content: space-between; padding: 4px 0; font-size: 0.88rem; }
+.debt-mini-row span:last-child { font-weight: 600; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <h1>📚 Finance <span class="accent">Learning Tracker</span></h1>
+    <nav id="main-nav">
+      <button class="active" data-view="dashboard">Dashboard</button>
+      <button data-view="files">Roadmap</button>
+      <button data-view="concepts">Concepts</button>
+      <button data-view="study">Study Log</button>
+      <button data-view="expenses">Expenses</button>
+      <button data-view="income">Income</button>
+      <button data-view="budget">Budget</button>
+      <button data-view="networth">Net Worth</button>
+      <button data-view="goals">Goals</button>
+      <button data-view="debt">Debt</button>
+      <button data-view="checklists">Checklists</button>
+      <button data-view="notes">Notes</button>
+    </nav>
+    <div class="header-actions">
+      <button onclick="toggleTheme()" title="Toggle theme">🌓</button>
+      <button onclick="exportData()" title="Backup">⬇️</button>
+      <button onclick="document.getElementById('import-file').click()" title="Restore">⬆️</button>
+      <input type="file" id="import-file" hidden accept=".json" onchange="importData(event)">
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- DASHBOARD -->
+<section id="dashboard" class="view active">
+  <div class="banner">
+    <div>
+      <div class="banner-text" id="banner-text">Stage 0 — Learn the language.</div>
+      <div class="banner-sub" id="banner-sub">Knowledge first. Practice second. Money third. Debt last.</div>
+    </div>
+    <button class="ghost" style="background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.3); color: white;" onclick="showView('checklists')">View checklist →</button>
+  </div>
+
+  <!-- Learning-first hero stats -->
+  <div class="grid grid-4" style="margin-bottom: 14px;">
+    <div class="stat purple"><div class="label"><span class="streak-icon">🧠</span>Concepts Mastered</div><div class="value" id="stat-concepts">0 / 10</div><div class="delta" id="stat-concepts-delta">of foundation set</div></div>
+    <div class="stat info"><div class="label">📚 Study Log Items</div><div class="value" id="stat-study">0</div><div class="delta" id="stat-study-delta">books, videos, chapters</div></div>
+    <div class="stat good"><div class="label"><span class="streak-icon">🔥</span>Logging Streak</div><div class="value" id="stat-streak">0</div><div class="delta" id="stat-streak-delta">consecutive days</div></div>
+    <div class="stat pink"><div class="label">Current Stage</div><div class="value" id="stat-stage">Stage 0</div><div class="delta" id="stat-stage-name">Learn the language</div></div>
+  </div>
+
+  <!-- Money stats -->
+  <div class="grid grid-4" style="margin-bottom: 14px;">
+    <div class="stat cyan"><div class="label">Income This Month</div><div class="value" id="stat-monthincome">৳0</div><div class="delta" id="stat-monthincome-delta">log it in Income</div></div>
+    <div class="stat warn"><div class="label">Spent This Month</div><div class="value" id="stat-monthspend">৳0</div><div class="delta" id="stat-monthspend-delta">—</div></div>
+    <div class="stat good"><div class="label">Surplus</div><div class="value" id="stat-surplus">৳0</div><div class="delta">income − expenses</div></div>
+    <div class="stat info"><div class="label">Net Worth</div><div class="value" id="stat-networth">৳0</div><div class="delta" id="stat-networth-delta">—</div></div>
+  </div>
+
+  <div class="card">
+    <h2>Learning Stage Tracker</h2>
+    <div class="stage-tracker" id="stage-tracker"></div>
+    <div style="font-size: 0.86rem; color: var(--text-dim);">
+      <strong>0:</strong> Learn. <strong>1:</strong> Practice. <strong>2:</strong> Earn. <strong>3:</strong> Invest. <strong>4:</strong> Knowledge. <strong>5:</strong> Wealth.
+    </div>
+  </div>
+
+  <div class="grid grid-2">
+    <div class="card">
+      <h2>📚 Concepts Progress</h2>
+      <div id="dash-concepts"></div>
+      <div style="margin-top: 10px;"><button class="ghost" onclick="showView('concepts')">Open Concepts →</button></div>
+    </div>
+    <div class="card">
+      <h2>📖 Current Study Items</h2>
+      <div id="dash-study"></div>
+      <div style="margin-top: 10px;"><button class="ghost" onclick="showView('study')">Open Study Log →</button></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Insights</h2>
+    <div id="dash-insights"></div>
+  </div>
+
+  <div class="grid grid-2">
+    <div class="card">
+      <h2>Net Worth Trend</h2>
+      <div id="dash-chart"></div>
+    </div>
+    <div class="card">
+      <h2>⚠️ Debt Awareness <span class="badge">monitor only</span></h2>
+      <div id="dash-debt-mini"></div>
+      <div style="margin-top: 10px; font-size: 0.82rem; color: var(--text-dim);">
+        Debt is one chapter of this journey, not the whole book. Check monthly, address gradually as income grows.
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>⚡ Quick Add Expense <span style="font-size:0.78rem;color:var(--text-dim);font-weight:400;">press <span class="kbd">N</span> to focus</span></h2>
+    <div class="form-row four">
+      <select id="quick-cat">
+        <option>Food (groceries)</option><option>Food (eating out)</option><option>Rent</option>
+        <option>Kid</option><option>Utilities</option><option>Internet/Mobile</option>
+        <option>Transport</option><option>Personal</option><option>Medical</option>
+        <option>EMI / Loan payment</option><option>Subscriptions</option><option>Other</option>
+      </select>
+      <input type="number" id="quick-amt" placeholder="Amount (৳)">
+      <select id="quick-type"><option value="need">Need</option><option value="want">Want</option></select>
+      <button class="primary" onclick="quickAddExpense()">+ Log</button>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section id="files" class="view">
+  <div class="reader">
+    <div>
+      <div class="card" style="padding: 12px;">
+        <h3 style="display:flex;justify-content:space-between;align-items:center;">
+          Roadmap files
+          <span class="lang-toggle">
+            <button id="lang-en" class="active" onclick="setLang('en')">EN</button>
+            <button id="lang-bn" onclick="setLang('bn')">বাংলা</button>
+          </span>
+        </h3>
+        <ul class="file-list" id="file-list"></ul>
+        <hr class="thin">
+        <div style="font-size: 0.78rem; color: var(--text-dim);">
+          Full Bengali files are in <code>bengali/</code>. Excel templates in <code>templates/</code>.
+        </div>
+      </div>
+    </div>
+    <div class="reader-content" id="file-content">
+      <p style="color: var(--text-dim);">Pick a file from the list.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONCEPTS -->
+<section id="concepts" class="view">
+  <div class="card">
+    <h2>📚 Finance Concepts to Master</h2>
+    <p style="color: var(--text-dim); font-size: 0.9rem; margin-bottom: 14px;">
+      The 10 foundational concepts of Stage 0. Read each entry in <code>09-concepts.md</code> (or in the Roadmap tab), watch a short video, write your own version in the notes here, then mark it Mastered when you can explain it to your spouse in plain Bengali.
+    </p>
+    <div style="margin-bottom: 12px;">
+      <strong id="concepts-summary">0 of 10 mastered</strong>
+      <div class="progress-bar"><div class="fill" id="concepts-progress" style="width: 0%;"></div></div>
+    </div>
+    <div id="concepts-list"></div>
+  </div>
+</section>
+
+<!-- STUDY LOG -->
+<section id="study" class="view">
+  <div class="card">
+    <h2>📖 Add a Study Item</h2>
+    <p style="color: var(--text-dim); font-size: 0.9rem; margin-bottom: 14px;">
+      Books, videos, courses, podcasts. Anything you're learning from. Track progress and mark complete.
+    </p>
+    <div class="form-row three">
+      <div><label>Type</label>
+        <select id="study-type">
+          <option>Book</option><option>YouTube video</option><option>Podcast</option>
+          <option>Course</option><option>Article</option><option>Annual report</option>
+        </select>
+      </div>
+      <div><label>Title</label><input type="text" id="study-title" placeholder="Psychology of Money"></div>
+      <div><label>Author / Channel</label><input type="text" id="study-author" placeholder="Morgan Housel"></div>
+    </div>
+    <div class="form-row three">
+      <div><label>Stage relevance</label>
+        <select id="study-stage">
+          <option value="0">Stage 0 — Learn</option>
+          <option value="1">Stage 1 — Practice</option>
+          <option value="2">Stage 2 — Earn</option>
+          <option value="3">Stage 3 — Invest</option>
+          <option value="4">Stage 4 — Knowledge</option>
+          <option value="5">Stage 5 — Wealth</option>
+        </select>
+      </div>
+      <div><label>Status</label>
+        <select id="study-status">
+          <option value="planned">Planned</option>
+          <option value="in-progress">In progress</option>
+          <option value="done">Completed</option>
+        </select>
+      </div>
+      <div style="display: flex; align-items: flex-end;"><button class="primary" onclick="addStudy()" style="width: 100%;">+ Add</button></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Your Study Log</h2>
+    <div class="form-row">
+      <div>
+        <label>Filter</label>
+        <select id="study-filter" onchange="renderStudyList()">
+          <option value="">All items</option>
+          <option value="planned">Planned only</option>
+          <option value="in-progress">In progress only</option>
+          <option value="done">Completed only</option>
+        </select>
+      </div>
+      <div>
+        <label>By stage</label>
+        <select id="study-filter-stage" onchange="renderStudyList()">
+          <option value="">All stages</option>
+          <option value="0">Stage 0</option><option value="1">Stage 1</option><option value="2">Stage 2</option>
+          <option value="3">Stage 3</option><option value="4">Stage 4</option><option value="5">Stage 5</option>
+        </select>
+      </div>
+    </div>
+    <div id="study-list"></div>
+  </div>
+</section>
+
+<!-- EXPENSES -->
+<section id="expenses" class="view">
+  <div class="card">
+    <h2>Log an Expense</h2>
+    <div class="form-row three">
+      <div><label>Date</label><input type="date" id="exp-date"></div>
+      <div><label>Category</label>
+        <select id="exp-cat">
+          <option>Food (groceries)</option><option>Food (eating out)</option><option>Rent</option>
+          <option>Kid</option><option>Utilities</option><option>Internet/Mobile</option>
+          <option>Transport</option><option>Personal</option><option>Medical</option>
+          <option>EMI / Loan payment</option><option>Subscriptions</option><option>Other</option>
+        </select>
+      </div>
+      <div><label>Amount (৳)</label><input type="number" id="exp-amt"></div>
+    </div>
+    <div class="form-row three">
+      <div><label>Description</label><input type="text" id="exp-desc"></div>
+      <div><label>Payment</label><select id="exp-pay"><option>Cash</option><option>bKash</option><option>Nagad</option><option>Card</option><option>Bank</option><option>Other</option></select></div>
+      <div><label>Need / Want</label><select id="exp-type"><option value="need">Need</option><option value="want">Want</option></select></div>
+    </div>
+    <button class="primary" onclick="addExpense()">+ Add</button>
+  </div>
+  <div class="card">
+    <h2>This Month <button class="ghost" style="margin-left:auto;font-size:0.78rem;" onclick="exportCSV('expenses')">⬇ CSV</button></h2>
+    <div class="grid grid-3" id="exp-summary"></div>
+    <hr class="thin"><h3>By Category</h3><div id="exp-categories"></div>
+  </div>
+  <div class="card">
+    <h2>All Expenses</h2>
+    <div class="form-row">
+      <div><label>Filter</label><input type="month" id="exp-filter"></div>
+      <div style="display:flex;align-items:flex-end;"><button class="ghost" onclick="document.getElementById('exp-filter').value=''; renderExpenseList();">Clear</button></div>
+    </div>
+    <div style="overflow-x:auto;">
+    <table><thead><tr><th>Date</th><th>Category</th><th>Description</th><th class="right">Amount</th><th>Type</th><th></th></tr></thead><tbody id="exp-tbody"></tbody></table>
+    </div>
+  </div>
+</section>
+
+<!-- INCOME -->
+<section id="income" class="view">
+  <div class="card">
+    <h2>Log Income</h2>
+    <div class="form-row three">
+      <div><label>Date</label><input type="date" id="inc-date"></div>
+      <div><label>Client / Source</label><input type="text" id="inc-client"></div>
+      <div><label>Type</label><select id="inc-source">
+        <option>Hourly freelance</option><option>Project (fixed)</option><option>Productized service</option>
+        <option>SaaS / digital product</option><option>Salary</option><option>Other</option>
+      </select></div>
+    </div>
+    <div class="form-row four">
+      <div><label>Gross</label><input type="number" id="inc-gross"></div>
+      <div><label>Currency</label><select id="inc-currency">
+        <option value="BDT">৳ BDT</option><option value="USD">$ USD</option><option value="EUR">€ EUR</option>
+        <option value="GBP">£ GBP</option><option value="AED">د.إ AED</option><option value="INR">₹ INR</option>
+      </select></div>
+      <div><label>BDT rate</label><input type="number" id="inc-rate" value="120"></div>
+      <div><label>Platform fee %</label><input type="number" id="inc-fee" value="0"></div>
+    </div>
+    <button class="primary" onclick="addIncome()">+ Add Income</button>
+  </div>
+  <div class="card">
+    <h2>This Month <button class="ghost" style="margin-left:auto;font-size:0.78rem;" onclick="exportCSV('income')">⬇ CSV</button></h2>
+    <div class="grid grid-3" id="inc-summary"></div>
+    <hr class="thin"><h3>By Source</h3><div id="inc-bysource"></div>
+  </div>
+  <div class="card"><h2>Income Trend</h2><div id="inc-chart"></div></div>
+  <div class="card">
+    <h2>All Income</h2>
+    <div class="form-row"><div><label>Filter</label><input type="month" id="inc-filter"></div>
+      <div style="display:flex;align-items:flex-end;"><button class="ghost" onclick="document.getElementById('inc-filter').value=''; renderIncomeList();">Clear</button></div>
+    </div>
+    <div style="overflow-x:auto;">
+    <table><thead><tr><th>Date</th><th>Client</th><th>Source</th><th class="right">Gross</th><th class="right">Net BDT</th><th></th></tr></thead><tbody id="inc-tbody"></tbody></table>
+    </div>
+  </div>
+</section>
+
+<!-- BUDGET -->
+<section id="budget" class="view">
+  <div class="card">
+    <h2>Monthly Budget by Category</h2>
+    <p style="color:var(--text-dim);font-size:0.88rem;margin-bottom:12px;">Set planned spend per category. Real-time vs actual. Green = under, yellow = close, red = over.</p>
+    <div class="budget-row header"><div>Category</div><div>Budget</div><div>Spent</div><div>Progress</div><div></div></div>
+    <div id="budget-list"></div>
+    <hr class="thin"><h3>Add category budget</h3>
+    <div class="form-row three">
+      <div><label>Category</label><select id="budget-cat">
+        <option>Food (groceries)</option><option>Food (eating out)</option><option>Rent</option>
+        <option>Kid</option><option>Utilities</option><option>Internet/Mobile</option>
+        <option>Transport</option><option>Personal</option><option>Medical</option>
+        <option>EMI / Loan payment</option><option>Subscriptions</option><option>Other</option>
+      </select></div>
+      <div><label>Budget (৳/month)</label><input type="number" id="budget-amt"></div>
+      <div style="display:flex;align-items:flex-end;"><button class="primary" onclick="addBudget()" style="width:100%;">+ Set</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- NET WORTH -->
+<section id="networth" class="view">
+  <div class="card">
+    <h2>Log Monthly Net Worth</h2>
+    <p style="color:var(--text-dim);font-size:0.88rem;margin-bottom:12px;">Once a month (1st is good). Leave blank what doesn't apply.</p>
+    <div class="form-row three">
+      <div><label>Month</label><input type="month" id="nw-month"></div>
+      <div><label>Cash</label><input type="number" id="nw-cash"></div>
+      <div><label>Bank</label><input type="number" id="nw-bank"></div>
+    </div>
+    <div class="form-row three">
+      <div><label>Savings</label><input type="number" id="nw-sav"></div>
+      <div><label>DPS / FDR</label><input type="number" id="nw-dps"></div>
+      <div><label>Sanchaypatra</label><input type="number" id="nw-sanchay"></div>
+    </div>
+    <div class="form-row three">
+      <div><label>Stocks (DSE)</label><input type="number" id="nw-stocks"></div>
+      <div><label>Other assets</label><input type="number" id="nw-other"></div>
+      <div><label>Total debts (auto)</label><input type="number" id="nw-debts" readonly></div>
+    </div>
+    <button class="primary" onclick="addNetWorth()">+ Save Snapshot</button>
+  </div>
+  <div class="card">
+    <h2>History <button class="ghost" style="margin-left:auto;font-size:0.78rem;" onclick="exportCSV('networth')">⬇ CSV</button></h2>
+    <div id="nw-chart"></div>
+    <div style="overflow-x:auto;">
+    <table style="margin-top:12px;"><thead><tr><th>Month</th><th class="right">Assets</th><th class="right">Debts</th><th class="right">Net Worth</th><th class="right">Δ</th><th></th></tr></thead><tbody id="nw-tbody"></tbody></table>
+    </div>
+  </div>
+</section>
+
+<!-- GOALS -->
+<section id="goals" class="view">
+  <div class="card">
+    <h2>🎯 Goals</h2>
+    <p style="color:var(--text-dim);font-size:0.88rem;margin-bottom:12px;">Targets that matter to you. Linked goals auto-update from other tabs.</p>
+    <div id="goal-list"></div>
+    <hr class="thin"><h3>Add a goal</h3>
+    <div class="form-row three">
+      <div><label>Name</label><input type="text" id="goal-name" placeholder="Emergency fund (3 months)"></div>
+      <div><label>Target (৳)</label><input type="number" id="goal-target"></div>
+      <div><label>Type</label><select id="goal-type">
+        <option value="manual">Manual</option>
+        <option value="debt-down">Debt reduction</option>
+        <option value="networth-up">Net worth target</option>
+        <option value="asset-cat">Asset category target</option>
+        <option value="concepts-mastered">Concepts mastered</option>
+        <option value="study-done">Study items completed</option>
+      </select></div>
+    </div>
+    <div class="form-row three">
+      <div><label>Deadline (optional)</label><input type="date" id="goal-deadline"></div>
+      <div><label>Linked category (asset goal only)</label><select id="goal-cat">
+        <option value="">— none —</option><option value="cash">Cash</option><option value="bank">Bank</option>
+        <option value="sav">Savings</option><option value="dps">DPS/FDR</option>
+        <option value="sanchay">Sanchaypatra</option><option value="stocks">Stocks</option><option value="other">Other</option>
+      </select></div>
+      <div style="display:flex;align-items:flex-end;"><button class="primary" onclick="addGoal()" style="width:100%;">+ Add Goal</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- DEBT -->
+<section id="debt" class="view">
+  <div class="card" style="background:var(--bg-elev);border-left:4px solid var(--accent);">
+    <h2 style="color:var(--accent);">⚠️ A Note Before You Touch This Tab</h2>
+    <p style="font-size:0.9rem;">
+      Debt is not the focus of this learning journey — it's one chapter, not the whole book. Use this tab to <strong>know</strong> your debt (Stage 0), monitor it monthly (Stage 1+), and gradually address it as income and surplus grow (Stage 2+).
+      <br><br>
+      <strong>Don't restructure your life around the numbers here.</strong> Knowledge and earning growth (the other tabs) are the real engine. Read <code>10-debt-awareness.md</code> in the Roadmap tab.
+    </p>
+  </div>
+  <div class="card">
+    <h2>Debt Tracker</h2>
+    <p style="color:var(--text-dim);font-size:0.88rem;margin-bottom:12px;">Edit cells directly. Auto-saved.</p>
+    <div style="overflow-x:auto;">
+    <table><thead><tr><th>Loan</th><th>Lender</th><th class="right">Outstanding</th><th class="right">EMI/Min</th><th class="right">Rate %</th><th>Priority</th><th>Notes</th><th></th></tr></thead><tbody id="debt-tbody"></tbody>
+      <tfoot><tr style="font-weight:700;"><td colspan="2">TOTAL</td><td class="right" id="debt-total">৳0</td><td class="right" id="debt-emi-total">৳0</td><td colspan="4"></td></tr></tfoot>
+    </table>
+    </div>
+    <div style="margin-top:12px;"><button class="ghost" onclick="addDebt()">+ Add loan</button></div>
+  </div>
+  <div class="card">
+    <h2>🧮 Payoff Simulator (Stage 2+ tool)</h2>
+    <p style="color:var(--text-dim);font-size:0.88rem;margin-bottom:12px;">A what-if tool, not a commitment. When you have monthly surplus (Stage 2+), see what it would look like to put extras toward debt.</p>
+    <div class="form-row">
+      <div><label>Monthly extra surplus (৳)</label><input type="number" id="sim-extra" value="0" oninput="renderSimulator()"></div>
+      <div><label>Or as % of income</label><input type="number" id="sim-pct" placeholder="e.g. 20" oninput="syncSimPct()"></div>
+    </div>
+    <div id="simulator-result"></div>
+  </div>
+  <div class="card">
+    <h2>Monthly Debt Snapshots</h2>
+    <div class="form-row three">
+      <div><label>Month</label><input type="month" id="debt-snap-month"></div>
+      <div><label>Total Debt (৳)</label><input type="number" id="debt-snap-amount"></div>
+      <div style="display:flex;align-items:flex-end;"><button class="primary" onclick="addDebtSnap()" style="width:100%;">+ Save</button></div>
+    </div>
+    <table style="margin-top:12px;"><thead><tr><th>Month</th><th class="right">Total</th><th class="right">Δ</th><th></th></tr></thead><tbody id="debt-history-tbody"></tbody></table>
+  </div>
+</section>
+
+<!-- CHECKLISTS -->
+<section id="checklists" class="view">
+  <div class="card">
+    <h2>Week 1 Learning Checklist</h2>
+    <div class="progress-bar"><div class="fill" id="cl-week1-bar" style="width:0%"></div></div>
+    <div style="font-size:0.85rem;color:var(--text-dim);margin-bottom:10px;" id="cl-week1-summary">0 of 0 done</div>
+    <div id="cl-week1"></div>
+  </div>
+  <div class="card">
+    <h2>Stage Milestones</h2>
+    <p style="color:var(--text-dim);font-size:0.88rem;margin-bottom:10px;">Major checkpoints. Tick as you cross them.</p>
+    <div id="cl-stages"></div>
+  </div>
+  <div class="card">
+    <h2>Monthly Discipline</h2>
+    <div style="margin-bottom:8px;">
+      <strong>Month:</strong> <input type="month" id="monthly-month" style="width:auto;display:inline-block;" onchange="renderMonthlyChecklist()">
+      <button class="ghost" onclick="resetMonthly()">Reset month</button>
+    </div>
+    <div id="cl-monthly"></div>
+  </div>
+</section>
+
+<!-- NOTES -->
+<section id="notes" class="view">
+  <div class="card">
+    <h2>Add a Note</h2>
+    <p style="color:var(--text-dim);font-size:0.88rem;margin-bottom:10px;">Tag with <code>#win</code>, <code>#lesson</code>, <code>#idea</code>, <code>#worry</code>, <code>#concept</code>, <code>#client</code>, or anything — just include <code>#tag</code>.</p>
+    <textarea id="note-input" rows="4" placeholder="What did you learn today? What surprised you? #lesson"></textarea>
+    <div style="margin-top:10px;"><button class="primary" onclick="addNote()">+ Save</button>
+      <button class="ghost" onclick="document.getElementById('note-input').value=''">Clear</button>
+    </div>
+  </div>
+  <div class="card">
+    <h2>All Notes</h2>
+    <div class="row-flex" style="margin-bottom:10px;">
+      <input type="text" id="note-search" placeholder="Search notes..." style="max-width:280px;" oninput="renderNotes()">
+      <div id="note-tag-filters"></div>
+      <button class="ghost" onclick="clearNoteFilter()" id="note-clear-filter" style="display:none;">Clear filter</button>
+    </div>
+    <div id="notes-list"></div>
+  </div>
+</section>
+
+</main>
+
+<!-- EMBEDDED ROADMAP CONTENT (English) -->
+<script type="text/markdown" id="md-en-00">
+# Finance Learning Roadmap — Index
+
+This is a **learning-first** roadmap. Knowledge is the foundation. Money flows from understanding.
+
+## The 5 learning stages
+
+1. **Stage 0 — Learn the language** (Months 1–2): grasp 10 core concepts, no money moves yet
+2. **Stage 1 — Practice tracking** (Month 2–3): log your real expenses + income
+3. **Stage 2 — Build the earning side** (Month 3–9): niche, rate-raise, productize
+4. **Stage 3 — Small investing experiments** (Month 6–18): DPS, sanchaypatra, halal stocks
+5. **Stage 4 — Deeper wealth knowledge** (Year 2+): financial statements, valuation
+6. **Stage 5 — Compounding wealth + clean debt** (Year 3+): debt clears as side-effect
+
+## How to use this folder
+
+1. Today: read 01 + 03
+2. This week: start `06-week-1-learning.md`
+3. Daily (15 min): log expenses, study one concept
+4. Weekly (Sunday, 30 min): review with spouse
+5. Monthly: read next file in sequence
+
+## What this folder is NOT
+
+- Not a debt-payoff war plan. Debt is one chapter.
+- Not get-rich-quick.
+- Not pressure. A long, patient, knowledge-led path.
+
+> **"You don't get rich by paying off debt. You get rich by building knowledge and skill that earns more than it spends. Debt is a symptom, not the disease."**
+</script>
+
+<script type="text/markdown" id="md-en-01">
+# 01 — Where You Are (Honest Snapshot)
+
+Strengths first, gaps named, no exaggeration.
+
+## What you have to build with
+- **A real, marketable skill** — web/app dev, earns 60–90k/month, worth ~50 lakh BDT over 5 years
+- **Working freelance income** — most people don't have monthly income at all
+- **Time + willingness to learn** — top 5% by this alone
+- **A family** — spouse, kid, support system
+- **Health and time** — the actually-valuable assets
+
+## What you don't yet have — and that's normal
+- **Finance knowledge** (Stage 0 fixes this)
+- **Tracking habits** (Stage 1)
+- **Investing experience** (Stage 3)
+- **Savings** (output of the above, not input)
+
+## What is also true (noted, not the focus)
+
+~7 lakh BDT debt across four buckets. The chit-fund one at ~60% APR deserves awareness, not panic. One chapter, not the book. See `10-debt-awareness.md`.
+
+## The math, gently
+
+A working freelancer earning 70k/month, learning continuously, slowly raising rates, starting to invest small amounts — over 5 years that person typically: doubles income, builds 3–6 month emergency fund, has real investments, has cleared most debt as a side-effect.
+
+> **"Where you are isn't the problem. Refusing to learn from it would be."**
+</script>
+
+<script type="text/markdown" id="md-en-02">
+# 02 — How `doc.md` Relates
+
+`doc.md` is the philosophy. This folder is the operationalization.
+
+## Adjustments from `doc.md`
+
+- **Pace.** 18–24 months, not 3 months. Sustainable beats sprint.
+- **Concept depth before action.** Investing waits until Stage 3 (Month 6+).
+- **Adds tracking practice.** Reading without practice doesn't stick.
+- **Honest about debt as context.** `10-debt-awareness.md` is a chapter, not the book.
+- **Same Islamic finance edge** — spread across Stage 2 and Stage 5.
+
+## What to do with `doc.md`
+
+Keep it. Re-read after Stage 1. It'll feel very different once you have tracking data + foundational concepts.
+
+> **`doc.md` told you what to learn. This folder shows you how to learn it without giving up your life to do it.**
+</script>
+
+<script type="text/markdown" id="md-en-03">
+# 03 — The 5-Stage Learning Roadmap
+
+## STAGE 0 — Learn the Language (Months 1–2)
+
+Goal: internalize 10 foundational concepts. No money moves yet.
+
+10 concepts (see Concepts tab): cash flow, net worth, compound interest, inflation, real return, time value of money, asset vs liability, income vs wealth, risk vs return, halal vs haram.
+
+Habits to start: 15 min daily content, 1 paragraph weekly in own words, tick concepts off.
+
+Success: explain each concept in plain Bengali to your spouse.
+
+## STAGE 1 — Practice Tracking (Month 2–3)
+
+Goal: see your actual numbers.
+
+- Every expense (Expenses tab)
+- Every income (Income tab)
+- Know your debts (Debt tab — awareness only)
+
+Habits: daily 5-min log, Sunday 30-min review.
+
+Success: 30 consecutive days tracked, know monthly avg by category, know need%/want%.
+
+## STAGE 2 — Build the Earning Side (Month 3–9)
+
+The four rungs: generalist hourly → niche specialist → productized service → micro-SaaS.
+
+- Pick ONE niche
+- Raise rates 15–20% per quarter for new clients
+- Productize one offer by month 9
+
+Habits: weekly 30-min "raise something", quarterly rate review.
+
+Income target: 1.2–1.5 lakh/month by end of Stage 2.
+
+See `08-skill-and-income.md`.
+
+## STAGE 3 — Small Investing Experiments (Month 6–18)
+
+Real money, small amounts. Point is experience, not returns.
+
+- DPS 500–2,000/month (Shariah-compliant)
+- Sanchaypatra (5-year, ~11%, government-backed)
+- Open BO account, watch DSE 6 months, then buy 1k–2k of a halal large-cap
+- Monthly investing study (Buffett letters, annual reports)
+
+## STAGE 4 — Deeper Wealth Knowledge (Year 2+)
+
+Financial statements, valuation, asset allocation, halal frameworks, tax efficiency.
+
+Books that finally land: Intelligent Investor, Random Walk, Most Important Thing, Common Stocks Uncommon Profits.
+
+## STAGE 5 — Compounding + Natural Debt Clearance (Year 3+)
+
+Wealth compounds. Debt finishes clearing as a side-effect of everything else working.
+
+Focus: systematic investing, asset allocation, possibly real estate, possibly Islamic finance credentials.
+
+## The order rule
+
+> **Learn → Practice → Earn → Invest → Knowledge → Wealth (debt clears along the way)**
+</script>
+
+<script type="text/markdown" id="md-en-04">
+# 04 — What to Learn First
+
+## Learn first (in order)
+
+**Tier A — Foundation** (Stage 0): 10 concepts in `09-concepts.md`. 30–60 min each. Total: ~25 hours over 8 weeks.
+
+**Tier B — Practical literacy** (Stage 1): budgeting, expense tracking, fixed vs variable, needs vs wants.
+
+**Tier C — Earning skill** (Stage 2): rate-setting, niche selection, productizing, building in public, cold outreach.
+
+**Tier D — Investing** (Stage 3): stocks/bonds/sukuk, financial statements, diversification, DCA, DPS/Sanchaypatra/DSE, halal screening.
+
+**Tier E — Wealth knowledge** (Stage 4): valuation, asset allocation, tax efficiency.
+
+**Tier F — Advanced** (Stage 5): real estate, business building, Islamic finance certifications.
+
+## Don't bother with
+
+- Day trading / forex / crypto trading
+- Stock tip Telegram groups
+- "Make $5,000/month with this trick" YouTube
+- MLM
+- Get-rich-quick courses for 10–50k BDT
+- Anyone showing >15% guaranteed returns
+
+## The learning trap
+
+People watch hundreds of hours of finance YouTube and feel like they're learning. They're not — they're entertaining themselves with finance topics.
+
+Real learning markers: can explain to someone, written own version, applied in life, connects to other concepts.
+
+## Progress markers
+
+| Week 4 | 4–6 foundational concepts |
+| Week 8 | All 10 solid |
+| Week 12 | 30+ days of tracking data |
+| Week 26 | First rate raise |
+| Week 52 | Small (10k+) emergency fund |
+| Year 2 | Investing small amounts |
+| Year 3 | Most debt cleared, meaningful net worth growth |
+
+> **"You learn what you teach. You teach what you've practiced. You practice what you've decided is worth your time."**
+</script>
+
+<script type="text/markdown" id="md-en-05">
+# 05 — Learning Resources
+
+## Stage 0–1 — Foundation
+
+### Bengali YouTube
+- Adib's Finance, 10 Minute School, Finance Bangla, Khan Academy Bangla
+
+### English YouTube (Indian, relatable)
+- Labour Law Advisor (LLA), CA Rachana Phadke Ranade, Pranjal Kamra, Asset Yogi
+
+### Apps
+- Wallet, Money Lover, Google Sheets, this `tracker.html`
+
+## Stage 2 — First books
+
+### Bengali / translated
+- **টাকার মনস্তত্ত্ব** (Psychology of Money — Bengali) on Rokomari
+- *Rich Dad Poor Dad* (Bengali) — mindset only
+
+### English
+- *The Psychology of Money* — Morgan Housel
+- *I Will Teach You to Be Rich* — Ramit Sethi
+- *Your Money or Your Life* — Vicki Robin
+
+## Stage 3 — Investing
+
+- dsebd.org, IBBL/Al-Arafah/EXIM/City Islami sites
+- *The Little Book of Common Sense Investing* — John Bogle
+- *One Up on Wall Street* — Peter Lynch
+- *An Introduction to Islamic Finance* — Mufti Taqi Usmani
+
+## Stage 4 — Income leverage
+
+- Indie Hackers podcast
+- @levelsio, @dvassallo, @thejustinwelsh
+- Bohubrihi, Ostad (BD platforms)
+
+## Stage 5 — Advanced
+
+- *The Intelligent Investor* — Graham
+- *A Random Walk Down Wall Street* — Malkiel
+- *The Most Important Thing* — Howard Marks
+- AAOIFI standards (if professional Islamic finance path)
+
+## Four-question filter for any resource
+
+1. Is this for my current stage?
+2. Will I apply this in the next 30 days?
+3. Is this teaching, or selling?
+4. Will this still be true in 5 years?
+
+> **"Knowledge compounds only if it's the right knowledge, in the right order, applied."**
+</script>
+
+<script type="text/markdown" id="md-en-06">
+# 06 — First Week: Concrete Learning Actions
+
+Not "fix everything." Just *start*. (Tick these in Checklists tab.)
+
+## Day 1 (today)
+- Open `tracker.html`, bookmark it
+- Read `01-where-you-are.md` honestly
+- Read `03-the-learning-roadmap.md` once through
+- Watch one Adib's Finance / 10 Minute School video (≤30 min)
+- Tell spouse: "12–24 month learning journey starts"
+
+## Day 2
+- Read `09-concepts.md` entries on **Cash flow** and **Net worth**
+- Write your own version of each in Notes tab
+- Watch one short video on each
+- Install Wallet or Money Lover
+
+## Day 3
+- Read entries on **Compound interest** and **Inflation**
+- Write your own explanation of each
+- Look up Bangladesh's inflation rate, note it
+
+## Day 4
+- Read entries on **Real return** and **Time value of money**
+- Write a 3-sentence story showing what these mean
+- Watch one video each
+
+## Day 5
+- Read **Asset vs Liability** and **Income vs Wealth**
+- List 5 things you own, label asset or liability
+- Write what wealth means to you in your own words
+
+## Day 6
+- Read **Risk vs Return** and **Halal vs Haram Finance**
+- Note 3 examples of "guaranteed high return" scams you've seen
+- Browse one halal Bangladeshi bank website
+
+## Day 7 — Family Sunday (1 hour)
+- Show spouse the tracker dashboard
+- Teach the concepts you learned this week
+- Together: open Expenses tab. Pact: 30 days of tracking starts tomorrow
+- Schedule weekly Sunday 30-min money chat
+
+## End of Week 1
+- ✅ 10 concepts understood
+- ✅ Tracker bookmarked, used daily
+- ✅ Spouse aligned
+- ✅ Sunday check-in scheduled
+- ✅ App installed, ready to track
+- ✅ 5+ notes in your own words
+
+**You did NOT:** attack debt, open investment account, make any big money decision, or panic about the past.
+
+> **"Slow is smooth. Smooth is fast. Most people quit because they tried to fix everything in Week 1."**
+</script>
+
+<script type="text/markdown" id="md-en-07">
+# 07 — Study Habits
+
+## Daily (15 minutes, before bed)
+1. Log today's expenses (5 min)
+2. Study 10 minutes — a video, chapter, concept
+
+## Weekly (Sunday, 30 minutes)
+1. Review week in tracker (10 min) — expenses, income, concepts learned
+2. Plan next 7 days of study (5 min)
+3. Money chat with spouse (10 min)
+4. One Notes entry with tag (#lesson, #win, #question)
+
+## Monthly (1st, 1 hour)
+1. Net Worth snapshot (15 min)
+2. Debt snapshot (10 min) — awareness only
+3. Income vs expense for month (10 min)
+4. Read 1 chapter / watch 1 long video (20 min)
+5. Learning intention for next month (5 min)
+
+## Quarterly (2 hours)
+- Income review — rate raise?
+- Skill review — next thing to learn
+- Curriculum audit — applying or just consuming?
+- One experiment
+
+## Annually
+- Full review with spouse
+- 3 wins, 3 lessons, 3 plans
+- Update the plan
+- Celebrate
+
+## Non-negotiables (75 min/month total)
+
+1. Daily expense log — 5 min
+2. Sunday review — 10 min
+3. Monthly net worth — 30 min
+
+## Automate
+
+- Standing instruction for EMIs
+- Auto-transfer to savings on payday (Stage 2+)
+- Weekly Sunday calendar reminder
+
+## When you fall off
+
+Restart at 1, not 100. Today, not yesterday.
+
+> **"15 minutes a day for 5 years beats 5 hours a day for 1 month — every time."**
+</script>
+
+<script type="text/markdown" id="md-en-08">
+# 08 — Skill and Income Growth (Stage 2 deep-dive)
+
+Your skill is your biggest financial asset. Doubling income over 24 months is realistic.
+
+## The 4-rung income ladder
+1. Generalist hourly ($5–15/hr) — where you are
+2. Niche specialist ($25–60/hr) — 2–3× rate
+3. Productized service (fixed $500–5000) — escapes hourly
+4. Micro-SaaS ($5–30/mo × N users) — long-term wealth
+
+## Niche scoring
+Score 1–5 on: pain intensity, budget, reachability, competition, your edge. Total > 18 = pursue.
+
+## Good niches for a BD web/app dev
+- Halal cosmetics / Muslim fashion Shopify
+- Madrasa / Islamic school management software
+- BD real-estate / agent CRM
+- WordPress speed + Core Web Vitals
+- Shopify → headless migration
+- Stripe / Wise integration for non-US founders
+- AI integration for SMB websites
+- Islamic content / utility mobile apps
+
+**Pick ONE. Not three.**
+
+## Rate progression — 18-month plan
+
+| Month | New rate | Existing |
+|---|---|---|
+| 0 | $10/hr | $5–10/hr |
+| 6 | $25/hr | $15/hr |
+| 12 | $50/hr or productized | $25/hr |
+| 18 | $75/hr or productized | $40/hr |
+
+## Productizing template
+- Name: [Audience]'s [Pain]-Fix
+- What you get: deliverables list
+- Price: fixed
+- Time: fixed
+- Guarantee: outcome or refund
+
+## Micro-SaaS ideas for your profile
+
+| Idea | Pricing |
+|---|---|
+| DSE Halal Stock Screener | 200 BDT/mo |
+| Zakat Calculator + Tracker | $3/mo |
+| Madrasa Fee Management | 500 BDT/mo |
+| Bengali Invoice Generator | 100 BDT/mo |
+| WordPress Speed Audit | $15/mo |
+| Shopify Halal Badge App | $10/mo |
+
+## Income target by M24
+
+| Source | M0 | M12 | M24 |
+|---|---|---|---|
+| Hourly | 80k | 60k | 30k |
+| Niche specialist | 0 | 80k | 1L |
+| Productized | 0 | 30k | 1L |
+| SaaS MRR | 0 | 5k | 50k |
+| **Total** | **80k** | **1.75L** | **2.8L** |
+
+## Non-negotiables
+1. Sunday — 30 min raising something
+2. Quarter — quote 20% higher
+3. Friday — 1 hour skill upgrade
+4. Floor rate only goes up
+
+> **"You don't get paid for your time. You get paid for problems solved."**
+</script>
+
+<script type="text/markdown" id="md-en-09">
+# 09 — Finance Concepts Glossary
+
+The 10 foundational concepts. Mark each Mastered in the Concepts tab once you can explain it to your spouse in plain Bengali.
+
+## 1. Cash flow
+Money in vs out, monthly. Positive = surplus. Negative = losing ground. The heartbeat. If the heart isn't beating right, nothing else works.
+
+## 2. Net worth
+Everything you own minus everything you owe. Income is monthly; wealth is what's left over time. Can be negative — that's fine, you have a baseline.
+
+## 3. Compound interest
+Interest on interest. Both directions: helps savings grow exponentially over decades, makes high-rate debt explode in months. "He who understands it earns it. He who doesn't, pays it." — attributed to Einstein.
+
+## 4. Inflation
+Money loses purchasing power over time. Bangladesh: 8–10%. A 100 taka today buys what ~91 taka of next year's will.
+
+## 5. Real return
+= Nominal return − Inflation. A 5% savings account in 9% inflation = −4% real return. Always think in real terms.
+
+## 6. Time value of money
+1 taka today > 1 taka next year. Because today's can be invested or used. Every loan, insurance, and investment evaluated through this lens.
+
+## 7. Asset vs Liability
+Asset puts money in pocket. Liability takes it out. Most people get categories backwards — your car is usually a liability, your skill is an asset.
+
+## 8. Income vs Wealth
+Income = arriving monthly. Wealth = accumulating over time. High income + zero wealth = treadmill. High wealth + modest income = freedom.
+
+## 9. Risk vs Return
+Higher returns always = higher risk. No exceptions. "Guaranteed 30%" doesn't exist. If you see >15% guaranteed, walk away.
+
+## 10. Halal vs Haram Finance
+Riba (interest) = haram. Gharar (excessive uncertainty) = haram. Halal alternatives: Mudaraba (profit-sharing), Musharaka (joint partnership), Sukuk (Islamic bonds), Wadiah/Mudaraba savings.
+
+BD halal banks: IBBL, Al-Arafah, EXIM, City Islami, First Security Islami, Social Islami, Standard Bank Islamic.
+
+## Concepts you'll meet later
+Liquidity, diversification, dollar-cost averaging (DCA), P/E ratio, dividend, bond/sukuk, ETF, emergency fund, opportunity cost. You'll meet each in the right stage. Don't rush.
+
+## How to actually learn a concept
+1. Read entry
+2. Watch a video on it
+3. Write your own one-paragraph version (in Notes tab)
+4. Teach it to your spouse over tea
+5. Tick it off in Concepts tab
+
+That cycle — read → watch → write → teach → confirm — is the most effective learning sequence ever devised.
+
+> **"You don't know a concept until you can teach it to a 12-year-old."**
+</script>
+
+<script type="text/markdown" id="md-en-10">
+# 10 — Debt Awareness (One Chapter, Not the Whole Book)
+
+Read once now. Re-read every 3 months. **Don't dwell daily.**
+
+## What you're carrying
+
+~7,00,000 BDT across:
+
+| Bucket | Rate | Behavior |
+|---|---|---|
+| Credit card | 24–30% APR | Grows if minimum missed |
+| Personal loan | 9–15% APR | Pays itself on schedule |
+| Family / informal | 0% | Social cost only |
+| Market / chit-fund | **~60%+ APR** | Grows fast if not actively addressed |
+
+## Right actions in each stage
+
+### Stage 0 (Months 1–2) — Awareness only
+- Fill in Debt tab with exact numbers
+- No extras anywhere
+- Make sure chit-fund interest is at least covered
+- Keep learning
+
+### Stage 1 (Month 2–3)
+- Tracking confirms reality
+- If chit-fund interest is being missed, fix it
+- No big extras yet
+
+### Stage 2 (Month 3–9) — Income grows, small extras start
+- As freelance income rises, surplus grows
+- **Start applying 30–50% of surplus to the chit-fund loan**
+- Reason: 60% APR is high enough that gentle "slow accelerate" still means actively reducing it
+- Credit card, personal loan: minimums/schedule
+- Family: token payment
+
+### Stage 3 (Month 6–18)
+- Chit-fund visibly shrinking
+- Credit card payoff seriously starts
+- Personal loan on schedule
+- Family loan token grows as cash flow improves
+
+### Stage 4–5 (Year 2+)
+- Most debt cleared by Year 3
+- Without ever making it the central drama of your life
+
+## When to override "slow accelerate"
+
+If 2+ of these are true, address sooner:
+- Chit-fund principal hasn't dropped in 6+ months
+- Lender pressuring you
+- Interest payment > 20% of monthly income
+- You're borrowing elsewhere to pay this lender
+
+Then: talk to a Bangladesh Bank ombudsman or trusted advisor. Don't suffer in silence.
+
+## How to monitor
+
+- Debt tab: visit once a month, 1st of the month
+- Debt snapshot history: log monthly total
+- Avalanche simulator: what-if tool from Stage 2
+
+**Monthly only. Not daily.**
+
+> **"Debt isn't the enemy. Ignoring it forever is."**
+</script>
+
+<script type="text/markdown" id="md-en-11">
+# 11 — Investing: What It Is, When You'll Be Ready
+
+## What investing actually is
+Putting money into something *productive* — a business, property, fractional ownership (stocks), a loan to a government (bonds), or a productive asset.
+
+## What investing is NOT
+- Trading / forex / crypto — gambling, not investing
+- "Sure-shot tips" / signals — scams
+- Putting under mattress — loses to inflation
+
+## When you'll be ready
+
+All five must be true:
+1. Completed Stage 0 (concepts feel real)
+2. Completed Stage 1 (3+ months tracking data)
+3. Small emergency fund (1 month expenses)
+4. Stopped using credit card to live on
+5. Stable monthly income (6+ months)
+
+Realistically: 6–18 months from today.
+
+## What you'll start with (Stage 3)
+
+### 1. DPS / Mudaraba Savings (500–2,000/month)
+IBBL, Al-Arafah, EXIM, City Islami. 5–10 year tenure. ~7–10% nominal. **You're really buying discipline.**
+
+### 2. Sanchaypatra
+5-Year Bangladesh Sanchaypatra — ~11% return. Near-zero risk. Buy at Bangladesh Bank or post office.
+
+### 3. BO Account → DSE stocks
+First 6 months: **don't buy.** Just watch. Track Square Pharma, BATBC, Renata, Olympic, GP. Read their annual reports.
+
+After 6 months: buy 1k–2k of ONE halal large-cap. Hold. Read about why it moves.
+
+### 4. Diversified index investing (Year 2+)
+Foreign exposure needs FX account: Wahed Invest, SP Funds, iShares MSCI World Islamic ETF.
+
+## Avoid list
+
+- Forex/crypto trading (illegal in BD + 90% lose)
+- Day trading
+- Telegram tip groups
+- MLM
+- 10–50k BDT "mastery" courses
+- Real estate "investment" seminars
+- Margin / borrowed money to invest
+
+## Mindset principles
+
+1. **Time in the market beats timing the market**
+2. **Boring is good** — exciting strategies are gambling
+3. **You can't make up for lost time** — start small, start now (when ready)
+4. **Diversification > brilliance**
+5. **Match risk to your life stage** — family + debt = low-medium risk only
+
+## What you can do today (no money required)
+1. Browse dsebd.org
+2. Watch one "DSE basics Bangla" video
+3. Read about IBBL or Al-Arafah Mudaraba
+4. Bookmark Wahed Invest
+
+> **"You don't become a good investor by buying the right thing. You become one by understanding what you own, why you own it, and being willing to hold it longer than impatient people."**
+</script>
+
+<!-- BENGALI VERSIONS (concise) -->
+<script type="text/markdown" id="md-bn-00">
+# আর্থিক শেখার রোডম্যাপ — সূচি
+
+এটা **learning-first** roadmap। জ্ঞান ভিত্তি। জ্ঞান থেকে টাকা আসে — উল্টোটা না।
+
+## ৫টি শেখার stage
+
+1. **Stage 0 — ভাষা শেখা** (মাস ১–২): ১০টা মূল concept
+2. **Stage 1 — Tracking practice** (মাস ২–৩): real expense + income log
+3. **Stage 2 — আয়ের skill** (মাস ৩–৯): niche, rate raise, productize
+4. **Stage 3 — ছোট investment** (মাস ৬–১৮): DPS, sanchaypatra, halal stocks
+5. **Stage 4 — গভীর wealth knowledge** (বছর ২+): financial statements, valuation
+6. **Stage 5 — Compounding + debt naturally clears** (বছর ৩+)
+
+## কীভাবে ব্যবহার করবেন
+
+1. আজ: 01 + 03 পড়ুন
+2. এই সপ্তাহে: `06-week-1-learning.md` শুরু
+3. প্রতিদিন (১৫ মিনিট): expense log + ১টা concept study
+4. প্রতি রবিবার (৩০ মিনিট): স্ত্রীর সাথে review
+5. প্রতি মাসে: পরের file পড়ুন
+
+> **"আপনি debt শোধ করে rich হন না। জ্ঞান আর skill তৈরি করে, যা খরচের চেয়ে বেশি আয় করে — তাতেই rich হন।"**
+</script>
+
+<script type="text/markdown" id="md-bn-01">
+# 01 — আপনার বর্তমান অবস্থা
+
+## যা আছে
+- Skill (web/app dev) — মাসে ৬০–৯০k, ৫ বছরে ~৫০ লাখ earning
+- চালু freelance income — দুনিয়ার বেশিরভাগ মানুষের নেই
+- শেখার ইচ্ছা — top ৫% মানুষের গুণ
+- পরিবার, স্বাস্থ্য, সময়
+
+## যা এখনো নেই (স্বাভাবিক)
+- Finance knowledge (Stage 0)
+- Tracking অভ্যাস (Stage 1)
+- Investing experience (Stage 3)
+- সঞ্চয় (এসব output)
+
+## যা আছে কিন্তু focus নয়
+
+৭ লাখ debt ৪ ভাগে। Chit-fund ৬০% APR — awareness দরকার, panic না। দেখুন `10-debt-awareness.md`।
+
+> **"আপনি যেখানে আছেন সেটাই problem না। সেখান থেকে শেখতে অস্বীকার করাটা problem।"**
+</script>
+
+<script type="text/markdown" id="md-bn-02">
+# 02 — `doc.md`-এর সম্পর্ক
+
+`doc.md` philosophy। এই folder সেটার operationalization।
+
+পার্থক্য:
+- Pace: ১৮–২৪ মাস, ৩ মাস না
+- Concept আগে, action পরে
+- Tracking practice যোগ
+- Debt-কে context হিসেবে রাখা
+- একই Islamic finance edge
+
+`doc.md` রাখুন। Stage 1 শেষে আবার পড়ুন।
+</script>
+
+<script type="text/markdown" id="md-bn-03">
+# 03 — ৫-Stage Learning Roadmap
+
+## STAGE 0 — ভাষা শেখা (মাস ১–২)
+১০টা concept: cash flow, net worth, compound interest, inflation, real return, time value of money, asset vs liability, income vs wealth, risk vs return, halal vs haram।
+
+## STAGE 1 — Practice Tracking (মাস ২–৩)
+প্রতিটা expense + income log। Debt awareness only।
+
+## STAGE 2 — আয়ের skill (মাস ৩–৯)
+Niche বাছাই, rate raise, productize। ১.২–১.৫ লাখ/মাস target।
+
+## STAGE 3 — ছোট investment (মাস ৬–১৮)
+DPS ৫০০–২০০০/মাস, Sanchaypatra, BO account খুলে ৬ মাস observe।
+
+## STAGE 4 — Deep knowledge (বছর ২+)
+Financial statement, valuation, halal framework।
+
+## STAGE 5 — Compounding + debt clearance (বছর ৩+)
+Debt clears as side-effect।
+
+## Order rule
+> **Learn → Practice → Earn → Invest → Knowledge → Wealth**
+</script>
+
+<script type="text/markdown" id="md-bn-04">
+# 04 — আগে কী শিখবেন
+
+## Tier A — Foundation (Stage 0): ১০টা concept
+## Tier B — Practical literacy (Stage 1)
+## Tier C — Earning skill (Stage 2)
+## Tier D — Investing (Stage 3)
+## Tier E — Wealth knowledge (Stage 4)
+## Tier F — Advanced (Stage 5)
+
+## Skip করবেন
+- Forex / crypto trading
+- Telegram stock tip গ্রুপ
+- "মাসে $৫০০০ আয়" YouTube
+- MLM
+- ১০–৫০k "mastery" course
+- ১৫%+ "guaranteed" দেখায় যে কেউ
+</script>
+
+<script type="text/markdown" id="md-bn-05">
+# 05 — Resources
+
+## বাংলা YouTube (Stage 0–1)
+- Adib's Finance, 10 Minute School, Finance Bangla, Khan Academy Bangla
+
+## প্রথম বই (Stage 2)
+- টাকার মনস্তত্ত্ব (Rokomari-তে)
+- *I Will Teach You to Be Rich* — Ramit Sethi
+
+## Investing (Stage 3)
+- dsebd.org, IBBL/Al-Arafah/EXIM/City Islami
+- *Little Book of Common Sense Investing* — Bogle
+- Mufti Taqi Usmani's *An Introduction to Islamic Finance*
+
+## Income leverage (Stage 4)
+- Indie Hackers podcast, @levelsio, @dvassallo
+
+## Advanced (Stage 5)
+- Graham, Malkiel, Howard Marks
+</script>
+
+<script type="text/markdown" id="md-bn-06">
+# 06 — প্রথম সপ্তাহের কাজ
+
+(Checklists tab-এ tick করুন)
+
+## দিন ১
+- `tracker.html` open, bookmark
+- 01 + 03 পড়ুন
+- Adib's Finance / 10 Minute School ১টা video
+- স্ত্রীকে বলুন: "১২–২৪ মাসের শেখার যাত্রা শুরু"
+
+## দিন ২–৬
+- প্রতিদিন ২টা concept পড়ুন (cash flow, net worth → compound interest, inflation → real return, time value of money → asset/liability, income/wealth → risk/return, halal/haram)
+- নিজের ভাষায় লিখুন
+- ১টা video দেখুন
+
+## দিন ৭ — পারিবারিক রবিবার
+- স্ত্রীকে ট্র্যাকার দেখান
+- যা শিখেছেন তা শিখান
+- ৩০ দিন expense tracking pact
+- সাপ্তাহিক রবিবার review schedule
+
+> **"ধীর হলো মসৃণ। মসৃণ হলো দ্রুত।"**
+</script>
+
+<script type="text/markdown" id="md-bn-07">
+# 07 — Study অভ্যাস
+
+## প্রতিদিন (১৫ মিনিট)
+- Expense log (৫ মিনিট)
+- Study (১০ মিনিট)
+
+## প্রতি সপ্তাহে (৩০ মিনিট, রবিবার)
+- Tracker review
+- পরের ৭ দিনের study plan
+- স্ত্রীর সাথে money chat
+- ১টা notes entry
+
+## প্রতি মাসে (১ ঘণ্টা)
+- Net worth snapshot
+- Debt snapshot (awareness)
+- ১ chapter / video
+- পরের মাসের intention
+
+## Non-negotiable (মাসে ৭৫ মিনিট)
+1. দৈনিক expense log
+2. রবিবার review
+3. মাসিক net worth
+
+> **"দিনে ১৫ মিনিট ৫ বছর হলো > দিনে ৫ ঘণ্টা ১ মাস।"**
+</script>
+
+<script type="text/markdown" id="md-bn-08">
+# 08 — Skill ও আয় বৃদ্ধি
+
+## ৪-রং Income Ladder
+1. Generalist hourly ($৫–১৫/hr)
+2. Niche specialist ($২৫–৬০/hr)
+3. Productized service (fixed $৫০০–৫০০০)
+4. Micro-SaaS ($৫–৩০/mo × N user)
+
+## Niche idea (BD web/app dev)
+- Halal Shopify, madrasa software, BD real-estate CRM, WordPress speed, Stripe integration, AI integration, Islamic mobile app
+
+**১টা niche। তিনটা না।**
+
+## Rate progression — ১৮ মাস
+
+| মাস | নতুন | পুরনো |
+|---|---|---|
+| ০ | $১০ | $৫–১০ |
+| ৬ | $২৫ | $১৫ |
+| ১২ | $৫০ বা productized | $২৫ |
+| ১৮ | $৭৫ বা productized | $৪০ |
+
+## Income target M24
+
+| Source | M0 | M24 |
+|---|---|---|
+| Hourly | ৮০k | ৩০k |
+| Niche | ০ | ১L |
+| Productized | ০ | ১L |
+| SaaS | ০ | ৫০k |
+| Total | ৮০k | ২.৮L |
+
+> **"সময়ের জন্য পয়সা পান না। সমস্যা সমাধানে পান।"**
+</script>
+
+<script type="text/markdown" id="md-bn-09">
+# 09 — Finance Concept Glossary
+
+## ১. Cash flow — নগদ প্রবাহ
+আয় − ব্যয় = মাসিক surplus। Heartbeat।
+
+## ২. Net worth — মোট সম্পদ
+যা আছে − যা ঋণ। সময়ের সাথে accumulate।
+
+## ৩. Compound interest — যৌগিক সুদ
+সুদের উপর সুদ। দু'দিকেই কাজ করে।
+
+## ৪. Inflation — মূল্যস্ফীতি
+টাকার ক্রয়ক্ষমতা কমে। BD-তে ~৯%।
+
+## ৫. Real return
+Nominal return − inflation। আসল hisaab এটাই।
+
+## ৬. Time value of money
+আজকের ১ টাকা ≠ পরের বছরের ১ টাকা।
+
+## ৭. Asset vs Liability
+Asset: pocket-এ টাকা আনে। Liability: pocket থেকে টাকা নেয়।
+
+## ৮. Income vs Wealth
+Income মাসিক, wealth সঞ্চিত।
+
+## ৯. Risk vs Return
+উচ্চ return = উচ্চ risk। "Guaranteed ৩০%" — মিথ্যা।
+
+## ১০. Halal vs Haram Finance
+Riba = haram। Halal alternatives: Mudaraba, Musharaka, Sukuk, Wadiah।
+
+BD halal bank: IBBL, Al-Arafah, EXIM, City Islami, First Security Islami।
+</script>
+
+<script type="text/markdown" id="md-bn-10">
+# 10 — Debt Awareness
+
+৭ লাখ debt ৪ ভাগে:
+- Credit card (২৪–৩০% APR) — minimum payment
+- Personal loan (৯–১৫%) — schedule চলুক
+- পরিবার (০%) — token amount
+- Market/chit fund (~৬০% APR) — minimum interest cover
+
+## কখন কী করবেন
+
+- Stage 0–1: awareness only
+- Stage 2: surplus-এর ৩০–৫০% chit-fund-এ
+- Stage 3: credit card serious attack
+- Stage 4–5: Year 3-এ most debt clear
+
+## Override কখন
+২+ true হলে:
+- ৬ মাসে principal কমেনি
+- Lender pressure
+- Interest > ২০% income
+- অন্য জায়গা থেকে ধার করে এটা শোধ
+
+মাসে একবার check। দৈনিক না।
+</script>
+
+<script type="text/markdown" id="md-bn-11">
+# 11 — Investing: কী, কখন প্রস্তুত
+
+## কী
+- Productive কিছুতে টাকা invest (business, property, stock, bond)
+- Trading / forex / crypto = gambling, না investing
+
+## প্রস্তুত কখন (৫টা সব true লাগবে)
+1. Stage 0 শেষ (concept বোঝা)
+2. Stage 1 শেষ (৩+ মাস tracking)
+3. ছোট emergency fund (১ মাস খরচ)
+4. Credit card-এ বেঁচে নেই
+5. Stable income ৬ মাস+
+
+## শুরু কী দিয়ে (Stage 3)
+1. DPS ৫০০–২০০০/মাস (IBBL, Al-Arafah)
+2. Sanchaypatra (৫-বছর, ~১১%)
+3. BO account — ৬ মাস observe, তারপর ১k–২k halal large-cap
+4. Year 2+: Wahed Invest, SP Funds
+
+## Avoid
+Forex/crypto, day trading, tip গ্রুপ, MLM, ১০–৫০k course, margin trade
+
+## Mindset
+1. Time in market > timing
+2. Boring is good
+3. Lost time recover হয় না — ছোট থেকে শুরু
+4. Diversification > brilliance
+5. Risk match করুন life stage-এর সাথে
+</script>
+
+<!-- ============== APP LOGIC ============== -->
+<script>
+const STORAGE_KEY = 'finance-tracker-v3';
+let state = loadState();
+let currentLang = 'en';
+let currentNoteTagFilter = null;
+
+function loadState() {
+  try { const s = JSON.parse(localStorage.getItem(STORAGE_KEY)); if (s && s.version >= 3) return migrate(s); } catch(e) {}
+  try { const v = JSON.parse(localStorage.getItem('finance-tracker-v2')); if (v && v.version) return migrate(v); } catch(e) {}
+  try { const v = JSON.parse(localStorage.getItem('finance-tracker-v1')); if (v && v.version) return migrate(v); } catch(e) {}
+  return defaultState();
+}
+function migrate(s) {
+  s.version = 3;
+  s.incomes  = s.incomes  || [];
+  s.budgets  = s.budgets  || {};
+  s.goals    = s.goals    || [];
+  s.debtSnaps = s.debtSnaps || [];
+  s.concepts = s.concepts || {};
+  s.study    = s.study    || [];
+  return s;
+}
+function defaultState() {
+  return {
+    version: 3,
+    startDate: new Date().toISOString().slice(0, 10),
+    debts: [
+      { id: 'd1', name: 'Market / Chit-fund', lender: '', balance: 0, emi: 0, rate: 60, priority: 1, notes: '~60% APR — monitor closely, address Stage 2+' },
+      { id: 'd2', name: 'Credit Card',        lender: '', balance: 0, emi: 0, rate: 30, priority: 2, notes: 'Pay minimum, stop new charges' },
+      { id: 'd3', name: 'Personal Loan',      lender: '', balance: 0, emi: 0, rate: 13, priority: 3, notes: 'Fixed EMI runs on schedule' },
+      { id: 'd4', name: 'Family / Informal',  lender: '', balance: 0, emi: 0, rate: 0,  priority: 4, notes: 'Pay token, keep relationship' },
+    ],
+    debtSnaps: [], expenses: [], incomes: [], budgets: {}, goals: [],
+    networth: [], notes: [], checklist: {},
+    concepts: {}, study: [],
+    theme: 'dark',
+  };
+}
+function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+
+// ============ CONCEPTS DATA ============
+const CONCEPTS = [
+  { id: 1, name: 'Cash flow', bn: 'নগদ প্রবাহ', desc: 'Money in vs out, monthly. The heartbeat of your finances.' },
+  { id: 2, name: 'Net worth', bn: 'মোট সম্পদ', desc: 'What you own minus what you owe.' },
+  { id: 3, name: 'Compound interest', bn: 'যৌগিক সুদ', desc: 'Interest on interest. Works in both directions — your enemy on debt, friend on savings.' },
+  { id: 4, name: 'Inflation', bn: 'মূল্যস্ফীতি', desc: 'Money loses purchasing power over time. BD currently ~9%.' },
+  { id: 5, name: 'Real return', bn: 'প্রকৃত return', desc: 'Nominal return minus inflation. The only honest number.' },
+  { id: 6, name: 'Time value of money', bn: 'সময়ের মূল্য', desc: '1 taka today is worth more than 1 taka next year.' },
+  { id: 7, name: 'Asset vs Liability', bn: 'সম্পদ vs দায়', desc: 'Asset puts money in pocket; liability takes it out.' },
+  { id: 8, name: 'Income vs Wealth', bn: 'আয় vs সম্পদ', desc: 'Income arrives monthly; wealth accumulates over time.' },
+  { id: 9, name: 'Risk vs Return', bn: 'ঝুঁকি ও মুনাফা', desc: 'Higher returns always = higher risk. "Guaranteed high return" is a lie.' },
+  { id: 10, name: 'Halal vs Haram Finance', bn: 'হালাল ও হারাম finance', desc: 'Riba (interest), gharar (excessive uncertainty) = haram. Halal alternatives: Mudaraba, Sukuk, Musharaka.' },
+];
+
+// ============ NAV ============
+function showView(name) {
+  document.querySelectorAll('section.view').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById(name).classList.add('active');
+  document.querySelector(`nav button[data-view="${name}"]`)?.classList.add('active');
+  ({ dashboard: renderDashboard, files: renderFiles, concepts: renderConcepts, study: renderStudyTab,
+     debt: renderDebtTab, expenses: renderExpenseTab, income: renderIncomeTab, budget: renderBudgetTab,
+     networth: renderNetWorthTab, goals: renderGoalsTab, checklists: renderChecklists, notes: renderNotes
+  })[name]?.();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+document.getElementById('main-nav').addEventListener('click', e => {
+  if (e.target.tagName === 'BUTTON') showView(e.target.dataset.view);
+});
+
+// ============ THEME ============
+function toggleTheme() {
+  state.theme = state.theme === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', state.theme);
+  saveState();
+}
+document.documentElement.setAttribute('data-theme', state.theme || 'dark');
+
+// ============ UTILS ============
+function fmt(n) { n = Math.round(Number(n) || 0); return (n < 0 ? '-৳' : '৳') + Math.abs(n).toLocaleString('en-IN'); }
+function thisMonth() { return new Date().toISOString().slice(0, 7); }
+function todayStr() { return new Date().toISOString().slice(0, 10); }
+function uid() { return Math.random().toString(36).slice(2, 9); }
+function esc(s) { return String(s || '').replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' })[c]); }
+function toast(msg) {
+  document.querySelectorAll('.toast').forEach(t => t.remove());
+  const d = document.createElement('div'); d.className = 'toast'; d.textContent = msg;
+  document.body.appendChild(d); setTimeout(() => d.remove(), 2500);
+}
+function netBDT(i) { const gross = (+i.gross || 0) * (+i.rate || 1); return gross * (1 - (+i.fee || 0) / 100); }
+
+// ============ DASHBOARD ============
+function renderDashboard() {
+  const mastered = CONCEPTS.filter(c => state.concepts[c.id]?.status === 'mastered').length;
+  document.getElementById('stat-concepts').textContent = `${mastered} / ${CONCEPTS.length}`;
+  document.getElementById('stat-concepts-delta').textContent = mastered === CONCEPTS.length ? '✓ Foundation set' : 'of foundation set';
+
+  const studyDone = state.study.filter(s => s.status === 'done').length;
+  const studyTotal = state.study.length;
+  document.getElementById('stat-study').textContent = `${studyDone} / ${studyTotal}`;
+  document.getElementById('stat-study-delta').textContent = studyTotal ? `${studyTotal - studyDone} active` : 'add items in Study Log';
+
+  const streak = computeStreak();
+  document.getElementById('stat-streak').textContent = streak.current;
+  document.getElementById('stat-streak-delta').textContent = `best: ${streak.best}`;
+
+  const stage = currentStage();
+  document.getElementById('stat-stage').textContent = `Stage ${stage}`;
+  const stageNames = ['Learn', 'Practice', 'Earn', 'Invest', 'Knowledge', 'Wealth'];
+  document.getElementById('stat-stage-name').textContent = stageNames[stage];
+  document.getElementById('banner-text').textContent = stageBlurb(stage).title;
+  document.getElementById('banner-sub').textContent = stageBlurb(stage).sub;
+
+  document.getElementById('stage-tracker').innerHTML = stageNames.map((n, i) => {
+    const cls = i < stage ? 'done' : i === stage ? 'current' : '';
+    return `<div class="stage ${cls}">${i}<br><span style="font-size:0.7rem">${n}</span></div>`;
+  }).join('');
+
+  const tm = thisMonth();
+  const mExp = state.expenses.filter(e => e.date.startsWith(tm)).reduce((s, e) => s + +e.amount, 0);
+  const mInc = state.incomes.filter(i => i.date.startsWith(tm)).reduce((s, i) => s + netBDT(i), 0);
+  document.getElementById('stat-monthspend').textContent = fmt(mExp);
+  document.getElementById('stat-monthspend-delta').textContent = `${state.expenses.filter(e => e.date.startsWith(tm)).length} entries`;
+  document.getElementById('stat-monthincome').textContent = fmt(mInc);
+  document.getElementById('stat-monthincome-delta').textContent = `${state.incomes.filter(i => i.date.startsWith(tm)).length} payments`;
+  const surplus = mInc - mExp;
+  document.getElementById('stat-surplus').textContent = fmt(surplus);
+  document.getElementById('stat-surplus').style.color = surplus >= 0 ? 'var(--green)' : 'var(--red)';
+
+  const totalDebt = state.debts.reduce((s, d) => s + +d.balance, 0);
+  const latestNW = state.networth.slice().pop();
+  const assets = latestNW ? latestNW.assets : 0;
+  const nw = assets - totalDebt;
+  document.getElementById('stat-networth').textContent = fmt(nw);
+  document.getElementById('stat-networth-delta').textContent = latestNW ? `as of ${latestNW.month}` : '—';
+
+  // Concepts progress on dashboard
+  const dc = document.getElementById('dash-concepts');
+  const masterPct = (mastered / CONCEPTS.length) * 100;
+  dc.innerHTML = `<div class="progress-bar"><div class="fill" style="width:${masterPct}%;background:var(--accent-2);"></div></div>
+    <div style="font-size:0.86rem;margin-top:8px;">${mastered} of ${CONCEPTS.length} concepts mastered (${Math.round(masterPct)}%)</div>` +
+    CONCEPTS.slice(0, 3).map(c => {
+      const status = state.concepts[c.id]?.status || 'planned';
+      const icon = status === 'mastered' ? '✅' : status === 'learning' ? '📖' : '⭕';
+      return `<div style="padding:4px 0;font-size:0.86rem;">${icon} ${c.name}</div>`;
+    }).join('') + `<div style="font-size:0.78rem;color:var(--text-dim);margin-top:4px;">+ ${CONCEPTS.length - 3} more in Concepts tab</div>`;
+
+  // Study items on dashboard
+  const ds = document.getElementById('dash-study');
+  const active = state.study.filter(s => s.status === 'in-progress').slice(0, 3);
+  if (!active.length) {
+    ds.innerHTML = '<div class="empty">No active study items. Add one in Study Log.</div>';
+  } else {
+    ds.innerHTML = active.map(s => `<div style="padding:6px 0;font-size:0.88rem;">📖 <strong>${esc(s.title)}</strong>${s.author ? ' — ' + esc(s.author) : ''}</div>`).join('');
+  }
+
+  // Debt mini
+  const dm = document.getElementById('dash-debt-mini');
+  if (totalDebt === 0) {
+    dm.innerHTML = '<div class="empty">No debt data. Fill in Debt tab if applicable.</div>';
+  } else {
+    dm.innerHTML = `<div class="debt-mini">` + state.debts.filter(d => +d.balance > 0).slice(0, 4).map(d =>
+      `<div class="debt-mini-row"><span>${esc(d.name)} <span class="tag ${d.rate >= 50 ? 'kill' : d.rate >= 25 ? 'high' : d.rate >= 10 ? 'med' : 'low'}">${d.rate}%</span></span><span>${fmt(d.balance)}</span></div>`
+    ).join('') + `<hr class="thin"><div class="debt-mini-row"><span><strong>Total</strong></span><span><strong>${fmt(totalDebt)}</strong></span></div></div>`;
+  }
+
+  // Chart
+  renderChart('dash-chart', state.networth);
+  renderInsights();
+}
+
+function computeStreak() {
+  const days = new Set(state.expenses.map(e => e.date));
+  let current = 0, best = 0, run = 0;
+  const t = new Date(); t.setHours(0,0,0,0);
+  for (let d = new Date(t); ; d.setDate(d.getDate() - 1)) {
+    const k = d.toISOString().slice(0, 10);
+    if (days.has(k)) current++; else break;
+    if (current > 365) break;
+  }
+  const sorted = [...days].sort();
+  let prev = null;
+  for (const k of sorted) {
+    const dt = new Date(k);
+    if (prev && (dt - prev) / 86400000 === 1) run++; else run = 1;
+    best = Math.max(best, run); prev = dt;
+  }
+  return { current, best };
+}
+
+function renderInsights() {
+  const out = [];
+  const mastered = CONCEPTS.filter(c => state.concepts[c.id]?.status === 'mastered').length;
+  if (mastered === 0) out.push(`🌱 You're at the start. Pick concept #1 (Cash flow) in the Concepts tab.`);
+  else if (mastered < 5) out.push(`📈 ${mastered}/10 concepts mastered. Keep going — half-way is the hardest part.`);
+  else if (mastered < 10) out.push(`🎯 ${mastered}/10 — foundation almost complete. ${10 - mastered} to go.`);
+  else out.push(`✅ All 10 concepts mastered. Move to Stage 1: practice tracking.`);
+
+  const tm = thisMonth();
+  const items = state.expenses.filter(e => e.date.startsWith(tm));
+  if (items.length) {
+    const days = new Set(items.map(e => e.date)).size;
+    const total = items.reduce((s, e) => s + +e.amount, 0);
+    out.push(`📊 Average daily spend: <strong>${fmt(total / days)}</strong> across ${days} days this month`);
+    const wants = items.filter(e => e.type === 'want').reduce((s, e) => s + +e.amount, 0);
+    if (total > 0) {
+      const wpct = Math.round(wants / total * 100);
+      const wColor = wpct > 30 ? 'var(--red)' : wpct > 15 ? 'var(--orange)' : 'var(--green)';
+      out.push(`💰 Wants this month: <strong style="color:${wColor};">${wpct}%</strong> of spend`);
+    }
+  }
+  if (state.study.length) {
+    const done = state.study.filter(s => s.status === 'done').length;
+    const inp = state.study.filter(s => s.status === 'in-progress').length;
+    out.push(`📚 Study log: ${done} completed, ${inp} in progress`);
+  }
+  document.getElementById('dash-insights').innerHTML = out.map(s => `<div style="padding:6px 0;font-size:0.92rem;">${s}</div>`).join('');
+}
+
+function currentStage() {
+  const mastered = CONCEPTS.filter(c => state.concepts[c.id]?.status === 'mastered').length;
+  const expDays = new Set(state.expenses.map(e => e.date)).size;
+  const monthlyIncomes = state.incomes.filter(i => i.date.startsWith(thisMonth())).length;
+  const latestNW = state.networth.slice().pop();
+  const nw = latestNW ? latestNW.assets - latestNW.debts : -1e9;
+  if (mastered < 10) return 0;
+  if (expDays < 30) return 1;
+  if (monthlyIncomes < 3) return 2;
+  if (!latestNW || latestNW.assets < 30000) return 2;
+  if (nw < 0) return 3;
+  return 4;
+}
+function stageBlurb(stage) {
+  return [
+    { title: 'Stage 0 — Learn the language.', sub: 'Knowledge first. 10 concepts to master. No money moves yet.' },
+    { title: 'Stage 1 — Practice tracking.', sub: 'Log expenses and income daily. See your real numbers.' },
+    { title: 'Stage 2 — Build the earning side.', sub: 'Niche, rate-raise, productize. Income is the engine.' },
+    { title: 'Stage 3 — Small investing experiments.', sub: 'DPS, Sanchaypatra, observe DSE. Tiny amounts, real lessons.' },
+    { title: 'Stage 4 — Deeper wealth knowledge.', sub: 'Financial statements, valuation, asset allocation.' },
+    { title: 'Stage 5 — Compounding wealth.', sub: 'Systematic, patient, decades-long. Debt cleared as side-effect.' },
+  ][stage] || { title: 'On the journey.', sub: '' };
+}
+
+// ============ CONCEPTS ============
+function renderConcepts() {
+  const mastered = CONCEPTS.filter(c => state.concepts[c.id]?.status === 'mastered').length;
+  document.getElementById('concepts-summary').textContent = `${mastered} of ${CONCEPTS.length} mastered`;
+  document.getElementById('concepts-progress').style.width = (mastered / CONCEPTS.length * 100) + '%';
+  document.getElementById('concepts-list').innerHTML = CONCEPTS.map(c => {
+    const entry = state.concepts[c.id] || {};
+    const status = entry.status || 'planned';
+    const cls = status === 'mastered' ? 'mastered' : status === 'learning' ? 'learning' : '';
+    return `<div class="concept-card ${cls}" id="concept-${c.id}">
+      <div class="concept-header">
+        <div>
+          <div class="concept-title"><span class="num">#${c.id}</span>${esc(c.name)} <span style="color:var(--text-dim);font-size:0.86rem;">— ${esc(c.bn)}</span></div>
+          <div class="concept-desc">${esc(c.desc)}</div>
+        </div>
+        <select class="concept-status-select" onchange="setConceptStatus(${c.id}, this.value)">
+          <option value="planned" ${status === 'planned' ? 'selected' : ''}>⭕ Planned</option>
+          <option value="learning" ${status === 'learning' ? 'selected' : ''}>📖 Learning</option>
+          <option value="mastered" ${status === 'mastered' ? 'selected' : ''}>✅ Mastered</option>
+        </select>
+      </div>
+      <div class="concept-actions">
+        <button class="ghost" onclick="toggleConceptNotes(${c.id})">📝 Notes</button>
+        <button class="ghost" onclick="openFileById('09'); showView('files');">📖 Read full entry</button>
+      </div>
+      <div class="concept-notes-area">
+        <label>Your own explanation (writing it solidifies the learning):</label>
+        <textarea rows="3" placeholder="In your own words, what does ${esc(c.name)} mean?" oninput="updateConceptNotes(${c.id}, this.value)">${esc(entry.notes || '')}</textarea>
+      </div>
+    </div>`;
+  }).join('');
+  // Expand any concept that already has notes
+  CONCEPTS.forEach(c => {
+    if (state.concepts[c.id]?.notes) document.getElementById('concept-' + c.id)?.classList.add('expanded');
+  });
+}
+function setConceptStatus(id, status) {
+  state.concepts[id] = state.concepts[id] || {};
+  state.concepts[id].status = status;
+  saveState();
+  renderConcepts();
+  toast(status === 'mastered' ? '🎉 Mastered!' : 'Status updated');
+}
+function toggleConceptNotes(id) {
+  document.getElementById('concept-' + id)?.classList.toggle('expanded');
+}
+function updateConceptNotes(id, notes) {
+  state.concepts[id] = state.concepts[id] || {};
+  state.concepts[id].notes = notes;
+  saveState();
+}
+
+// ============ STUDY LOG ============
+function renderStudyTab() {
+  renderStudyList();
+}
+function addStudy() {
+  const title = document.getElementById('study-title').value;
+  if (!title) { alert('Title required'); return; }
+  state.study.push({
+    id: uid(),
+    type: document.getElementById('study-type').value,
+    title,
+    author: document.getElementById('study-author').value,
+    stage: +document.getElementById('study-stage').value,
+    status: document.getElementById('study-status').value,
+    added: todayStr(),
+    completed: null,
+  });
+  saveState();
+  document.getElementById('study-title').value = '';
+  document.getElementById('study-author').value = '';
+  renderStudyList();
+  toast('Study item added');
+}
+function updateStudyStatus(id, status) {
+  const s = state.study.find(x => x.id === id);
+  if (!s) return;
+  s.status = status;
+  s.completed = status === 'done' ? todayStr() : null;
+  saveState();
+  renderStudyList();
+  toast(status === 'done' ? '🎉 Marked complete' : 'Updated');
+}
+function removeStudy(id) {
+  if (!confirm('Remove this item?')) return;
+  state.study = state.study.filter(s => s.id !== id);
+  saveState();
+  renderStudyList();
+}
+function renderStudyList() {
+  const filter = document.getElementById('study-filter')?.value;
+  const stageFilter = document.getElementById('study-filter-stage')?.value;
+  const items = state.study.filter(s => {
+    if (filter && s.status !== filter) return false;
+    if (stageFilter && String(s.stage) !== stageFilter) return false;
+    return true;
+  });
+  const list = document.getElementById('study-list');
+  if (!items.length) {
+    list.innerHTML = '<div class="empty">No study items. Add books, videos, courses above.</div>';
+    return;
+  }
+  list.innerHTML = items.map(s => `<div class="study-card ${s.status === 'done' ? 'done' : ''}">
+    <div class="study-row">
+      <div>
+        <div style="font-weight:600;">${esc(s.title)}</div>
+        <div style="font-size:0.82rem;color:var(--text-dim);margin-top:3px;">
+          ${esc(s.type)}${s.author ? ' • ' + esc(s.author) : ''} • <span class="tag tier">Stage ${s.stage}</span>
+          ${s.completed ? ' • completed ' + s.completed : ' • added ' + s.added}
+        </div>
+      </div>
+      <select onchange="updateStudyStatus('${s.id}', this.value)" style="width:auto;">
+        <option value="planned" ${s.status === 'planned' ? 'selected' : ''}>⭕ Planned</option>
+        <option value="in-progress" ${s.status === 'in-progress' ? 'selected' : ''}>📖 In progress</option>
+        <option value="done" ${s.status === 'done' ? 'selected' : ''}>✅ Done</option>
+      </select>
+      <div></div>
+      <button class="icon-btn" onclick="removeStudy('${s.id}')">🗑️</button>
+    </div>
+  </div>`).join('');
+}
+
+// ============ DEBT ============
+function renderDebtTab() {
+  const tbody = document.getElementById('debt-tbody');
+  tbody.innerHTML = state.debts.map(d => `<tr>
+    <td><input value="${esc(d.name)}" oninput="updateDebt('${d.id}','name',this.value)"></td>
+    <td><input value="${esc(d.lender)}" oninput="updateDebt('${d.id}','lender',this.value)"></td>
+    <td class="right"><input type="number" value="${d.balance}" oninput="updateDebt('${d.id}','balance',this.value)"></td>
+    <td class="right"><input type="number" value="${d.emi}" oninput="updateDebt('${d.id}','emi',this.value)"></td>
+    <td class="right"><input type="number" value="${d.rate}" oninput="updateDebt('${d.id}','rate',this.value)"></td>
+    <td><input type="number" value="${d.priority}" oninput="updateDebt('${d.id}','priority',this.value)" style="width:60px;"></td>
+    <td><input value="${esc(d.notes)}" oninput="updateDebt('${d.id}','notes',this.value)"></td>
+    <td><button class="icon-btn" onclick="removeDebt('${d.id}')">🗑️</button></td>
+  </tr>`).join('');
+  document.getElementById('debt-total').textContent = fmt(state.debts.reduce((s, d) => s + +d.balance, 0));
+  document.getElementById('debt-emi-total').textContent = fmt(state.debts.reduce((s, d) => s + +d.emi, 0));
+  renderDebtHistory();
+  renderSimulator();
+}
+function updateDebt(id, field, value) {
+  const d = state.debts.find(x => x.id === id);
+  if (!d) return;
+  d[field] = ['balance', 'emi', 'rate', 'priority'].includes(field) ? +value : value;
+  saveState();
+  document.getElementById('debt-total').textContent = fmt(state.debts.reduce((s, d) => s + +d.balance, 0));
+  document.getElementById('debt-emi-total').textContent = fmt(state.debts.reduce((s, d) => s + +d.emi, 0));
+  renderSimulator();
+}
+function addDebt() {
+  state.debts.push({ id: uid(), name: 'New loan', lender: '', balance: 0, emi: 0, rate: 0, priority: state.debts.length + 1, notes: '' });
+  saveState(); renderDebtTab();
+}
+function removeDebt(id) {
+  if (!confirm('Remove this loan?')) return;
+  state.debts = state.debts.filter(d => d.id !== id);
+  saveState(); renderDebtTab();
+}
+function addDebtSnap() {
+  const m = document.getElementById('debt-snap-month').value;
+  const a = +document.getElementById('debt-snap-amount').value;
+  if (!m || !a) { alert('Month + amount required'); return; }
+  state.debtSnaps = state.debtSnaps.filter(s => s.month !== m);
+  state.debtSnaps.push({ month: m, amount: a });
+  state.debtSnaps.sort((a, b) => a.month.localeCompare(b.month));
+  saveState(); renderDebtHistory();
+  document.getElementById('debt-snap-amount').value = '';
+  toast('Snapshot saved');
+}
+function renderDebtHistory() {
+  const tb = document.getElementById('debt-history-tbody');
+  if (!state.debtSnaps.length) {
+    tb.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--text-dim);">No snapshots yet.</td></tr>';
+    return;
+  }
+  tb.innerHTML = state.debtSnaps.map((s, i) => {
+    const prev = state.debtSnaps[i - 1];
+    const delta = prev ? s.amount - prev.amount : null;
+    const deltaStr = delta === null ? '—' : (delta < 0 ? `<span style="color:var(--green);">${fmt(delta)}</span>` : delta > 0 ? `<span style="color:var(--red);">+${fmt(delta)}</span>` : '0');
+    return `<tr><td>${s.month}</td><td class="right">${fmt(s.amount)}</td><td class="right">${deltaStr}</td>
+      <td><button class="icon-btn" onclick="removeDebtSnap('${s.month}')">🗑️</button></td></tr>`;
+  }).join('');
+}
+function removeDebtSnap(month) {
+  state.debtSnaps = state.debtSnaps.filter(s => s.month !== month);
+  saveState(); renderDebtHistory();
+}
+function syncSimPct() {
+  const pct = +document.getElementById('sim-pct').value;
+  if (!pct) return;
+  const tm = thisMonth();
+  const inc = state.incomes.filter(i => i.date.startsWith(tm)).reduce((s, i) => s + netBDT(i), 0);
+  if (inc > 0) { document.getElementById('sim-extra').value = Math.round(inc * pct / 100); renderSimulator(); }
+}
+function renderSimulator() {
+  const extra = +document.getElementById('sim-extra')?.value || 0;
+  const container = document.getElementById('simulator-result');
+  if (!container) return;
+  const activeDebts = state.debts.filter(d => +d.balance > 0).map(d => ({
+    name: d.name, balance: +d.balance, emi: +d.emi, rate: +d.rate
+  })).sort((a, b) => b.rate - a.rate);
+  if (!activeDebts.length) {
+    container.innerHTML = '<div class="empty">No active debts.</div>';
+    return;
+  }
+  const log = [], cleared = [];
+  let month = 0, rolledEmi = 0;
+  while (activeDebts.some(d => d.balance > 0.01) && month < 240) {
+    month++;
+    let totalPaid = 0;
+    activeDebts.forEach(d => {
+      if (d.balance <= 0) return;
+      d.balance += d.balance * (d.rate / 100 / 12);
+      const pay = Math.min(d.emi, d.balance);
+      d.balance -= pay; totalPaid += pay;
+    });
+    let extraPool = extra + rolledEmi;
+    for (const d of activeDebts) {
+      if (d.balance <= 0) continue;
+      const apply = Math.min(extraPool, d.balance);
+      d.balance -= apply; extraPool -= apply; totalPaid += apply;
+      if (extraPool <= 0) break;
+    }
+    activeDebts.forEach(d => {
+      if (d.balance <= 0.01 && !cleared.find(c => c.name === d.name)) {
+        cleared.push({ name: d.name, month, rate: d.rate });
+        rolledEmi += d.emi; d.balance = 0;
+      }
+    });
+    log.push({ month, remaining: activeDebts.reduce((s, d) => s + d.balance, 0), paid: totalPaid });
+  }
+  const totalMonths = month;
+  const years = (totalMonths / 12).toFixed(1);
+  const totalPaid = log.reduce((s, l) => s + l.paid, 0);
+  const startBalance = state.debts.filter(d => +d.balance > 0).reduce((s, d) => s + +d.balance, 0);
+  const totalInterest = totalPaid - startBalance;
+  const milestoneMonths = new Set([1, 3, 6, 12, 24, 36, 48, 60, 72, 84, 96, 120, totalMonths]);
+  cleared.forEach(c => milestoneMonths.add(c.month));
+  const rows = log.filter(l => milestoneMonths.has(l.month)).map(l => {
+    const clearedHere = cleared.filter(c => c.month === l.month).map(c => c.name).join(', ');
+    return `<tr><td>${l.month} (${(l.month/12).toFixed(1)}y)</td><td class="right">${fmt(l.remaining)}</td><td>${clearedHere ? `<span style="color:var(--green);">✓ ${clearedHere}</span>` : ''}</td></tr>`;
+  }).join('');
+  container.innerHTML = `<div class="grid grid-3" style="margin-bottom:10px;">
+    <div class="stat good"><div class="label">Debt-free in</div><div class="value">${totalMonths} mo</div><div class="delta">${years} years</div></div>
+    <div class="stat warn"><div class="label">Interest paid</div><div class="value">${fmt(totalInterest)}</div></div>
+    <div class="stat info"><div class="label">Total paid</div><div class="value">${fmt(totalPaid)}</div></div>
+  </div>
+  <div class="simulator-result"><h3>Milestones</h3>
+    <table><thead><tr><th>Month</th><th class="right">Remaining</th><th>Cleared</th></tr></thead><tbody>${rows}</tbody></table>
+  </div>${totalMonths >= 240 ? '<p style="color:var(--red);margin-top:8px;">⚠️ Exceeds 20 years. Increase extras or reduce highest-rate balance.</p>' : ''}`;
+}
+
+// ============ EXPENSES ============
+function renderExpenseTab() {
+  if (!document.getElementById('exp-date').value) document.getElementById('exp-date').value = todayStr();
+  if (!document.getElementById('exp-filter').value) document.getElementById('exp-filter').value = thisMonth();
+  renderExpenseList(); renderExpenseSummary();
+}
+function addExpense() {
+  const date = document.getElementById('exp-date').value;
+  const amount = +document.getElementById('exp-amt').value;
+  if (!date || !amount) { alert('Date + amount required'); return; }
+  state.expenses.push({
+    id: uid(), date,
+    category: document.getElementById('exp-cat').value,
+    amount, description: document.getElementById('exp-desc').value,
+    payment: document.getElementById('exp-pay').value,
+    type: document.getElementById('exp-type').value,
+  });
+  saveState();
+  document.getElementById('exp-amt').value = '';
+  document.getElementById('exp-desc').value = '';
+  renderExpenseList(); renderExpenseSummary();
+  toast('Logged');
+}
+function quickAddExpense() {
+  const amount = +document.getElementById('quick-amt').value;
+  if (!amount) { alert('Amount required'); return; }
+  state.expenses.push({
+    id: uid(), date: todayStr(),
+    category: document.getElementById('quick-cat').value,
+    amount, description: '', payment: 'Cash',
+    type: document.getElementById('quick-type').value,
+  });
+  saveState();
+  document.getElementById('quick-amt').value = '';
+  renderDashboard();
+  toast('Logged');
+}
+function removeExpense(id) {
+  state.expenses = state.expenses.filter(e => e.id !== id);
+  saveState(); renderExpenseList(); renderExpenseSummary();
+}
+function renderExpenseList() {
+  const filter = document.getElementById('exp-filter')?.value;
+  const items = state.expenses.filter(e => !filter || e.date.startsWith(filter)).sort((a, b) => b.date.localeCompare(a.date));
+  const tb = document.getElementById('exp-tbody');
+  if (!items.length) { tb.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--text-dim);padding:18px;">No expenses.</td></tr>'; return; }
+  tb.innerHTML = items.map(e => `<tr>
+    <td>${e.date}</td><td>${esc(e.category)}</td><td>${esc(e.description || '')}</td>
+    <td class="right">${fmt(e.amount)}</td>
+    <td><span class="tag ${e.type === 'need' ? 'low' : 'high'}">${e.type}</span></td>
+    <td><button class="icon-btn" onclick="removeExpense('${e.id}')">🗑️</button></td>
+  </tr>`).join('');
+}
+function renderExpenseSummary() {
+  const tm = thisMonth();
+  const items = state.expenses.filter(e => e.date.startsWith(tm));
+  const total = items.reduce((s, e) => s + +e.amount, 0);
+  const needs = items.filter(e => e.type === 'need').reduce((s, e) => s + +e.amount, 0);
+  const wants = items.filter(e => e.type === 'want').reduce((s, e) => s + +e.amount, 0);
+  document.getElementById('exp-summary').innerHTML = `
+    <div class="stat"><div class="label">Total</div><div class="value">${fmt(total)}</div></div>
+    <div class="stat good"><div class="label">Needs</div><div class="value">${fmt(needs)}</div><div class="delta">${total?Math.round(needs/total*100):0}%</div></div>
+    <div class="stat warn"><div class="label">Wants</div><div class="value">${fmt(wants)}</div><div class="delta">${total?Math.round(wants/total*100):0}%</div></div>`;
+  const cats = {};
+  items.forEach(e => { cats[e.category] = (cats[e.category] || 0) + +e.amount; });
+  const sorted = Object.entries(cats).sort((a, b) => b[1] - a[1]);
+  if (!sorted.length) { document.getElementById('exp-categories').innerHTML = '<div class="empty">Nothing logged this month.</div>'; return; }
+  const max = sorted[0][1];
+  document.getElementById('exp-categories').innerHTML = sorted.map(([c, v]) =>
+    `<div style="margin-bottom:9px;">
+      <div style="display:flex;justify-content:space-between;font-size:0.88rem;margin-bottom:3px;"><span>${c}</span><span>${fmt(v)} (${Math.round(v/total*100)}%)</span></div>
+      <div class="progress-bar"><div class="fill" style="width:${(v/max)*100}%;background:var(--accent);"></div></div>
+    </div>`).join('');
+}
+document.addEventListener('input', e => { if (e.target.id === 'exp-filter') renderExpenseList(); });
+
+// ============ INCOME ============
+function renderIncomeTab() {
+  if (!document.getElementById('inc-date').value) document.getElementById('inc-date').value = todayStr();
+  if (!document.getElementById('inc-filter').value) document.getElementById('inc-filter').value = thisMonth();
+  renderIncomeList(); renderIncomeSummary(); renderIncomeChart();
+}
+function addIncome() {
+  const date = document.getElementById('inc-date').value;
+  const gross = +document.getElementById('inc-gross').value;
+  if (!date || !gross) { alert('Date + amount required'); return; }
+  state.incomes.push({
+    id: uid(), date,
+    client: document.getElementById('inc-client').value,
+    source: document.getElementById('inc-source').value,
+    gross,
+    currency: document.getElementById('inc-currency').value,
+    rate: +document.getElementById('inc-rate').value || 1,
+    fee: +document.getElementById('inc-fee').value || 0,
+  });
+  saveState();
+  document.getElementById('inc-gross').value = '';
+  document.getElementById('inc-client').value = '';
+  renderIncomeList(); renderIncomeSummary(); renderIncomeChart();
+  toast('Income logged');
+}
+function removeIncome(id) {
+  state.incomes = state.incomes.filter(i => i.id !== id);
+  saveState(); renderIncomeList(); renderIncomeSummary(); renderIncomeChart();
+}
+function renderIncomeList() {
+  const filter = document.getElementById('inc-filter')?.value;
+  const items = state.incomes.filter(i => !filter || i.date.startsWith(filter)).sort((a, b) => b.date.localeCompare(a.date));
+  const tb = document.getElementById('inc-tbody');
+  if (!items.length) { tb.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--text-dim);padding:18px;">Nothing logged.</td></tr>'; return; }
+  tb.innerHTML = items.map(i => `<tr>
+    <td>${i.date}</td><td>${esc(i.client || '—')}</td>
+    <td><span class="income-source-tag">${esc(i.source)}</span></td>
+    <td class="right">${i.gross.toLocaleString()} ${i.currency}</td>
+    <td class="right">${fmt(netBDT(i))}</td>
+    <td><button class="icon-btn" onclick="removeIncome('${i.id}')">🗑️</button></td>
+  </tr>`).join('');
+}
+function renderIncomeSummary() {
+  const tm = thisMonth();
+  const items = state.incomes.filter(i => i.date.startsWith(tm));
+  const total = items.reduce((s, i) => s + netBDT(i), 0);
+  const gross = items.reduce((s, i) => s + (+i.gross * +i.rate), 0);
+  document.getElementById('inc-summary').innerHTML = `
+    <div class="stat cyan"><div class="label">Net BDT</div><div class="value">${fmt(total)}</div><div class="delta">${items.length} payments</div></div>
+    <div class="stat"><div class="label">Gross (BDT)</div><div class="value">${fmt(gross)}</div></div>
+    <div class="stat warn"><div class="label">Fees lost</div><div class="value">${fmt(gross - total)}</div></div>`;
+  const sources = {};
+  items.forEach(i => { sources[i.source] = (sources[i.source] || 0) + netBDT(i); });
+  const sorted = Object.entries(sources).sort((a, b) => b[1] - a[1]);
+  if (!sorted.length) { document.getElementById('inc-bysource').innerHTML = '<div class="empty">Nothing this month.</div>'; return; }
+  const max = sorted[0][1];
+  document.getElementById('inc-bysource').innerHTML = sorted.map(([s, v]) =>
+    `<div style="margin-bottom:9px;">
+      <div style="display:flex;justify-content:space-between;font-size:0.88rem;margin-bottom:3px;"><span>${s}</span><span>${fmt(v)}</span></div>
+      <div class="progress-bar"><div class="fill" style="width:${(v/max)*100}%;background:var(--cyan);"></div></div>
+    </div>`).join('');
+}
+function renderIncomeChart() {
+  const byMonth = {};
+  state.incomes.forEach(i => { const m = i.date.slice(0, 7); byMonth[m] = (byMonth[m] || 0) + netBDT(i); });
+  const data = Object.entries(byMonth).sort().map(([m, v]) => ({ month: m, assets: v, debts: 0 }));
+  renderChart('inc-chart', data, 'var(--cyan)');
+}
+document.addEventListener('input', e => { if (e.target.id === 'inc-filter') renderIncomeList(); });
+
+// ============ BUDGET ============
+function renderBudgetTab() {
+  const tm = thisMonth();
+  const spent = {};
+  state.expenses.filter(e => e.date.startsWith(tm)).forEach(e => { spent[e.category] = (spent[e.category] || 0) + +e.amount; });
+  const list = document.getElementById('budget-list');
+  const entries = Object.entries(state.budgets);
+  if (!entries.length) { list.innerHTML = '<div class="empty">No budgets set.</div>'; return; }
+  list.innerHTML = entries.map(([cat, amt]) => {
+    const sp = spent[cat] || 0;
+    const pct = amt > 0 ? Math.min(100, sp / amt * 100) : 0;
+    const overPct = amt > 0 ? sp / amt * 100 : 0;
+    const c = overPct >= 100 ? 'var(--red)' : overPct >= 80 ? 'var(--orange)' : 'var(--green)';
+    return `<div class="budget-row">
+      <div><strong>${esc(cat)}</strong></div>
+      <div>${fmt(amt)}</div>
+      <div style="color:${c};font-weight:600;">${fmt(sp)}</div>
+      <div><div class="progress-bar"><div class="fill" style="width:${pct}%;background:${c};"></div></div>
+        <div style="font-size:0.78rem;color:var(--text-dim);margin-top:2px;">${overPct.toFixed(0)}% used</div></div>
+      <div><button class="icon-btn" onclick="removeBudget('${esc(cat)}')">🗑️</button></div>
+    </div>`;
+  }).join('');
+}
+function addBudget() {
+  const cat = document.getElementById('budget-cat').value;
+  const amt = +document.getElementById('budget-amt').value;
+  if (!amt) { alert('Amount required'); return; }
+  state.budgets[cat] = amt;
+  saveState();
+  document.getElementById('budget-amt').value = '';
+  renderBudgetTab();
+  toast('Budget set');
+}
+function removeBudget(cat) { delete state.budgets[cat]; saveState(); renderBudgetTab(); }
+
+// ============ NET WORTH ============
+function renderNetWorthTab() {
+  if (!document.getElementById('nw-month').value) document.getElementById('nw-month').value = thisMonth();
+  document.getElementById('nw-debts').value = state.debts.reduce((s, d) => s + +d.balance, 0);
+  renderNetWorthHistory();
+  renderChart('nw-chart', state.networth);
+}
+function addNetWorth() {
+  const month = document.getElementById('nw-month').value;
+  if (!month) { alert('Month required'); return; }
+  const fields = ['cash', 'bank', 'sav', 'dps', 'sanchay', 'stocks', 'other'];
+  const breakdown = {};
+  fields.forEach(f => { breakdown[f] = +document.getElementById('nw-' + f).value || 0; });
+  const assets = fields.reduce((s, f) => s + breakdown[f], 0);
+  const debts = +document.getElementById('nw-debts').value || 0;
+  state.networth = state.networth.filter(n => n.month !== month);
+  state.networth.push({ month, assets, debts, breakdown });
+  state.networth.sort((a, b) => a.month.localeCompare(b.month));
+  saveState();
+  fields.forEach(f => document.getElementById('nw-' + f).value = '');
+  renderNetWorthHistory();
+  renderChart('nw-chart', state.networth);
+  toast('Snapshot saved');
+}
+function removeNetWorth(month) {
+  state.networth = state.networth.filter(n => n.month !== month);
+  saveState();
+  renderNetWorthHistory();
+  renderChart('nw-chart', state.networth);
+}
+function renderNetWorthHistory() {
+  const tb = document.getElementById('nw-tbody');
+  if (!state.networth.length) { tb.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--text-dim);padding:18px;">No snapshots.</td></tr>'; return; }
+  tb.innerHTML = state.networth.map((n, i) => {
+    const nw = n.assets - n.debts;
+    const prev = state.networth[i - 1];
+    const delta = prev ? nw - (prev.assets - prev.debts) : null;
+    const deltaStr = delta === null ? '—' : (delta > 0 ? `<span style="color:var(--green);">+${fmt(delta)}</span>` : delta < 0 ? `<span style="color:var(--red);">${fmt(delta)}</span>` : '0');
+    return `<tr>
+      <td>${n.month}</td><td class="right">${fmt(n.assets)}</td><td class="right">${fmt(n.debts)}</td>
+      <td class="right" style="font-weight:700;color:${nw >= 0 ? 'var(--green)' : 'var(--red)'};">${fmt(nw)}</td>
+      <td class="right">${deltaStr}</td>
+      <td><button class="icon-btn" onclick="removeNetWorth('${n.month}')">🗑️</button></td>
+    </tr>`;
+  }).join('');
+}
+
+// ============ GOALS ============
+function renderGoalsTab() {
+  const list = document.getElementById('goal-list');
+  if (!state.goals.length) { list.innerHTML = '<div class="empty">No goals yet.</div>'; return; }
+  list.innerHTML = state.goals.map(g => goalCard(g, false)).join('');
+}
+function goalCard(g, compact) {
+  const current = goalCurrent(g);
+  const pct = g.target > 0 ? Math.min(100, (current / g.target) * 100) : 0;
+  const done = pct >= 100;
+  const meta = compact ? '' : `<div style="font-size:0.8rem;color:var(--text-dim);margin-top:6px;">
+    ${g.deadline ? '📅 ' + g.deadline + ' &nbsp; ' : ''}🏷 ${esc(g.type)}${g.cat ? ' &nbsp; 📦 ' + esc(g.cat) : ''}
+    ${g.type === 'manual' ? `&nbsp; <button class="ghost" style="font-size:0.78rem;padding:2px 8px;" onclick="updateManualGoal('${g.id}')">Update</button>` : ''}
+    &nbsp; <button class="icon-btn" onclick="removeGoal('${g.id}')">🗑️</button>
+  </div>`;
+  return `<div class="goal-card ${done ? 'done' : ''}">
+    <div class="goal-header">
+      <div class="goal-name">${done ? '✅ ' : '🎯 '}${esc(g.name)}</div>
+      <div class="goal-amount">${g.type === 'concepts-mastered' || g.type === 'study-done' ? current + ' / ' + g.target : fmt(current) + ' / ' + fmt(g.target)} (${pct.toFixed(0)}%)</div>
+    </div>
+    <div class="progress-bar"><div class="fill" style="width:${pct}%;background:${done ? 'var(--green)' : 'var(--accent)'};"></div></div>
+    ${meta}
+  </div>`;
+}
+function goalCurrent(g) {
+  const totalDebt = state.debts.reduce((s, d) => s + +d.balance, 0);
+  const latestNW = state.networth.slice().pop();
+  if (g.type === 'debt-down') return Math.max(0, (g.startDebt || 0) - totalDebt);
+  if (g.type === 'networth-up') return latestNW ? (latestNW.assets - latestNW.debts) : 0;
+  if (g.type === 'asset-cat' && latestNW && latestNW.breakdown) return latestNW.breakdown[g.cat] || 0;
+  if (g.type === 'concepts-mastered') return CONCEPTS.filter(c => state.concepts[c.id]?.status === 'mastered').length;
+  if (g.type === 'study-done') return state.study.filter(s => s.status === 'done').length;
+  return +g.current || 0;
+}
+function addGoal() {
+  const name = document.getElementById('goal-name').value;
+  const target = +document.getElementById('goal-target').value;
+  const type = document.getElementById('goal-type').value;
+  if (!name || !target) { alert('Name + target required'); return; }
+  const g = {
+    id: uid(), name, target, type,
+    deadline: document.getElementById('goal-deadline').value || null,
+    cat: document.getElementById('goal-cat').value || null,
+    current: 0,
+  };
+  if (type === 'debt-down') g.startDebt = state.debts.reduce((s, d) => s + +d.balance, 0);
+  state.goals.push(g);
+  saveState();
+  ['goal-name', 'goal-target', 'goal-deadline', 'goal-cat'].forEach(id => document.getElementById(id).value = '');
+  renderGoalsTab();
+  toast('Goal added');
+}
+function updateManualGoal(id) {
+  const g = state.goals.find(x => x.id === id);
+  if (!g) return;
+  const v = prompt(`Current progress for "${g.name}":`, g.current || 0);
+  if (v === null) return;
+  g.current = +v; saveState(); renderGoalsTab();
+}
+function removeGoal(id) {
+  if (!confirm('Remove this goal?')) return;
+  state.goals = state.goals.filter(g => g.id !== id);
+  saveState(); renderGoalsTab();
+}
+
+// ============ CHART ============
+function renderChart(containerId, data, color) {
+  const c = document.getElementById(containerId);
+  if (!c) return;
+  if (!data.length) { c.innerHTML = '<div class="empty">No data yet.</div>'; return; }
+  const w = 800, h = 220, pad = 50;
+  const points = data.map(d => ({ x: d.month, y: (d.assets || 0) - (d.debts || 0) }));
+  const ys = points.map(p => p.y);
+  const minY = Math.min(0, ...ys), maxY = Math.max(0, ...ys);
+  const range = maxY - minY || 1;
+  const stepX = points.length > 1 ? (w - pad * 2) / (points.length - 1) : 0;
+  const yPx = y => h - pad - ((y - minY) / range) * (h - pad * 2);
+  const pathD = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${pad + i * stepX} ${yPx(p.y)}`).join(' ');
+  const areaD = pathD + ` L ${pad + (points.length - 1) * stepX} ${yPx(0)} L ${pad} ${yPx(0)} Z`;
+  const dots = points.map((p, i) => `<circle class="dot" cx="${pad + i * stepX}" cy="${yPx(p.y)}" r="3"${color ? ` style="fill:${color};"` : ''}></circle>`).join('');
+  const labels = points.map((p, i) => `<text x="${pad + i * stepX}" y="${h - 8}" text-anchor="middle">${p.x.slice(2)}</text>`).join('');
+  const zero = yPx(0);
+  c.innerHTML = `<svg class="chart" viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid meet">
+    <line class="grid" x1="${pad}" y1="${zero}" x2="${w - pad}" y2="${zero}"></line>
+    <text x="${pad - 6}" y="${zero + 4}" text-anchor="end">0</text>
+    <text x="${pad - 6}" y="${yPx(maxY) + 4}" text-anchor="end">${Math.round(maxY).toLocaleString()}</text>
+    <text x="${pad - 6}" y="${yPx(minY) + 4}" text-anchor="end">${Math.round(minY).toLocaleString()}</text>
+    <path class="area" d="${areaD}"${color ? ` style="fill:${color};opacity:0.15;"` : ''}></path>
+    <path class="line" d="${pathD}"${color ? ` style="stroke:${color};"` : ''}></path>
+    ${dots}${labels}
+  </svg>`;
+}
+
+// ============ CHECKLISTS ============
+const WEEK1_TASKS = [
+  { id: 'w1d1-bookmark', day: 'Day 1', text: 'Open tracker.html, bookmark it' },
+  { id: 'w1d1-read01', day: 'Day 1', text: 'Read 01-where-you-are.md honestly' },
+  { id: 'w1d1-read03', day: 'Day 1', text: 'Read 03-the-learning-roadmap.md once' },
+  { id: 'w1d1-video', day: 'Day 1', text: 'Watch one Adib\'s Finance / 10 Minute School video' },
+  { id: 'w1d1-spouse', day: 'Day 1', text: 'Tell spouse: 12–24 month learning journey starts' },
+  { id: 'w1d2-cashflow', day: 'Day 2', text: 'Read Cash flow + Net worth in 09-concepts.md' },
+  { id: 'w1d2-write', day: 'Day 2', text: 'Write own version of both in Notes tab' },
+  { id: 'w1d2-watch', day: 'Day 2', text: 'Watch one short video on each' },
+  { id: 'w1d2-app', day: 'Day 2', text: 'Install Wallet or Money Lover' },
+  { id: 'w1d3-compound', day: 'Day 3', text: 'Read Compound interest + Inflation' },
+  { id: 'w1d3-write', day: 'Day 3', text: 'Write own explanation in Notes' },
+  { id: 'w1d3-inflation', day: 'Day 3', text: 'Look up Bangladesh\'s current inflation rate' },
+  { id: 'w1d4-real', day: 'Day 4', text: 'Read Real return + Time value of money' },
+  { id: 'w1d4-story', day: 'Day 4', text: 'Write a 3-sentence story showing what they mean' },
+  { id: 'w1d5-asset', day: 'Day 5', text: 'Read Asset vs Liability + Income vs Wealth' },
+  { id: 'w1d5-list', day: 'Day 5', text: 'List 5 things you own, label asset or liability' },
+  { id: 'w1d6-risk', day: 'Day 6', text: 'Read Risk vs Return + Halal vs Haram Finance' },
+  { id: 'w1d6-scams', day: 'Day 6', text: 'Note 3 "guaranteed high return" scams you\'ve seen' },
+  { id: 'w1d7-show', day: 'Day 7', text: 'Show spouse the tracker. Teach the concepts.' },
+  { id: 'w1d7-pact', day: 'Day 7', text: '30-day expense tracking pact starts tomorrow' },
+  { id: 'w1d7-schedule', day: 'Day 7', text: 'Schedule weekly Sunday money chat' },
+];
+const STAGE_MILESTONES = [
+  { id: 's0-concepts',  stage: 0, text: 'All 10 foundational concepts marked Mastered' },
+  { id: 's0-notes',     stage: 0, text: '10+ notes in your own words across the concepts' },
+  { id: 's0-spouse',    stage: 0, text: 'Spouse aligned on the journey' },
+  { id: 's1-tracking',  stage: 1, text: '30 consecutive days of expense tracking' },
+  { id: 's1-income',    stage: 1, text: '3+ months of income tracking data' },
+  { id: 's1-budget',    stage: 1, text: 'Average monthly spend by category known' },
+  { id: 's1-debt-map',  stage: 1, text: 'Exact balance + rate on all 4 debts entered' },
+  { id: 's2-niche',     stage: 2, text: 'Picked ONE niche and posting in it weekly' },
+  { id: 's2-rate',      stage: 2, text: 'Raised freelance rate at least once' },
+  { id: 's2-product',   stage: 2, text: 'Productized service offer live' },
+  { id: 's2-1.5L',      stage: 2, text: 'Monthly income reaches 1.5 lakh BDT' },
+  { id: 's3-dps',       stage: 3, text: 'DPS opened and running 6+ months' },
+  { id: 's3-sanchay',   stage: 3, text: 'First Sanchaypatra purchased' },
+  { id: 's3-bo',        stage: 3, text: 'BO account opened, observed DSE 6+ months' },
+  { id: 's3-stock',     stage: 3, text: 'First halal stock purchased and held 3+ months' },
+  { id: 's3-ef',        stage: 3, text: '3 months emergency fund (1.5–2 lakh)' },
+  { id: 's4-statements', stage: 4, text: 'Can read a balance sheet and income statement' },
+  { id: 's4-allocation', stage: 4, text: 'Have an asset allocation plan' },
+  { id: 's4-book',       stage: 4, text: 'Read The Intelligent Investor (or summary)' },
+  { id: 's5-debt-free',  stage: 5, text: 'All debts cleared (as side-effect of growth)' },
+  { id: 's5-systematic', stage: 5, text: 'Automated monthly investing in place' },
+  { id: 's5-celebrate',  stage: 5, text: 'Took spouse to dinner to celebrate the journey' },
+];
+const MONTHLY_TASKS = [
+  'Track every taka spent this month',
+  'Sunday 30-min review (×4)',
+  'Log Net Worth snapshot on the 1st',
+  'Read at least 1 chapter of current finance book (Stage 2+)',
+  'Watch at least 1 long-form finance video',
+  'Mark progress on Concepts (Stage 0)',
+  'Update Study Log',
+  'Raise rate or send 5 niche outreach messages (Stage 2)',
+  'Plan extra debt payment if Stage 2+ surplus allows',
+];
+
+function renderChecklists() {
+  const w1 = document.getElementById('cl-week1');
+  const byDay = {};
+  WEEK1_TASKS.forEach(t => { (byDay[t.day] = byDay[t.day] || []).push(t); });
+  w1.innerHTML = Object.entries(byDay).map(([day, tasks]) =>
+    `<div class="day-block"><h4>${day}</h4>
+    ${tasks.map(t => `<label class="checklist-item ${state.checklist[t.id] ? 'done' : ''}">
+      <input type="checkbox" ${state.checklist[t.id] ? 'checked' : ''} onchange="toggleCheck('${t.id}', this.checked, true)">
+      <span>${t.text}</span></label>`).join('')}
+    </div>`).join('');
+  const done = WEEK1_TASKS.filter(t => state.checklist[t.id]).length;
+  document.getElementById('cl-week1-bar').style.width = (done / WEEK1_TASKS.length * 100) + '%';
+  document.getElementById('cl-week1-summary').textContent = `${done} of ${WEEK1_TASKS.length} done`;
+
+  const stages = {};
+  STAGE_MILESTONES.forEach(m => { (stages[m.stage] = stages[m.stage] || []).push(m); });
+  document.getElementById('cl-stages').innerHTML = Object.entries(stages).map(([stage, items]) =>
+    `<div class="day-block"><h4>Stage ${stage} milestones</h4>
+    ${items.map(m => `<label class="checklist-item ${state.checklist[m.id] ? 'done' : ''}">
+      <input type="checkbox" ${state.checklist[m.id] ? 'checked' : ''} onchange="toggleCheck('${m.id}', this.checked, false)">
+      <span>${m.text}</span></label>`).join('')}
+    </div>`).join('');
+
+  if (!document.getElementById('monthly-month').value) document.getElementById('monthly-month').value = thisMonth();
+  renderMonthlyChecklist();
+}
+function toggleCheck(id, checked, rerenderProgress) {
+  state.checklist[id] = checked;
+  saveState();
+  if (rerenderProgress) renderChecklists();
+  else if (event && event.target) event.target.parentElement.classList.toggle('done', checked);
+}
+function renderMonthlyChecklist() {
+  const m = document.getElementById('monthly-month').value || thisMonth();
+  document.getElementById('cl-monthly').innerHTML = MONTHLY_TASKS.map((t, i) => {
+    const id = `m-${m}-${i}`;
+    return `<label class="checklist-item ${state.checklist[id] ? 'done' : ''}">
+      <input type="checkbox" ${state.checklist[id] ? 'checked' : ''} onchange="toggleCheck('${id}', this.checked, false)">
+      <span>${t}</span></label>`;
+  }).join('');
+}
+function resetMonthly() {
+  const m = document.getElementById('monthly-month').value;
+  if (!confirm(`Clear monthly checklist for ${m}?`)) return;
+  MONTHLY_TASKS.forEach((_, i) => delete state.checklist[`m-${m}-${i}`]);
+  saveState();
+  renderMonthlyChecklist();
+}
+
+// ============ NOTES ============
+function extractTags(s) { return (s.match(/#\w+/g) || []).map(t => t.toLowerCase()); }
+function addNote() {
+  const content = document.getElementById('note-input').value.trim();
+  if (!content) return;
+  state.notes.unshift({ id: uid(), date: new Date().toISOString(), content, tags: extractTags(content) });
+  saveState();
+  document.getElementById('note-input').value = '';
+  renderNotes();
+  toast('Note saved');
+}
+function removeNote(id) {
+  if (!confirm('Delete this note?')) return;
+  state.notes = state.notes.filter(n => n.id !== id);
+  saveState();
+  renderNotes();
+}
+function setNoteTagFilter(tag) { currentNoteTagFilter = currentNoteTagFilter === tag ? null : tag; renderNotes(); }
+function clearNoteFilter() { currentNoteTagFilter = null; document.getElementById('note-search').value = ''; renderNotes(); }
+function renderNotes() {
+  const search = (document.getElementById('note-search')?.value || '').toLowerCase();
+  const allTags = new Set();
+  state.notes.forEach(n => (n.tags || []).forEach(t => allTags.add(t)));
+  document.getElementById('note-tag-filters').innerHTML = [...allTags].map(t =>
+    `<span class="tag note ${currentNoteTagFilter === t ? 'active' : ''}" onclick="setNoteTagFilter('${t}')">${t}</span>`).join(' ');
+  const clearBtn = document.getElementById('note-clear-filter');
+  if (clearBtn) clearBtn.style.display = (currentNoteTagFilter || search) ? 'inline-block' : 'none';
+
+  const items = state.notes.filter(n => {
+    if (currentNoteTagFilter && !(n.tags || []).includes(currentNoteTagFilter)) return false;
+    if (search && !n.content.toLowerCase().includes(search)) return false;
+    return true;
+  });
+  const list = document.getElementById('notes-list');
+  if (!items.length) { list.innerHTML = '<div class="empty">' + (state.notes.length ? 'No notes match.' : 'No notes yet.') + '</div>'; return; }
+  list.innerHTML = items.map(n => `<div class="note-card">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+      <div class="note-date">${new Date(n.date).toLocaleString()}</div>
+      <button class="icon-btn" onclick="removeNote('${n.id}')">🗑️</button>
+    </div>
+    <div class="note-content">${esc(n.content)}</div>
+    ${(n.tags && n.tags.length) ? `<div class="note-tags">${n.tags.map(t => `<span class="tag note">${t}</span>`).join('')}</div>` : ''}
+  </div>`).join('');
+}
+
+// ============ FILES ============
+const FILES = [
+  { id: '00', title: 'Index', desc: 'Map of the journey' },
+  { id: '01', title: 'Where You Are', desc: 'Honest snapshot' },
+  { id: '02', title: 'doc.md Relationship', desc: 'How doc.md fits' },
+  { id: '03', title: 'The Learning Roadmap', desc: 'The 5-stage curriculum' },
+  { id: '04', title: 'What to Learn First', desc: 'Concept ordering' },
+  { id: '05', title: 'Resources', desc: 'Books, channels, apps' },
+  { id: '06', title: 'Week 1 Learning', desc: 'Day-by-day first week' },
+  { id: '07', title: 'Study Habits', desc: 'Daily/weekly/monthly discipline' },
+  { id: '08', title: 'Skill & Income', desc: 'Stage 2 income deep-dive' },
+  { id: '09', title: 'Concepts Glossary', desc: 'Foundational concepts' },
+  { id: '10', title: 'Debt Awareness', desc: 'One chapter, not the book' },
+  { id: '11', title: 'Investing When Ready', desc: 'What it is, when to start' },
+];
+function setLang(l) {
+  currentLang = l;
+  document.getElementById('lang-en').classList.toggle('active', l === 'en');
+  document.getElementById('lang-bn').classList.toggle('active', l === 'bn');
+  if (window._currentFile) openFile(window._currentFile);
+}
+function renderFiles() {
+  document.getElementById('file-list').innerHTML = FILES.map(f =>
+    `<li onclick="openFile('${f.id}')" id="file-li-${f.id}">
+      <div><span class="file-num">${f.id}</span><strong>${f.title}</strong></div>
+      <div class="file-desc">${f.desc}</div>
+    </li>`).join('');
+  if (!window._currentFile) openFile('00');
+}
+function openFile(id) {
+  window._currentFile = id;
+  document.querySelectorAll('#file-list li').forEach(li => li.classList.remove('active'));
+  document.getElementById(`file-li-${id}`)?.classList.add('active');
+  const md = document.getElementById(`md-${currentLang}-${id}`)?.textContent || '';
+  document.getElementById('file-content').innerHTML = renderMarkdown(md);
+}
+function openFileById(id) {
+  window._currentFile = id;
+  setTimeout(() => openFile(id), 100);
+}
+
+function renderMarkdown(md) {
+  if (!md) return '<p>(empty)</p>';
+  let s = md.trim();
+  s = s.replace(/```([\s\S]*?)```/g, (m, c) => `<pre><code>${esc(c.trim())}</code></pre>`);
+  s = s.replace(/(^\|.+\|\n\|[\s\-:|]+\|\n(?:\|.+\|\n?)+)/gm, block => {
+    const lines = block.trim().split('\n');
+    const header = lines[0].split('|').slice(1, -1).map(c => c.trim());
+    const rows = lines.slice(2).map(l => l.split('|').slice(1, -1).map(c => c.trim()));
+    return `<table><thead><tr>${header.map(h => `<th>${inline(h)}</th>`).join('')}</tr></thead><tbody>${rows.map(r => `<tr>${r.map(c => `<td>${inline(c)}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+  });
+  const lines = s.split('\n');
+  let out = '', inList = null, paraBuf = [];
+  const flushPara = () => { if (paraBuf.length) { const t = paraBuf.join(' ').trim(); if (t) out += `<p>${inline(t)}</p>`; paraBuf = []; } };
+  const closeList = () => { if (inList) { out += inList === 'ul' ? '</ul>' : '</ol>'; inList = null; } };
+  for (let i = 0; i < lines.length; i++) {
+    const L = lines[i];
+    if (/^<(table|pre)/.test(L)) { flushPara(); closeList(); out += L; continue; }
+    if (/^#{1,6} /.test(L)) {
+      flushPara(); closeList();
+      const m = L.match(/^(#{1,6}) (.*)/);
+      out += `<h${m[1].length}>${inline(m[2])}</h${m[1].length}>`;
+      continue;
+    }
+    if (/^---+\s*$/.test(L)) { flushPara(); closeList(); out += '<hr>'; continue; }
+    if (/^> /.test(L)) {
+      flushPara(); closeList();
+      let q = [L.replace(/^> /, '')];
+      while (i + 1 < lines.length && /^> /.test(lines[i + 1])) { q.push(lines[++i].replace(/^> /, '')); }
+      out += `<blockquote>${inline(q.join(' '))}</blockquote>`;
+      continue;
+    }
+    if (/^[-*] /.test(L)) {
+      flushPara();
+      if (inList !== 'ul') { closeList(); out += '<ul>'; inList = 'ul'; }
+      out += `<li>${inline(L.replace(/^[-*] /, ''))}</li>`;
+      continue;
+    }
+    if (/^\d+\. /.test(L)) {
+      flushPara();
+      if (inList !== 'ol') { closeList(); out += '<ol>'; inList = 'ol'; }
+      out += `<li>${inline(L.replace(/^\d+\. /, ''))}</li>`;
+      continue;
+    }
+    if (L.trim() === '') { flushPara(); closeList(); continue; }
+    paraBuf.push(L);
+  }
+  flushPara(); closeList();
+  return out;
+}
+function inline(s) {
+  return s.replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+}
+
+// ============ EXPORT / IMPORT / CSV ============
+function exportData() {
+  const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = `finance-tracker-backup-${todayStr()}.json`; a.click();
+  URL.revokeObjectURL(url);
+  toast('Backup downloaded');
+}
+function importData(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const r = new FileReader();
+  r.onload = () => {
+    try {
+      const imported = JSON.parse(r.result);
+      if (!imported.version) throw new Error('Not a valid backup');
+      if (!confirm('Replace ALL current data?')) return;
+      state = migrate(imported);
+      saveState();
+      location.reload();
+    } catch (err) { alert('Import failed: ' + err.message); }
+  };
+  r.readAsText(file);
+}
+function exportCSV(kind) {
+  let rows = [], filename = '';
+  if (kind === 'expenses') {
+    rows.push(['Date', 'Category', 'Description', 'Amount', 'Payment', 'Type']);
+    state.expenses.slice().sort((a,b)=>a.date.localeCompare(b.date)).forEach(e => rows.push([e.date, e.category, e.description||'', e.amount, e.payment||'', e.type]));
+    filename = 'expenses';
+  } else if (kind === 'income') {
+    rows.push(['Date', 'Client', 'Source', 'Gross', 'Currency', 'Rate', 'Fee %', 'Net BDT']);
+    state.incomes.slice().sort((a,b)=>a.date.localeCompare(b.date)).forEach(i => rows.push([i.date, i.client||'', i.source, i.gross, i.currency, i.rate, i.fee, Math.round(netBDT(i))]));
+    filename = 'income';
+  } else if (kind === 'networth') {
+    rows.push(['Month', 'Cash', 'Bank', 'Savings', 'DPS', 'Sanchaypatra', 'Stocks', 'Other', 'Assets', 'Debts', 'Net Worth']);
+    state.networth.forEach(n => { const b = n.breakdown || {}; rows.push([n.month, b.cash||0, b.bank||0, b.sav||0, b.dps||0, b.sanchay||0, b.stocks||0, b.other||0, n.assets, n.debts, n.assets - n.debts]); });
+    filename = 'networth';
+  }
+  if (rows.length <= 1) { alert('Nothing to export'); return; }
+  const csv = rows.map(r => r.map(c => {
+    const s = String(c).replace(/"/g, '""');
+    return /[,"\n]/.test(s) ? `"${s}"` : s;
+  }).join(',')).join('\n');
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = `${filename}-${todayStr()}.csv`; a.click();
+  URL.revokeObjectURL(url);
+  toast(`${filename}.csv downloaded`);
+}
+
+// ============ KEYBOARD ============
+document.addEventListener('keydown', e => {
+  if (e.target.matches('input, textarea, select')) return;
+  const map = { d: 'dashboard', r: 'files', c: 'concepts', s: 'study', e: 'expenses', i: 'income', g: 'goals' };
+  if (e.key === 'n' || e.key === 'N') {
+    showView('dashboard');
+    setTimeout(() => document.getElementById('quick-amt').focus(), 100);
+  } else if (map[e.key]) showView(map[e.key]);
+});
+
+// ============ INIT ============
+renderDashboard();
+</script>
+
+</body>
+</html>

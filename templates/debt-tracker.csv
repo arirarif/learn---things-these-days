@@ -1,0 +1,24 @@
+Loan Name,Lender,Outstanding (BDT),Original Amount (BDT),Monthly EMI / Min Payment (BDT),Interest Rate (% p.a.),Start Date,Expected Payoff Date,Priority (1=kill first),Status,Notes
+Market / Chit-fund loan,(fill in),0,0,0,60,,,1,ACTIVE,KILL FIRST — eats wealth at 5%/month
+Credit Card,(bank name),0,0,0,30,,,2,ACTIVE,Cut after payoff but keep card open
+Personal Loan,(bank/NBFC name),0,0,0,13,,,3,ACTIVE,Fixed EMI runs on schedule
+Family / Informal,(name),0,flexible,0,0,,,4,ACTIVE,Pay 5000+/month for trust; 0% interest
+,,,,,,,,,,
+TOTAL,,=SUM(C2:C5),=SUM(D2:D5),=SUM(E2:E5),,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+PROGRESS TRACKER (fill the first column on the 1st of every month),,,,,,,,,,
+Month,Total Debt (BDT),Change vs last month,,,,,,,,
+2026-05,0,—,,,,,,,,
+2026-06,,=B12-B11,,,,,,,,
+2026-07,,=B13-B12,,,,,,,,
+2026-08,,=B14-B13,,,,,,,,
+2026-09,,=B15-B14,,,,,,,,
+2026-10,,=B16-B15,,,,,,,,
+2026-11,,=B17-B16,,,,,,,,
+2026-12,,=B18-B17,,,,,,,,
+2027-01,,=B19-B18,,,,,,,,
+2027-02,,=B20-B19,,,,,,,,
+2027-03,,=B21-B20,,,,,,,,
+2027-04,,=B22-B21,,,,,,,,
+2027-05,,=B23-B22,,,,,,,,
