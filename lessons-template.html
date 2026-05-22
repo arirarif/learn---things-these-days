@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7-Day Foundation Course — Finance</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0f1115; --bg-card: #1a1d24; --bg-elev: #232732;
+  --border: #2d323f; --text: #e6e8ee; --text-dim: #9ca3b3;
+  --accent: #6ea8fe; --accent-2: #8b5cf6;
+  --green: #4ade80; --red: #f87171; --orange: #fb923c; --yellow: #fbbf24;
+}
+[data-theme="light"] {
+  --bg: #f6f7fa; --bg-card: #ffffff; --bg-elev: #f0f2f7;
+  --border: #e2e5ec; --text: #1a1d24; --text-dim: #5a6273;
+}
+html, body { height: 100%; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans Bengali", "SolaimanLipi", Roboto, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.65;
+  display: flex; flex-direction: column; min-height: 100vh;
+}
+
+/* Header */
+header {
+  background: var(--bg-card); border-bottom: 1px solid var(--border);
+  padding: 12px 20px; position: sticky; top: 0; z-index: 100;
+}
+.header-inner {
+  display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap;
+}
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.1rem; }
+.brand .accent { color: var(--accent); }
+.brand .icon { font-size: 1.4rem; }
+.progress-wrap { flex: 1; min-width: 180px; max-width: 460px; }
+.progress-meta {
+  display: flex; justify-content: space-between; font-size: 0.78rem;
+  color: var(--text-dim); margin-bottom: 4px;
+}
+.progress-bar { background: var(--bg-elev); height: 8px; border-radius: 4px; overflow: hidden; }
+.progress-bar .fill {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  height: 100%; transition: width 0.4s;
+}
+.header-actions { display: flex; gap: 6px; align-items: center; }
+.header-actions a, .header-actions button {
+  background: var(--bg-elev); border: 1px solid var(--border); color: var(--text);
+  padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.85rem;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 5px;
+}
+.header-actions a:hover, .header-actions button:hover { background: var(--bg-card); border-color: var(--accent); }
+.menu-btn { display: none; }
+@media (max-width: 800px) {
+  .menu-btn { display: inline-flex; }
+}
+
+/* Layout */
+.layout { display: grid; grid-template-columns: 280px 1fr; flex: 1; min-height: 0; }
+@media (max-width: 800px) {
+  .layout { grid-template-columns: 1fr; }
+}
+
+/* Sidebar */
+aside.sidebar {
+  background: var(--bg-card); border-right: 1px solid var(--border);
+  padding: 16px; overflow-y: auto; height: calc(100vh - 60px); position: sticky; top: 60px;
+}
+@media (max-width: 800px) {
+  aside.sidebar {
+    position: fixed; top: 60px; left: 0; bottom: 0; width: 280px;
+    z-index: 90; transform: translateX(-100%); transition: transform 0.25s;
+    box-shadow: 4px 0 18px rgba(0,0,0,0.25);
+  }
+  aside.sidebar.open { transform: translateX(0); }
+}
+.sidebar h3 {
+  font-size: 0.74rem; text-transform: uppercase; color: var(--text-dim);
+  letter-spacing: 0.08em; margin-bottom: 10px; font-weight: 700;
+}
+.lesson-list { list-style: none; }
+.lesson-list li {
+  padding: 12px; margin-bottom: 6px; background: var(--bg-elev);
+  border-radius: 8px; cursor: pointer; transition: all 0.15s;
+  border: 1px solid transparent; display: flex; gap: 10px; align-items: flex-start;
+}
+.lesson-list li:hover { background: var(--bg-card); border-color: var(--accent); }
+.lesson-list li.active { background: var(--bg-card); border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.lesson-list .status {
+  flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
+  background: var(--bg-card); border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem; color: var(--text-dim);
+}
+.lesson-list li.done .status {
+  background: var(--green); border-color: var(--green); color: white;
+}
+.lesson-list .meta { flex: 1; min-width: 0; }
+.lesson-list .day-label {
+  font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase;
+  letter-spacing: 0.04em; font-weight: 600; margin-bottom: 2px;
+}
+.lesson-list .title { font-weight: 600; font-size: 0.92rem; }
+.lesson-list li.done .title { color: var(--text-dim); }
+.sidebar-footer {
+  margin-top: 16px; padding: 12px; background: var(--bg-elev);
+  border-radius: 8px; font-size: 0.78rem; color: var(--text-dim);
+}
+.sidebar-footer strong { color: var(--text); }
+
+/* Main reading area */
+main.reading {
+  padding: 32px 40px 80px; overflow-y: auto; max-width: 880px; width: 100%;
+  margin: 0 auto;
+}
+@media (max-width: 600px) {
+  main.reading { padding: 22px 18px 60px; }
+}
+
+/* Markdown styles */
+.content { font-size: 1.02rem; }
+.content h1 {
+  font-size: 1.95rem; font-weight: 800; margin: 0 0 16px;
+  padding-bottom: 14px; border-bottom: 2px solid var(--border); line-height: 1.25;
+}
+.content h2 {
+  font-size: 1.4rem; font-weight: 700; margin: 36px 0 14px;
+  color: var(--accent); line-height: 1.3;
+}
+.content h3 {
+  font-size: 1.15rem; font-weight: 700; margin: 26px 0 10px; line-height: 1.35;
+}
+.content h4 { margin: 18px 0 8px; font-weight: 600; }
+.content p { margin: 12px 0; }
+.content ul, .content ol { margin: 12px 0 12px 28px; }
+.content li { margin: 6px 0; }
+.content li > p { margin: 4px 0; }
+.content strong { color: var(--text); font-weight: 700; }
+.content em { color: var(--text); }
+.content code {
+  background: var(--bg-elev); padding: 2px 7px; border-radius: 4px;
+  font-family: "JetBrains Mono", Consolas, monospace; font-size: 0.88em;
+  border: 1px solid var(--border);
+}
+.content pre {
+  background: var(--bg-elev); padding: 14px 16px; border-radius: 8px;
+  overflow-x: auto; margin: 14px 0; border: 1px solid var(--border);
+}
+.content pre code { background: transparent; border: none; padding: 0; }
+.content blockquote {
+  border-left: 4px solid var(--accent); padding: 12px 18px; margin: 16px 0;
+  background: var(--bg-elev); color: var(--text); font-style: italic; border-radius: 0 8px 8px 0;
+}
+.content blockquote strong { color: var(--accent); font-style: normal; }
+.content table {
+  width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.92rem;
+  border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
+}
+.content table th, .content table td {
+  padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border);
+}
+.content table th { background: var(--bg-elev); font-weight: 700; font-size: 0.84rem; }
+.content table tr:last-child td { border-bottom: none; }
+.content a {
+  color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent;
+}
+.content a:hover { border-bottom-color: var(--accent); }
+.content hr { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
+
+/* Navigation footer at bottom of lesson */
+.lesson-footer {
+  margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--border);
+}
+.complete-banner {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  padding: 18px 22px; border-radius: 12px; margin-bottom: 18px;
+  color: white; display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 14px;
+}
+.complete-banner.done {
+  background: linear-gradient(135deg, var(--green), #16a34a);
+}
+.complete-banner .msg { font-weight: 600; font-size: 1rem; }
+.complete-banner .sub { font-size: 0.85rem; opacity: 0.92; margin-top: 2px; font-weight: 400; }
+.complete-banner button {
+  background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3);
+  color: white; padding: 9px 18px; border-radius: 8px; cursor: pointer;
+  font-weight: 600; font-size: 0.9rem;
+}
+.complete-banner button:hover { background: rgba(255,255,255,0.3); }
+.nav-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+}
+@media (max-width: 500px) { .nav-row { grid-template-columns: 1fr; } }
+.nav-btn {
+  background: var(--bg-card); border: 1px solid var(--border); color: var(--text);
+  padding: 14px 18px; border-radius: 10px; cursor: pointer; text-align: left;
+  text-decoration: none; transition: all 0.15s;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.nav-btn:hover { background: var(--bg-elev); border-color: var(--accent); }
+.nav-btn.right { text-align: right; align-items: flex-end; }
+.nav-btn.disabled { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
+.nav-btn .nav-label { font-size: 0.74rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; }
+.nav-btn .nav-title { font-weight: 600; font-size: 0.95rem; color: var(--text); }
+
+/* Welcome screen */
+.welcome {
+  text-align: center; max-width: 680px; margin: 0 auto; padding: 40px 20px;
+}
+.welcome h1 { font-size: 2.4rem; font-weight: 800; margin-bottom: 12px; line-height: 1.15; }
+.welcome h1 .accent { color: var(--accent); }
+.welcome .lead { font-size: 1.1rem; color: var(--text-dim); margin-bottom: 28px; }
+.welcome .start-btn {
+  display: inline-block; background: var(--accent); color: white;
+  padding: 14px 32px; border-radius: 10px; text-decoration: none;
+  font-weight: 700; font-size: 1.05rem; border: none; cursor: pointer;
+}
+.welcome .start-btn:hover { background: #5a92e8; }
+
+.toast {
+  position: fixed; bottom: 24px; right: 24px; background: var(--bg-card);
+  border: 1px solid var(--accent); padding: 12px 20px; border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35); z-index: 200;
+  animation: slideUp 0.25s ease-out; font-weight: 600;
+}
+@keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+/* Print styles */
+@media print {
+  aside.sidebar, header, .lesson-footer { display: none; }
+  main.reading { padding: 0; max-width: none; }
+  .content { font-size: 11pt; }
+  .content h1 { font-size: 18pt; }
+  .content h2 { font-size: 14pt; color: black; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <button class="menu-btn header-actions" onclick="toggleSidebar()" title="Menu">☰</button>
+    <div class="brand"><span class="icon">📚</span>7-Day <span class="accent">Foundation Course</span></div>
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <span id="progress-label">0 of 7 lessons complete</span>
+        <span id="progress-pct">0%</span>
+      </div>
+      <div class="progress-bar"><div class="fill" id="progress-fill" style="width:0%"></div></div>
+    </div>
+    <div class="header-actions">
+      <a href="tracker.html" title="Open dashboard">📊 Tracker</a>
+      <button onclick="toggleTheme()" title="Toggle theme">🌓</button>
+      <button onclick="resetProgress()" title="Reset progress">↺</button>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <h3>Lessons</h3>
+    <ul class="lesson-list" id="lesson-list"></ul>
+    <div class="sidebar-footer">
+      <strong>Tip:</strong> finish one lesson per day. Logging your progress in <a href="tracker.html" style="color:var(--accent);">tracker.html</a> alongside this builds the habit.
+    </div>
+  </aside>
+
+  <main class="reading" id="reading"></main>
+</div>
+
+<!-- Embedded lesson markdown -->
+<script type="text/markdown" id="lesson-00">{{LESSON_00_CONTENT}}</script>
+<script type="text/markdown" id="lesson-1">{{LESSON_1_CONTENT}}</script>
+<script type="text/markdown" id="lesson-2">{{LESSON_2_CONTENT}}</script>
+<script type="text/markdown" id="lesson-3">{{LESSON_3_CONTENT}}</script>
+<script type="text/markdown" id="lesson-4">{{LESSON_4_CONTENT}}</script>
+<script type="text/markdown" id="lesson-5">{{LESSON_5_CONTENT}}</script>
+<script type="text/markdown" id="lesson-6">{{LESSON_6_CONTENT}}</script>
+<script type="text/markdown" id="lesson-7">{{LESSON_7_CONTENT}}</script>
+
+<script>
+const LESSONS = [
+  { id: '00', day: 'Start Here',  title: 'How to take this course', est: '5 min' },
+  { id: '1',  day: 'Day 1',       title: 'Cash Flow + Net Worth',          est: '45 min' },
+  { id: '2',  day: 'Day 2',       title: 'Compound Interest',              est: '45 min' },
+  { id: '3',  day: 'Day 3',       title: 'Inflation + Real Return',        est: '45 min' },
+  { id: '4',  day: 'Day 4',       title: 'Time Value of Money',            est: '45 min' },
+  { id: '5',  day: 'Day 5',       title: 'Assets / Liabilities + Income / Wealth', est: '45 min' },
+  { id: '6',  day: 'Day 6',       title: 'Risk vs Return (scam detector)', est: '45 min' },
+  { id: '7',  day: 'Day 7',       title: 'Halal vs Haram + Course Synthesis', est: '60 min' },
+];
+
+const STORAGE_KEY = 'finance-lessons-v1';
+let state = loadState();
+let currentLessonId = null;
+
+function loadState() {
+  try {
+    const s = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if (s) return { read: s.read || {}, theme: s.theme || 'dark', last: s.last || null };
+  } catch (e) {}
+  return { read: {}, theme: 'dark', last: null };
+}
+function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+
+function toggleTheme() {
+  state.theme = state.theme === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', state.theme);
+  saveState();
+}
+document.documentElement.setAttribute('data-theme', state.theme || 'dark');
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+}
+
+function resetProgress() {
+  if (!confirm('Clear all lesson-complete marks? Your reading progress will reset (but the lesson content stays).')) return;
+  state.read = {};
+  saveState();
+  renderSidebar();
+  if (currentLessonId) openLesson(currentLessonId);
+  toast('Progress reset');
+}
+
+function toast(msg) {
+  document.querySelectorAll('.toast').forEach(t => t.remove());
+  const d = document.createElement('div');
+  d.className = 'toast';
+  d.textContent = msg;
+  document.body.appendChild(d);
+  setTimeout(() => d.remove(), 2200);
+}
+
+function countDoneLessons() {
+  return LESSONS.filter(l => l.id !== '00' && state.read[l.id]).length;
+}
+function renderProgress() {
+  const done = countDoneLessons();
+  const total = 7;
+  const pct = Math.round((done / total) * 100);
+  document.getElementById('progress-label').textContent = `${done} of ${total} day-lessons complete`;
+  document.getElementById('progress-pct').textContent = pct + '%';
+  document.getElementById('progress-fill').style.width = pct + '%';
+}
+
+function renderSidebar() {
+  const list = document.getElementById('lesson-list');
+  list.innerHTML = LESSONS.map(l => {
+    const isDone = !!state.read[l.id];
+    const isActive = currentLessonId === l.id;
+    const tick = isDone ? '✓' : '';
+    return `<li class="${isDone ? 'done' : ''} ${isActive ? 'active' : ''}" onclick="openLesson('${l.id}')">
+      <div class="status">${tick}</div>
+      <div class="meta">
+        <div class="day-label">${l.day} · ${l.est}</div>
+        <div class="title">${l.title}</div>
+      </div>
+    </li>`;
+  }).join('');
+  renderProgress();
+}
+
+function findIndex(id) { return LESSONS.findIndex(l => l.id === id); }
+
+function openLesson(id) {
+  currentLessonId = id;
+  state.last = id;
+  saveState();
+  const md = document.getElementById('lesson-' + id)?.textContent || '';
+  const lesson = LESSONS.find(l => l.id === id);
+  const idx = findIndex(id);
+  const prev = idx > 0 ? LESSONS[idx - 1] : null;
+  const next = idx < LESSONS.length - 1 ? LESSONS[idx + 1] : null;
+  const isDone = !!state.read[id];
+  const reading = document.getElementById('reading');
+  reading.innerHTML = `
+    <div class="content">${renderMarkdown(md)}</div>
+    <div class="lesson-footer">
+      <div class="complete-banner ${isDone ? 'done' : ''}">
+        <div>
+          <div class="msg">${isDone ? '✓ Lesson marked complete' : 'Finished this lesson?'}</div>
+          <div class="sub">${isDone ? 'You can re-read anytime. Your progress is saved.' : 'Mark it complete to track your progress.'}</div>
+        </div>
+        <button onclick="toggleComplete('${id}')">${isDone ? 'Mark as not done' : '✓ Mark as complete'}</button>
+      </div>
+      <div class="nav-row">
+        ${prev ?
+          `<a class="nav-btn" onclick="event.preventDefault(); openLesson('${prev.id}')" href="#">
+            <span class="nav-label">← Previous</span>
+            <span class="nav-title">${prev.day}: ${prev.title}</span>
+          </a>` :
+          `<div class="nav-btn disabled"><span class="nav-label">← Previous</span><span class="nav-title">Beginning of course</span></div>`
+        }
+        ${next ?
+          `<a class="nav-btn right" onclick="event.preventDefault(); openLesson('${next.id}')" href="#">
+            <span class="nav-label">Next →</span>
+            <span class="nav-title">${next.day}: ${next.title}</span>
+          </a>` :
+          `<div class="nav-btn right disabled"><span class="nav-label">Next →</span><span class="nav-title">Course complete</span></div>`
+        }
+      </div>
+    </div>
+  `;
+  document.getElementById('sidebar').classList.remove('open');
+  renderSidebar();
+  reading.scrollTop = 0;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleComplete(id) {
+  state.read[id] = !state.read[id];
+  saveState();
+  toast(state.read[id] ? '✓ Marked complete' : 'Marked not done');
+  openLesson(id);
+}
+
+function showWelcome() {
+  const done = countDoneLessons();
+  const next = LESSONS.find(l => l.id !== '00' && !state.read[l.id]);
+  const continueId = state.last && state.last !== '00' ? state.last : (next ? next.id : '00');
+  document.getElementById('reading').innerHTML = `
+    <div class="welcome">
+      <h1>The 7-Day <span class="accent">Foundation Course</span></h1>
+      <p class="lead">Actual finance lessons — not a list of books to go read. Each day is a self-contained ~45-minute lesson covering one foundational concept with worked examples and a hands-on exercise.</p>
+      ${done > 0
+        ? `<p style="margin-bottom:18px; color: var(--green); font-weight:600;">You've completed ${done} of 7 lessons.</p>
+           <button class="start-btn" onclick="openLesson('${continueId}')">${state.last ? 'Continue where you left off →' : 'Continue →'}</button>`
+        : `<button class="start-btn" onclick="openLesson('00')">Start the course →</button>`
+      }
+      <div style="margin-top: 40px; text-align: left; background: var(--bg-card); border: 1px solid var(--border); padding: 20px; border-radius: 12px;">
+        <h3 style="margin-bottom: 12px; color: var(--accent);">The 7 Lessons</h3>
+        <ol style="margin-left: 20px; line-height: 2;">
+          <li><strong>Cash Flow + Net Worth</strong> — the two numbers that define your finances</li>
+          <li><strong>Compound Interest</strong> — the most powerful force in money</li>
+          <li><strong>Inflation + Real Return</strong> — why money sitting still actually shrinks</li>
+          <li><strong>Time Value of Money</strong> — why a taka today ≠ a taka tomorrow</li>
+          <li><strong>Assets vs Liabilities + Income vs Wealth</strong> — what to actually accumulate</li>
+          <li><strong>Risk vs Return</strong> — evaluating investments + spotting scams</li>
+          <li><strong>Halal vs Haram Finance + Course Synthesis</strong> — Shariah lens + final wrap</li>
+        </ol>
+      </div>
+    </div>
+  `;
+}
+
+// ====== Markdown renderer ======
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' })[c]);
+}
+function renderMarkdown(md) {
+  if (!md) return '<p style="color: var(--text-dim);">(empty)</p>';
+  let s = md.trim();
+
+  // Code blocks
+  const codeBlocks = [];
+  s = s.replace(/```([\s\S]*?)```/g, (m, c) => {
+    codeBlocks.push(`<pre><code>${escapeHtml(c.trim())}</code></pre>`);
+    return ` CODE${codeBlocks.length - 1} `;
+  });
+
+  // Tables — must be processed before paragraph splitting
+  s = s.replace(/((?:^\|.+\|\n?){1,})\|[-:\s|]+\|\n((?:^\|.+\|\n?)+)/gm, (match, header, body) => {
+    const headerCells = header.trim().split('|').slice(1, -1).map(c => c.trim());
+    const rows = body.trim().split('\n').map(line => line.split('|').slice(1, -1).map(c => c.trim()));
+    return `<table><thead><tr>${headerCells.map(h => `<th>${inline(h)}</th>`).join('')}</tr></thead><tbody>${rows.map(r => `<tr>${r.map(c => `<td>${inline(c)}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+  });
+
+  const lines = s.split('\n');
+  let out = '', inList = null, paraBuf = [];
+  const flushPara = () => {
+    if (paraBuf.length) {
+      const text = paraBuf.join(' ').trim();
+      if (text) out += `<p>${inline(text)}</p>`;
+      paraBuf = [];
+    }
+  };
+  const closeList = () => {
+    if (inList) { out += inList === 'ul' ? '</ul>' : '</ol>'; inList = null; }
+  };
+
+  for (let i = 0; i < lines.length; i++) {
+    const L = lines[i];
+
+    // Code-block placeholder
+    if (/ CODE\d+ /.test(L)) {
+      flushPara(); closeList();
+      out += L.replace(/ CODE(\d+) /g, (m, idx) => codeBlocks[+idx]);
+      continue;
+    }
+
+    // Pre-rendered table
+    if (/^<table/.test(L)) {
+      flushPara(); closeList();
+      out += L; continue;
+    }
+
+    // Headers
+    const hm = L.match(/^(#{1,6}) (.*)/);
+    if (hm) { flushPara(); closeList(); out += `<h${hm[1].length}>${inline(hm[2])}</h${hm[1].length}>`; continue; }
+
+    // Horizontal rule
+    if (/^---+\s*$/.test(L)) { flushPara(); closeList(); out += '<hr>'; continue; }
+
+    // Blockquote
+    if (/^> /.test(L)) {
+      flushPara(); closeList();
+      let q = [L.replace(/^> /, '')];
+      while (i + 1 < lines.length && /^> /.test(lines[i + 1])) { q.push(lines[++i].replace(/^> /, '')); }
+      out += `<blockquote>${inline(q.join(' '))}</blockquote>`;
+      continue;
+    }
+
+    // Lists — unordered (- * +) and "task list" with [ ] / [x]
+    const ulMatch = L.match(/^([-*+]) (.*)/);
+    if (ulMatch) {
+      flushPara();
+      if (inList !== 'ul') { closeList(); out += '<ul>'; inList = 'ul'; }
+      let item = ulMatch[2];
+      item = item.replace(/^\[([ x])\] /, (m, c) => c === 'x' ? '☑ ' : '☐ ');
+      out += `<li>${inline(item)}</li>`;
+      continue;
+    }
+    const olMatch = L.match(/^\d+\. (.*)/);
+    if (olMatch) {
+      flushPara();
+      if (inList !== 'ol') { closeList(); out += '<ol>'; inList = 'ol'; }
+      out += `<li>${inline(olMatch[1])}</li>`;
+      continue;
+    }
+
+    // Blank line
+    if (L.trim() === '') { flushPara(); closeList(); continue; }
+
+    paraBuf.push(L);
+  }
+  flushPara(); closeList();
+
+  // Replace code-block placeholders in remaining text
+  out = out.replace(/ CODE(\d+) /g, (m, idx) => codeBlocks[+idx]);
+  return out;
+}
+function inline(s) {
+  if (!s) return '';
+  return s
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/(?<!\*)\*([^*\n]+)\*(?!\*)/g, '<em>$1</em>')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+}
+
+// ====== Keyboard ======
+document.addEventListener('keydown', e => {
+  if (e.target.matches('input, textarea, select')) return;
+  if (!currentLessonId) return;
+  const idx = findIndex(currentLessonId);
+  if (e.key === 'ArrowRight' || e.key === 'j') {
+    if (idx < LESSONS.length - 1) openLesson(LESSONS[idx + 1].id);
+  } else if (e.key === 'ArrowLeft' || e.key === 'k') {
+    if (idx > 0) openLesson(LESSONS[idx - 1].id);
+  } else if (e.key === 'x' || e.key === ' ') {
+    e.preventDefault();
+    toggleComplete(currentLessonId);
+  }
+});
+
+// ====== Init ======
+renderSidebar();
+if (state.last) openLesson(state.last);
+else showWelcome();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,2963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7-Day Foundation Course — Finance</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0f1115; --bg-card: #1a1d24; --bg-elev: #232732;
+  --border: #2d323f; --text: #e6e8ee; --text-dim: #9ca3b3;
+  --accent: #6ea8fe; --accent-2: #8b5cf6;
+  --green: #4ade80; --red: #f87171; --orange: #fb923c; --yellow: #fbbf24;
+}
+[data-theme="light"] {
+  --bg: #f6f7fa; --bg-card: #ffffff; --bg-elev: #f0f2f7;
+  --border: #e2e5ec; --text: #1a1d24; --text-dim: #5a6273;
+}
+html, body { height: 100%; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans Bengali", "SolaimanLipi", Roboto, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.65;
+  display: flex; flex-direction: column; min-height: 100vh;
+}
+
+/* Header */
+header {
+  background: var(--bg-card); border-bottom: 1px solid var(--border);
+  padding: 12px 20px; position: sticky; top: 0; z-index: 100;
+}
+.header-inner {
+  display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap;
+}
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.1rem; }
+.brand .accent { color: var(--accent); }
+.brand .icon { font-size: 1.4rem; }
+.progress-wrap { flex: 1; min-width: 180px; max-width: 460px; }
+.progress-meta {
+  display: flex; justify-content: space-between; font-size: 0.78rem;
+  color: var(--text-dim); margin-bottom: 4px;
+}
+.progress-bar { background: var(--bg-elev); height: 8px; border-radius: 4px; overflow: hidden; }
+.progress-bar .fill {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  height: 100%; transition: width 0.4s;
+}
+.header-actions { display: flex; gap: 6px; align-items: center; }
+.header-actions a, .header-actions button {
+  background: var(--bg-elev); border: 1px solid var(--border); color: var(--text);
+  padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.85rem;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 5px;
+}
+.header-actions a:hover, .header-actions button:hover { background: var(--bg-card); border-color: var(--accent); }
+.menu-btn { display: none; }
+@media (max-width: 800px) {
+  .menu-btn { display: inline-flex; }
+}
+
+/* Layout */
+.layout { display: grid; grid-template-columns: 280px 1fr; flex: 1; min-height: 0; }
+@media (max-width: 800px) {
+  .layout { grid-template-columns: 1fr; }
+}
+
+/* Sidebar */
+aside.sidebar {
+  background: var(--bg-card); border-right: 1px solid var(--border);
+  padding: 16px; overflow-y: auto; height: calc(100vh - 60px); position: sticky; top: 60px;
+}
+@media (max-width: 800px) {
+  aside.sidebar {
+    position: fixed; top: 60px; left: 0; bottom: 0; width: 280px;
+    z-index: 90; transform: translateX(-100%); transition: transform 0.25s;
+    box-shadow: 4px 0 18px rgba(0,0,0,0.25);
+  }
+  aside.sidebar.open { transform: translateX(0); }
+}
+.sidebar h3 {
+  font-size: 0.74rem; text-transform: uppercase; color: var(--text-dim);
+  letter-spacing: 0.08em; margin-bottom: 10px; font-weight: 700;
+}
+.lesson-list { list-style: none; }
+.lesson-list li {
+  padding: 12px; margin-bottom: 6px; background: var(--bg-elev);
+  border-radius: 8px; cursor: pointer; transition: all 0.15s;
+  border: 1px solid transparent; display: flex; gap: 10px; align-items: flex-start;
+}
+.lesson-list li:hover { background: var(--bg-card); border-color: var(--accent); }
+.lesson-list li.active { background: var(--bg-card); border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.lesson-list .status {
+  flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
+  background: var(--bg-card); border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem; color: var(--text-dim);
+}
+.lesson-list li.done .status {
+  background: var(--green); border-color: var(--green); color: white;
+}
+.lesson-list .meta { flex: 1; min-width: 0; }
+.lesson-list .day-label {
+  font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase;
+  letter-spacing: 0.04em; font-weight: 600; margin-bottom: 2px;
+}
+.lesson-list .title { font-weight: 600; font-size: 0.92rem; }
+.lesson-list li.done .title { color: var(--text-dim); }
+.sidebar-footer {
+  margin-top: 16px; padding: 12px; background: var(--bg-elev);
+  border-radius: 8px; font-size: 0.78rem; color: var(--text-dim);
+}
+.sidebar-footer strong { color: var(--text); }
+
+/* Main reading area */
+main.reading {
+  padding: 32px 40px 80px; overflow-y: auto; max-width: 880px; width: 100%;
+  margin: 0 auto;
+}
+@media (max-width: 600px) {
+  main.reading { padding: 22px 18px 60px; }
+}
+
+/* Markdown styles */
+.content { font-size: 1.02rem; }
+.content h1 {
+  font-size: 1.95rem; font-weight: 800; margin: 0 0 16px;
+  padding-bottom: 14px; border-bottom: 2px solid var(--border); line-height: 1.25;
+}
+.content h2 {
+  font-size: 1.4rem; font-weight: 700; margin: 36px 0 14px;
+  color: var(--accent); line-height: 1.3;
+}
+.content h3 {
+  font-size: 1.15rem; font-weight: 700; margin: 26px 0 10px; line-height: 1.35;
+}
+.content h4 { margin: 18px 0 8px; font-weight: 600; }
+.content p { margin: 12px 0; }
+.content ul, .content ol { margin: 12px 0 12px 28px; }
+.content li { margin: 6px 0; }
+.content li > p { margin: 4px 0; }
+.content strong { color: var(--text); font-weight: 700; }
+.content em { color: var(--text); }
+.content code {
+  background: var(--bg-elev); padding: 2px 7px; border-radius: 4px;
+  font-family: "JetBrains Mono", Consolas, monospace; font-size: 0.88em;
+  border: 1px solid var(--border);
+}
+.content pre {
+  background: var(--bg-elev); padding: 14px 16px; border-radius: 8px;
+  overflow-x: auto; margin: 14px 0; border: 1px solid var(--border);
+}
+.content pre code { background: transparent; border: none; padding: 0; }
+.content blockquote {
+  border-left: 4px solid var(--accent); padding: 12px 18px; margin: 16px 0;
+  background: var(--bg-elev); color: var(--text); font-style: italic; border-radius: 0 8px 8px 0;
+}
+.content blockquote strong { color: var(--accent); font-style: normal; }
+.content table {
+  width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.92rem;
+  border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
+}
+.content table th, .content table td {
+  padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border);
+}
+.content table th { background: var(--bg-elev); font-weight: 700; font-size: 0.84rem; }
+.content table tr:last-child td { border-bottom: none; }
+.content a {
+  color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent;
+}
+.content a:hover { border-bottom-color: var(--accent); }
+.content hr { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
+
+/* Navigation footer at bottom of lesson */
+.lesson-footer {
+  margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--border);
+}
+.complete-banner {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  padding: 18px 22px; border-radius: 12px; margin-bottom: 18px;
+  color: white; display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 14px;
+}
+.complete-banner.done {
+  background: linear-gradient(135deg, var(--green), #16a34a);
+}
+.complete-banner .msg { font-weight: 600; font-size: 1rem; }
+.complete-banner .sub { font-size: 0.85rem; opacity: 0.92; margin-top: 2px; font-weight: 400; }
+.complete-banner button {
+  background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3);
+  color: white; padding: 9px 18px; border-radius: 8px; cursor: pointer;
+  font-weight: 600; font-size: 0.9rem;
+}
+.complete-banner button:hover { background: rgba(255,255,255,0.3); }
+.nav-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+}
+@media (max-width: 500px) { .nav-row { grid-template-columns: 1fr; } }
+.nav-btn {
+  background: var(--bg-card); border: 1px solid var(--border); color: var(--text);
+  padding: 14px 18px; border-radius: 10px; cursor: pointer; text-align: left;
+  text-decoration: none; transition: all 0.15s;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.nav-btn:hover { background: var(--bg-elev); border-color: var(--accent); }
+.nav-btn.right { text-align: right; align-items: flex-end; }
+.nav-btn.disabled { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
+.nav-btn .nav-label { font-size: 0.74rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; }
+.nav-btn .nav-title { font-weight: 600; font-size: 0.95rem; color: var(--text); }
+
+/* Welcome screen */
+.welcome {
+  text-align: center; max-width: 680px; margin: 0 auto; padding: 40px 20px;
+}
+.welcome h1 { font-size: 2.4rem; font-weight: 800; margin-bottom: 12px; line-height: 1.15; }
+.welcome h1 .accent { color: var(--accent); }
+.welcome .lead { font-size: 1.1rem; color: var(--text-dim); margin-bottom: 28px; }
+.welcome .start-btn {
+  display: inline-block; background: var(--accent); color: white;
+  padding: 14px 32px; border-radius: 10px; text-decoration: none;
+  font-weight: 700; font-size: 1.05rem; border: none; cursor: pointer;
+}
+.welcome .start-btn:hover { background: #5a92e8; }
+
+.toast {
+  position: fixed; bottom: 24px; right: 24px; background: var(--bg-card);
+  border: 1px solid var(--accent); padding: 12px 20px; border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35); z-index: 200;
+  animation: slideUp 0.25s ease-out; font-weight: 600;
+}
+@keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+/* Print styles */
+@media print {
+  aside.sidebar, header, .lesson-footer { display: none; }
+  main.reading { padding: 0; max-width: none; }
+  .content { font-size: 11pt; }
+  .content h1 { font-size: 18pt; }
+  .content h2 { font-size: 14pt; color: black; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <button class="menu-btn header-actions" onclick="toggleSidebar()" title="Menu">☰</button>
+    <div class="brand"><span class="icon">📚</span>7-Day <span class="accent">Foundation Course</span></div>
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <span id="progress-label">0 of 7 lessons complete</span>
+        <span id="progress-pct">0%</span>
+      </div>
+      <div class="progress-bar"><div class="fill" id="progress-fill" style="width:0%"></div></div>
+    </div>
+    <div class="header-actions">
+      <a href="tracker.html" title="Open dashboard">📊 Tracker</a>
+      <button onclick="toggleTheme()" title="Toggle theme">🌓</button>
+      <button onclick="resetProgress()" title="Reset progress">↺</button>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <h3>Lessons</h3>
+    <ul class="lesson-list" id="lesson-list"></ul>
+    <div class="sidebar-footer">
+      <strong>Tip:</strong> finish one lesson per day. Logging your progress in <a href="tracker.html" style="color:var(--accent);">tracker.html</a> alongside this builds the habit.
+    </div>
+  </aside>
+
+  <main class="reading" id="reading"></main>
+</div>
+
+<!-- Embedded lesson markdown -->
+<script type="text/markdown" id="lesson-00"># The 7-Day Foundation Course
+
+Welcome. This is a **self-contained finance course** — actual lessons, not a list of books to go read. Over 7 days you'll internalize the 10 foundational concepts that make every other money decision in your life make sense.
+
+## How this course is different
+
+Most "personal finance" content does one of two things:
+1. **Tells you what to do** ("save 20%", "invest in index funds") without explaining *why* — so the moment your situation differs, the advice breaks
+2. **Throws book recommendations at you** ("read Psychology of Money") — which is fine, but takes weeks and you can't tell if you actually learned anything
+
+This course does the third thing: **teaches you the underlying concepts** in your own language with your own numbers, so you can build correct advice for yourself. After 7 days you won't be a finance expert, but you'll be able to spot bad advice when you see it.
+
+## Daily structure (each lesson is ~45 minutes)
+
+Each day's lesson has this same structure so you know what to expect:
+
+1. **Why this matters** (3 min) — the hook, the one thing this concept changes in your life
+2. **The concept** (10–15 min) — careful explanation in plain English with Bengali terms
+3. **Worked example** (10 min) — math you can follow, real Bangladesh numbers
+4. **Common mistakes** (5 min) — what people get wrong, and why
+5. **Try this today** (10 min) — a real exercise, not theoretical
+6. **Reflection prompt** (5 min) — questions to write about in the tracker's Notes tab
+7. **Companion content** — one specific video or article to watch *after* the lesson (optional)
+8. **Self-check** — 5 questions you should now be able to answer
+
+If a section feels obvious, skip it. If a section feels hard, slow down. Total time per day: 30–60 minutes depending on you.
+
+## The 7-day schedule
+
+| Day | Lesson | Concept(s) |
+|---|---|---|
+| 1 | **Cash Flow + Net Worth** | The two numbers that define your finances |
+| 2 | **Compound Interest** | The most powerful force in money (working both for and against you) |
+| 3 | **Inflation + Real Return** | Why money sitting still actually shrinks |
+| 4 | **Time Value of Money** | Why a taka today ≠ a taka tomorrow |
+| 5 | **Assets vs Liabilities + Income vs Wealth** | What you should be accumulating (most people get this wrong) |
+| 6 | **Risk vs Return** | How to evaluate any investment and spot scams |
+| 7 | **Halal vs Haram Finance + Synthesis** | Shariah-compliant money + tying the whole course together |
+
+## How to take this course
+
+**Pace:** one lesson per day, 7 days in a row. Don't binge two on the same day — give your brain a night to consolidate each one.
+
+**Time:** ideally morning before work, or evening before bed. Not while multitasking.
+
+**Place:** somewhere quiet. Phone on silent. This is study, not entertainment.
+
+**Tools you'll need:**
+- This lesson file (read on phone or computer)
+- The `tracker.html` open in another tab — for the Notes tab and Concepts tab
+- A pen and paper for the math exercises (writing helps you absorb)
+- A calculator (your phone is fine)
+
+**After each lesson:**
+1. Mark the concept as "Learning" or "Mastered" in the tracker's **Concepts** tab
+2. Write your reflection in the **Notes** tab (use `#day1`, `#day2`, etc. tags)
+3. Add the lesson to the **Study Log** tab as "Done"
+
+## What this course does NOT do
+
+- ❌ Tell you exactly what to invest in (that's later, when you're ready)
+- ❌ Give you a debt-payoff plan (that's a different problem)
+- ❌ Promise you'll be rich (anyone who promises that is lying)
+- ❌ Cover advanced topics (valuation, M&A, options — those come at Stage 4+)
+
+What it **does** do: make you literate enough that the rest of your financial life starts making sense, decisions become clearer, and scams become obvious.
+
+## Before you start Day 1
+
+Take 2 minutes now:
+- Open `tracker.html` in a browser
+- Go to the **Concepts** tab — see the 10 concepts listed
+- Go to the **Study Log** tab — add "7-Day Foundation Course" as a Book/Course, status "In progress"
+- Set yourself a calendar reminder for tomorrow at the same time you're reading this
+
+Now go to `Day-1.md`. Start.
+
+## A note on language
+
+The course is in English because that's what you asked for. All the math, examples, and Bangladesh context are still here — the language is the only thing that's English. If a sentence is unclear, re-read it slowly or look up one word at a time. The act of looking up words is itself learning.
+
+Bengali terms for key concepts are included in parentheses so you can connect English finance vocabulary to the Bengali you already think in.
+
+---
+
+> **"You don't learn finance from articles. You learn it by sitting with one idea long enough that it becomes part of how you see the world. This course is 7 sittings."**
+
+Ready? Open `Day-1.md`.
+</script>
+<script type="text/markdown" id="lesson-1"># Day 1 — Cash Flow + Net Worth
+
+The two numbers that define your entire financial life. Everyone has them whether they know them or not. After today, you will know yours.
+
+---
+
+## 1. Why this matters
+
+Imagine two people:
+
+**Person A** earns 50,000 BDT/month. Spends 35,000. Has 15,000 left over every month.
+
+**Person B** earns 1,50,000 BDT/month. Spends 1,55,000. Borrows 5,000 every month to fill the gap.
+
+Person B earns three times more. Person B is also going broke. Person A, on a "small" income, is building wealth — slowly, but in the right direction.
+
+**The difference is cash flow.** It is the single most important number in personal finance, and almost no one calculates it for themselves.
+
+Now imagine 10 years later:
+
+- **Person A** has 15,000 × 12 × 10 = 18,00,000 BDT accumulated (and that's without any investment returns)
+- **Person B** has 5,000 × 12 × 10 = 6,00,000 BDT in *debt*, plus interest, plus the daily stress of always being short
+
+The income difference didn't matter. The cash flow direction did.
+
+**That's Day 1.** Understand cash flow, and you understand 80% of why some people end up wealthy and others don't — regardless of what they earn.
+
+The second concept today, **net worth**, is the *accumulated result* of your cash flow direction over time. They are two views of the same thing: cash flow is the verb, net worth is the noun.
+
+---
+
+## 2. The concept
+
+### Cash flow (নগদ প্রবাহ)
+
+**Definition:**
+> Cash flow = Money coming in − Money going out, measured over a period (usually one month).
+
+**Three possible states:**
+- **Positive cash flow:** Income > Expenses. You have surplus. This is where wealth-building begins.
+- **Negative cash flow:** Expenses > Income. You're losing ground. The longer this continues, the deeper the hole.
+- **Zero cash flow:** Income = Expenses. You're treading water. Not drowning, but not swimming either.
+
+**Critical insight:** cash flow is a *flow* — like water through a pipe. It's measured per unit of time. Most people make the mistake of thinking about money as a *stock* ("I have X taka") instead of a *flow* ("I move X taka per month"). The flow is what determines your trajectory.
+
+### Net worth (মোট সম্পদ)
+
+**Definition:**
+> Net worth = (Everything you own) − (Everything you owe)
+> Net worth = Total Assets − Total Liabilities
+
+**Assets** are anything that has financial value: cash, bank balances, savings deposits, investments (DPS, stocks, Sanchaypatra), property, gold, valuable equipment.
+
+**Liabilities** are anything you owe: credit card balance, personal loan, mortgage, money borrowed from family, market loans.
+
+**Net worth can be:**
+- **Positive** — you own more than you owe
+- **Negative** — you owe more than you own (this is most people in their 20s and 30s, completely normal)
+- **Zero** — exactly balanced (rare)
+
+**Critical insight:** net worth is a *stock* (a snapshot at one moment), not a flow. It tells you where you stand today. Cash flow tells you which direction you're moving.
+
+### How they connect
+
+If your cash flow is positive every month, your net worth slowly rises over time. If it's negative, your net worth slowly falls.
+
+**The relationship over 12 months:**
+> Net worth (end of year) ≈ Net worth (start of year) + (Monthly cash flow × 12) + Investment returns − Inflation effects
+
+This is the formula your whole financial life runs on. If you only ever learn one equation, learn this one.
+
+---
+
+## 3. Worked example
+
+Let's compute cash flow and net worth for a hypothetical Bangladeshi freelancer — similar to your situation.
+
+### Monthly income (last month, in BDT)
+
+| Source | Amount |
+|---|---|
+| Client A (Upwork) | 35,000 |
+| Client B (direct, USD payment converted) | 28,000 |
+| Client C (small one-off) | 7,000 |
+| **Total inflow** | **70,000** |
+
+### Monthly expenses (last month, in BDT)
+
+| Category | Amount |
+|---|---|
+| Rent | 15,000 |
+| Food (groceries) | 12,000 |
+| Food (eating out) | 3,500 |
+| Kid (school, milk, doctor visits) | 8,000 |
+| Utilities (gas, electric, water) | 2,500 |
+| Internet + Mobile | 2,000 |
+| Transport | 3,000 |
+| Personal (clothing, tea, misc) | 4,500 |
+| Medical | 1,500 |
+| Loan EMI payments (total of 4) | 14,000 |
+| Subscriptions (Netflix, etc.) | 1,000 |
+| Other | 3,000 |
+| **Total outflow** | **70,000** |
+
+### Monthly cash flow
+
+> Cash flow = 70,000 − 70,000 = **0 BDT**
+
+Zero. Not negative, but not positive either. Every taka earned is spent. **This is exactly why no savings have formed.** There is no surplus to save.
+
+### Now compute net worth (snapshot today)
+
+**Assets:**
+| Item | Value |
+|---|---|
+| Cash on hand | 2,000 |
+| Bank savings | 4,500 |
+| DPS / FDR / Sanchaypatra | 0 |
+| Stocks (DSE) | 0 |
+| Phone, laptop, other equipment (current resale) | 35,000 |
+| **Total assets** | **41,500** |
+
+**Liabilities:**
+| Item | Value |
+|---|---|
+| Credit card balance | 90,000 |
+| Personal loan outstanding | 2,80,000 |
+| Family loan | 1,40,000 |
+| Market / chit fund loan | 1,90,000 |
+| **Total liabilities** | **7,00,000** |
+
+**Net worth:**
+> Net worth = 41,500 − 7,00,000 = **−6,58,500 BDT**
+
+This is the starting line. **Uncomfortable, but useful.** You cannot fix what you refuse to look at. Now this number can move.
+
+### What happens with 5,000/month positive cash flow?
+
+Suppose you bring cash flow from 0 to +5,000/month (by raising one client's rate, or cutting subscriptions). In 12 months, assuming you put it all toward debt:
+
+- Total debt paid down: 60,000 BDT (ignoring interest for simplicity)
+- New net worth: 41,500 − 6,40,000 = **−5,98,500 BDT**
+
+You've moved 60,000 BDT in the right direction in a single year, on a tiny 5,000/month change. **That's the entire game.** Cash flow direction × time = net worth movement.
+
+---
+
+## 4. Common mistakes
+
+### Mistake 1: Confusing income with cash flow
+
+People say "I earn X, I'm doing fine" — but income alone is meaningless. A doctor earning 5 lakh/month spending 5 lakh has the same cash flow as a teacher earning 0. Only the *difference* matters.
+
+### Mistake 2: Treating one good month as the new normal
+
+If you have one 90,000 BDT month, you might mentally think "I earn 90k/month." But if the average across the year is 70k, your *real* income is 70k. Average across a long window. Freelance income especially deceives this way.
+
+### Mistake 3: Forgetting irregular expenses
+
+The "monthly" expense list usually misses things that hit a few times a year: medical emergencies, festival expenses, kid's school admission, equipment replacement, family events. Take your *annual* total of these surprises and divide by 12 — add that as a "buffer" line. Most people undercount expenses by 10–15% by forgetting this.
+
+### Mistake 4: Mixing assets and income
+
+Your laptop is an asset (one-time stock of value). The freelance work it enables is income (flow). The two are easy to confuse. Your phone isn't "your savings" — it's an asset that depreciates and probably has near-zero resale value in 3 years.
+
+### Mistake 5: Counting borrowed money as cash flow
+
+If you borrow 50,000 from a friend this month, you do *not* have positive cash flow of 50,000. You have +50,000 in cash (asset) and +50,000 in debt (liability) — net zero. Don't let cash from borrowing fool you.
+
+### Mistake 6: Ignoring lifestyle inflation
+
+When income rises, expenses tend to rise with it ("now I can afford..."). The way wealthy people build wealth is by **keeping expenses constant when income rises** — so cash flow goes up. The way most people stay middle-class is by raising expenses to match income.
+
+---
+
+## 5. Try this today (the 30-minute exercise)
+
+Open the `tracker.html` dashboard. We'll fill it in with *your* numbers.
+
+### Step A — Income (5 min)
+
+Look at your last 3 months of income. Open your bank/bKash/Nagad statements, freelance platform dashboards, anywhere money came in.
+
+For each month, add up everything. Take the **average** across the 3 months. Don't use your "best month" — use the average. That's your honest monthly income.
+
+> Write it down here: "My average monthly income is _________ BDT"
+
+### Step B — Expenses (15 min)
+
+This is harder. You won't have perfect numbers — that's fine. Estimate.
+
+Go through this list and put a rough number against each (your last typical month):
+
+| Category | BDT |
+|---|---|
+| Rent | |
+| Food (groceries) | |
+| Food (eating out / delivery) | |
+| Kid | |
+| Utilities | |
+| Internet + Mobile | |
+| Transport | |
+| Personal | |
+| Medical | |
+| All EMIs combined | |
+| Subscriptions | |
+| Festival / family / surprises (annual ÷ 12) | |
+| Other | |
+| **TOTAL** | |
+
+Add it up. If you don't know a number, guess and write a `?` next to it. This is your first pass. Tracking in the Expenses tab will refine it next month.
+
+### Step C — Compute monthly cash flow
+
+> Monthly cash flow = Income − Expenses = _________ BDT
+
+If positive: by how much? If negative: by how much? If zero: that's why nothing accumulates.
+
+### Step D — Compute net worth
+
+**Assets** (BDT):
+- Cash + bKash + Nagad: _____
+- Bank savings: _____
+- DPS / FDR / Sanchaypatra: _____
+- Investments / stocks: _____
+- Equipment resale value (laptop, phone, etc.): _____
+- Anything else of real value: _____
+- **Total assets:** _____
+
+**Liabilities** (BDT):
+- Credit card balance: _____
+- Personal loan outstanding: _____
+- Family/informal loans: _____
+- Market/chit fund: _____
+- **Total liabilities:** _____
+
+**Net worth = Assets − Liabilities = _________ BDT**
+
+It will probably be negative. That's the starting line. Now you have a number that can change.
+
+### Step E — Enter these in the tracker
+
+- Open the **Net Worth** tab, log this month's snapshot
+- Open the **Debt** tab, fill in the 4 debt buckets with the values you used above
+- This is the baseline. Future snapshots compare to this.
+
+---
+
+## 6. Reflection prompts (write in tracker's Notes tab)
+
+Pick 2 of these and write a paragraph each. Tag with `#day1`.
+
+1. *What surprised me about my cash flow / net worth number?*
+2. *What's one expense I underestimated when I started this exercise?*
+3. *If my cash flow were +5,000 BDT/month for the next year, where would the 5,000 come from?*
+4. *In one sentence: why is net worth more meaningful than my monthly income?*
+5. *What's one belief I had about my money that this exercise just challenged?*
+
+---
+
+## 7. Companion content (optional, ~15 min)
+
+Watch one of these *after* doing the exercise:
+
+- **Bengali:** Adib's Finance — search "cash flow Bangla" on YouTube. Pick any video under 20 minutes.
+- **English:** "Cash Flow Explained Simply" — by Two Cents (PBS) on YouTube. Crisp 5-minute explainer.
+- **English (deeper):** Khan Academy — "Cashflow income statement" video (free on YouTube).
+
+You don't need to watch all three. Pick one. You can find them by typing the title into YouTube.
+
+---
+
+## 8. Self-check (answer these in your head, or in Notes)
+
+1. What is the difference between cash flow and net worth?
+2. Person A earns 50k/month and spends 40k. Person B earns 1.5 lakh and spends 1.5 lakh. Who is building wealth?
+3. If your net worth is −6,00,000 BDT today and your cash flow is +10,000 BDT/month for a year, what will your net worth be in 12 months (ignoring interest)?
+4. Why is your laptop an asset but not "savings"?
+5. Why does a single high-income month not mean your income is high?
+
+If you can answer all 5 in plain language, mark **Cash flow** and **Net worth** as **Mastered** in the Concepts tab of `tracker.html`.
+
+---
+
+## Closing thought
+
+You just did something most adults in Bangladesh have never done: calculated your actual cash flow and net worth. From this point on, "I think I'm doing OK" gets replaced with "Let me check the numbers." That single shift — from feeling to measurement — is what separates people who build wealth from people who don't.
+
+See you tomorrow for Day 2 — **Compound Interest**, the most important concept in the entire course.
+</script>
+<script type="text/markdown" id="lesson-2"># Day 2 — Compound Interest
+
+If you only mastered one concept in this entire course, this would be the one. Albert Einstein supposedly called compound interest "the most powerful force in the universe." Whether or not he actually said that, the math is unmistakable. By the end of today, you will understand why.
+
+---
+
+## 1. Why this matters
+
+Two stories, same person, two universes.
+
+**Universe A:** A 30-year-old in Dhaka deposits 2,000 BDT/month into a Shariah-compliant DPS that earns ~10% per year. He never increases the amount. Just 2,000 every month, on autopilot, for 30 years until he's 60.
+
+At age 60, he has approximately **₹45,40,000 BDT** (about 45 lakh).
+
+He deposited a total of 2,000 × 12 × 30 = **7,20,000 BDT** (about 7 lakh).
+
+The other 38 lakh? Pure compound interest. Money he didn't earn — the system earned it for him.
+
+**Universe B:** Same person, same age 30, takes 50,000 BDT on a credit card at 30% APR for a phone he didn't really need. He pays only the minimum each month (~5% of balance). He never adds more debt — just leaves that one 50,000 sitting there at 30%.
+
+At age 60 — same 30 years — that one 50,000 he never paid off has cost him approximately **₹15,00,000 BDT** in interest. That's 15 *lakh* of his life, gone, for one impulse phone purchase that he probably forgot about by month 3.
+
+Same force. Working for you in Universe A. Working against you in Universe B.
+
+The single biggest factor separating wealthy people from broke people is whether compound interest is on their side or working against them.
+
+---
+
+## 2. The concept
+
+### Simple interest vs compound interest
+
+**Simple interest** is interest calculated only on the original amount.
+- Borrow 1,000 BDT at 10% per year for 3 years.
+- Each year you owe 100 BDT interest.
+- After 3 years: 1,000 + 100 + 100 + 100 = **1,300 BDT total.**
+
+**Compound interest** is interest calculated on the original amount *plus all previously accumulated interest*. Interest earning interest. The previous year's interest joins the principal next year, and starts earning its own interest.
+
+- Borrow 1,000 BDT at 10% per year compounded annually for 3 years.
+- Year 1: 1,000 × 1.10 = 1,100
+- Year 2: 1,100 × 1.10 = 1,210
+- Year 3: 1,210 × 1.10 = **1,331 BDT**
+
+Difference is small (31 BDT) at 3 years. Now run it for 30 years.
+
+**At 30 years on a 1,000 starting amount, 10% annual:**
+- Simple interest: 1,000 + (100 × 30) = 4,000 BDT
+- Compound interest: 1,000 × (1.10)³⁰ = **17,449 BDT**
+
+The compound version is **more than 4 times the simple version**. That gap is what we mean by "compounding." It grows exponentially.
+
+### The compound interest formula
+
+> **A = P × (1 + r)ⁿ**
+
+Where:
+- **A** = final amount
+- **P** = starting principal (what you started with)
+- **r** = interest rate per period (as a decimal, e.g., 10% = 0.10)
+- **n** = number of periods
+
+You don't need to memorize this. Just understand: every period you multiply by (1 + r). After many periods, that small `(1 + r)` becomes enormous.
+
+For monthly compounding (most realistic for DPS, credit cards, etc.):
+
+> **A = P × (1 + r/12)^(12n)**
+
+For 10% annual rate, monthly compounding, you multiply by (1 + 0.10/12) = 1.00833 every month. Doesn't sound like much. Run it 360 times (30 years × 12 months) and you get... a lot.
+
+### The three variables that matter
+
+Compound interest has three inputs. Each has a different effect:
+
+1. **Principal (P)** — how much you start with. Linear effect. Double the starting amount, double the result.
+2. **Rate (r)** — what % per period. Exponential effect on time. 1% extra compounded over decades is enormous.
+3. **Time (n)** — how many periods. The most powerful variable. Doubling the time often more than doubles the result.
+
+**The most underappreciated insight in personal finance:**
+
+> *Time matters more than rate. Time matters more than amount.*
+
+Someone who starts with 1,000 BDT/month at age 25 will usually end up wealthier at 65 than someone who starts with 3,000 BDT/month at age 40. The early start beats the larger contribution. Not by a little — by a lot.
+
+---
+
+## 3. The Rule of 72
+
+There's a beautiful mental shortcut for compound interest. You don't need a calculator. Just memorize this:
+
+> **Rule of 72:** Divide 72 by the annual interest rate (as a whole number) to find how many years it takes for money to double.
+
+Examples:
+- At **6%** per year, money doubles in 72 ÷ 6 = **12 years**
+- At **8%** per year, money doubles in 72 ÷ 8 = **9 years**
+- At **10%** per year, money doubles in 72 ÷ 10 = **7.2 years**
+- At **12%** per year, money doubles in 72 ÷ 12 = **6 years**
+- At **24%** (credit card) per year, money doubles in 72 ÷ 24 = **3 years**
+- At **36%** (high credit card) per year, doubles in 72 ÷ 36 = **2 years**
+- At **60%** (chit-fund) per year, doubles in 72 ÷ 60 = **1.2 years**
+
+Use this to sanity-check things in real life:
+- If someone offers "your money doubles in 4 years," that's 72/4 = 18% per year. Plausible (high but possible).
+- If someone offers "your money doubles in 1 year," that's 72/1 = 72% per year. Almost certainly a scam or a Ponzi.
+- If a credit card charges 30%, your unpaid balance roughly doubles every 2.4 years. After 5 years it's 4x; after 10 years it's 16x.
+
+**Try this:** without a calculator, how long does 5,00,000 BDT take to become 10,00,000 at 9% per year?
+> 72 ÷ 9 = 8 years. That's it.
+
+---
+
+## 4. Worked examples
+
+### Example A — The savings story (compounding FOR you)
+
+You decide to put 2,000 BDT/month into a DPS at IBBL earning ~10% per year compounded monthly, for 30 years.
+
+Total you deposit: 2,000 × 12 × 30 = 7,20,000 BDT
+Final amount: approximately **45,40,000 BDT**
+
+| Year | Balance (approx) |
+|---|---|
+| 0 | 0 |
+| 5 | 1,55,000 |
+| 10 | 4,12,000 |
+| 15 | 8,29,000 |
+| 20 | 15,18,000 |
+| 25 | 26,46,000 |
+| 30 | **45,40,000** |
+
+Look at the curve. In the first 10 years, you accumulate about 4 lakh. In the *last* 10 years (years 20–30), you accumulate about **30 lakh**. The same monthly deposit. The same rate. **Time did the work.**
+
+This is why starting early is everything.
+
+### Example B — The debt story (compounding AGAINST you)
+
+You take 50,000 BDT on a credit card at 30% APR. You make only the minimum payment each month (≈3% of balance). You don't add new debt — just leave that one 50k sitting.
+
+How much you end up paying over 30 years (in just interest, not even principal that hasn't been touched yet):
+
+> Total interest = approximately **15,00,000 BDT**
+
+That's 30x the original 50,000. For a phone or a watch you bought once and forgot about.
+
+This is why high-interest debt is described as "financial cancer." It grows silently, in the background, and the longer it sits, the more it eats.
+
+### Example C — The dangerous one (chit fund)
+
+You owe 1,00,000 BDT to a market lender at 5% per month (60% APR).
+
+If you only pay 5,000 BDT per month — exactly the monthly interest — the principal **never moves**. After 5 years, you've paid 3,00,000 BDT total and you still owe 1,00,000.
+
+If you pay less than 5,000 per month — say 4,000 — the principal grows. After 5 years, it has *increased* to approximately 1,80,000 BDT, and you've already paid 2,40,000 in payments.
+
+**This is why the chit-fund loan is the most dangerous on your debt list, and why even at Stage 0–1 you need to make sure interest is at least covered.**
+
+It's not about "let me ignore it" — it's about "let me at least stop the principal from growing."
+
+### Example D — Time vs amount
+
+Person A: starts saving at age 25. Puts 1,000 BDT/month for 10 years (until 35). Then stops. Never adds another taka. Lets it sit until age 65 at 10% per year.
+
+Total deposited: 1,000 × 12 × 10 = 1,20,000 BDT.
+Final value at 65: approximately **22,80,000 BDT**.
+
+Person B: starts saving at age 35. Puts 1,000 BDT/month for 30 years (until 65). Continuously.
+
+Total deposited: 1,000 × 12 × 30 = 3,60,000 BDT.
+Final value at 65: approximately **22,60,000 BDT**.
+
+**Person A deposited 3× less and ended up with more.** Because Person A's money compounded for 40 years, Person B's compounded for an average of 15.
+
+> **The lesson: starting early beats saving more. Time is the leverage no amount of cleverness can replicate.**
+
+You're not at age 25 anymore. But you're not at 65 either. The principle still applies — every year you wait makes a real difference. Not "small" difference. **Real** difference.
+
+---
+
+## 5. Common mistakes
+
+### Mistake 1: Linear thinking about exponential things
+
+Most people's brains naturally think linearly. "Twice the time = twice the result." Compound interest is exponential — twice the time is *much* more than twice the result. This is why people underestimate both the power of saving early and the danger of debt building up.
+
+### Mistake 2: Underestimating small rate differences
+
+"6% vs 8% — small difference, who cares."
+
+Run 30 years on 10,000 BDT:
+- At 6%: 10,000 × (1.06)³⁰ = 57,435 BDT
+- At 8%: 10,000 × (1.08)³⁰ = **1,00,627 BDT**
+
+A "small" 2% difference becomes nearly 2× over 30 years. Rate matters enormously over time.
+
+### Mistake 3: Ignoring rate when borrowing
+
+People will haggle endlessly over the price of a phone, then sign a loan at any rate. The interest rate on borrowed money is often more important than the price of the thing you bought.
+
+### Mistake 4: Trying to time the market instead of letting time compound
+
+People delay starting their DPS because "the market might dip" or "I'll start when I have more." Every month you delay, you give up some compounding tail. The best time was 10 years ago. The second best time is today.
+
+### Mistake 5: Believing "guaranteed high return" claims
+
+If someone offers 100% return per year, that's saying your money doubles every year. 1 taka becomes 1,024 taka in 10 years. After 30 years, 1 taka becomes 1 *billion* taka. If this were possible, everyone would do it. **It isn't possible.** "Guaranteed high returns" defies the math of compounding — the universe would run out of money. Anyone claiming it is lying.
+
+### Mistake 6: Confusing "what I owe" with "what it will cost me"
+
+If you owe 1,00,000 at 30% interest and you don't pay it down, it doesn't stay 1,00,000. Five years later it's 3,71,000. Ten years later, 13,79,000. Your "1 lakh debt" is actually a "14 lakh debt by year 10 if untouched." Compound interest cuts both ways.
+
+---
+
+## 6. Try this today (the 30-minute exercise)
+
+### Step A — Compute your DPS scenario (10 min)
+
+You don't have a DPS yet. But play with what would happen if you opened one in Stage 3.
+
+Use the Rule of 72 mentally first:
+- At 10% per year, money doubles every ~7.2 years
+- So 1,000 BDT becomes 2,000 in 7.2 years, 4,000 in ~14.4 years, 8,000 in ~21.6 years, 16,000 in ~28.8 years
+
+That's per 1,000 BDT, deposited *once* and left alone. Now imagine you deposit 1,000 every month.
+
+Use this rough table for 10% annual return, monthly deposits:
+
+| Monthly deposit | Value at year 5 | Value at year 10 | Value at year 20 | Value at year 30 |
+|---|---|---|---|---|
+| 500 BDT | 38,800 | 1,03,000 | 3,80,000 | 11,35,000 |
+| 1,000 BDT | 77,500 | 2,06,000 | 7,60,000 | 22,70,000 |
+| 2,000 BDT | 1,55,000 | 4,12,000 | 15,20,000 | 45,40,000 |
+| 5,000 BDT | 3,87,500 | 10,30,000 | 38,00,000 | 1,13,50,000 |
+
+**Reflect:** even 500 BDT/month — a number you could probably manage even now — becomes over 11 lakh in 30 years. *Without doing anything else.* Just consistency × time.
+
+> Write down: "If I start putting ___ BDT/month into a DPS at Stage 3, in 20 years I'll have approximately ___ BDT."
+
+### Step B — Compute one of your debts compounding (10 min)
+
+Pick your highest-interest debt. Suppose it's the chit fund at 1,90,000 BDT at 5%/month.
+
+The monthly interest alone (if you paid nothing toward principal):
+> 1,90,000 × 0.05 = **9,500 BDT/month, just for being indebted**
+
+If you don't pay even that much, the principal grows. Suppose you pay only 4,000/month for a year, and don't add new debt:
+- Month 1: 1,90,000 → grows 5% → 1,99,500 → pay 4,000 → 1,95,500
+- Month 2: 1,95,500 → grows 5% → 2,05,275 → pay 4,000 → 2,01,275
+- ...
+- After 12 months: balance ≈ 2,30,000
+
+You paid 48,000 in the year, and the loan grew from 1,90,000 to 2,30,000 — got 40,000 *worse*. That's a 90,000 BDT swing against you in one year.
+
+Now compute the minimum payment to *stop the principal from growing*. (Hint: it's just the monthly interest.)
+
+> Write down: "On my ___ debt, the minimum I must pay each month to stop growth is ___ BDT."
+
+This is the most important monthly number on your debt list.
+
+### Step C — Mental math practice (5 min)
+
+Try these without a calculator. Use Rule of 72.
+
+1. At 9% per year, how long does money double? _______
+2. At 12% per year? _______
+3. If a friend offers you a "guaranteed 4-year doubling" investment, what rate does that imply? _______ (Is that plausible? _______)
+4. Your credit card charges 24% APR. Roughly how often does the balance double if you don't pay? _______
+5. A DPS at 10% — if you put in 1 lakh today, what's it worth in ~14 years (two doublings)? _______
+
+Answers: 1) 8 yr, 2) 6 yr, 3) 18% (plausible but high — possible from a good stock portfolio long-term, not "guaranteed"), 4) every 3 yr, 5) ~4 lakh.
+
+### Step D — Update the tracker
+
+- Concepts tab: mark **Compound interest** as Learning or Mastered
+- Notes tab: write at least one reflection from Step 6 below
+- Study Log: add today's lesson as Done
+
+---
+
+## 7. Reflection prompts (write in Notes tab)
+
+Pick 2. Tag with `#day2`.
+
+1. *Knowing what I know now about compound interest, what's the single biggest small change I could make this year?*
+2. *In one sentence, why is the chit-fund loan more urgent to monitor than the personal loan?*
+3. *If I'd started a 1,000 BDT/month DPS 10 years ago, where would I be today? How does that change how I think about starting today?*
+4. *What's one decision in my past where compound interest was working against me without my realizing it?*
+5. *Why does "I'll start saving when I earn more" almost always lead to never starting?*
+
+---
+
+## 8. Companion content (optional, ~15 min)
+
+After the exercise:
+
+- **English:** "The Magic of Compound Interest" — Khan Academy (4 min, free on YouTube). The cleanest explanation in existence.
+- **English:** "Albert Einstein on Compound Interest" — Two Cents on YouTube. Short, sharp.
+- **Bengali:** Search "compound interest Bangla" on YouTube. 10 Minute School has one. So does Adib's Finance.
+- **Visual / interactive:** Search "compound interest calculator" on Google. Type in numbers. Watch the curve. Especially compare 20 years vs 30 years on the same input. The difference at year 30 is where the magic lives.
+
+---
+
+## 9. Self-check (you should now be able to answer)
+
+1. What is the difference between simple interest and compound interest? Give a simple example.
+2. State the Rule of 72 and use it to answer: at 12% per year, money doubles in how many years?
+3. Why does starting to invest at age 25 with 1,000/month beat starting at 35 with 3,000/month?
+4. What's the minimum monthly payment on a 1,00,000 BDT loan at 5%/month, just to stop the principal from growing?
+5. If a scheme promises your money will double every year forever, why is it certainly fraudulent?
+
+If you can answer all 5 in plain language, mark **Compound interest** as **Mastered** in the Concepts tab.
+
+---
+
+## Closing thought
+
+You've now met the most important concept in personal finance. Everything else — inflation, returns, debt, investing — is a *variation* on what you just learned.
+
+Two practical takeaways carrying forward:
+
+1. **Start. Even small.** 500 BDT/month at 10% over 30 years is 11+ lakh. You don't need to optimize. You need to start.
+2. **Don't let high-interest debt sit untouched.** Cover the interest at minimum. The math of compounding doesn't sleep just because you're not looking.
+
+Tomorrow: **Inflation + Real Return.** Why "I'm saving" isn't the same as "I'm getting wealthier."
+</script>
+<script type="text/markdown" id="lesson-3"># Day 3 — Inflation + Real Return
+
+Yesterday you learned that money in a DPS can grow to 11 lakh over 30 years. Today you'll learn something uncomfortable: that 11 lakh in 30 years won't be worth what 11 lakh is worth today. By a long shot. Understanding this is the difference between feeling rich and actually being rich.
+
+---
+
+## 1. Why this matters
+
+Imagine your grandfather sometime in 1980, putting 10,000 BDT in a steel box under his bed. He locks it. Forgets about it. You find it 45 years later — in 2025.
+
+The note inside says: "For my grandchildren. 10,000 BDT — a small fortune."
+
+In 1980, 10,000 BDT could buy:
+- About 2 grams of gold
+- A reasonable motorcycle
+- Several months of rent in Dhaka
+
+In 2025, 10,000 BDT can buy:
+- About 0.1 gram of gold
+- A mid-tier phone (used)
+- About a week of rent in Dhaka
+
+The taka note didn't change. The 10,000 number is still 10,000. But the *purchasing power* of that money fell by roughly 90%. Your grandfather thought he was leaving you something. He was, technically. But inflation ate it while he wasn't looking.
+
+**This is inflation.** It's a silent, constant force — like gravity for money. And almost nobody factors it correctly into their financial decisions.
+
+The other concept today — **real return** — is the simple corrective lens that lets you see past the illusion. Once you have this lens on, you'll start noticing that many "good returns" are actually wealth-destroying, and many "safe investments" are quietly losing you money.
+
+---
+
+## 2. The concept
+
+### Inflation (মূল্যস্ফীতি)
+
+**Definition:**
+> Inflation is the general rise in prices of goods and services over time. Equivalently: the loss of purchasing power per unit of currency.
+
+If a sack of rice cost 1,000 BDT last year and 1,090 BDT this year, that's roughly 9% food inflation. **Inflation is usually measured as an annual percentage.**
+
+Bangladesh inflation (rough historical average):
+- 1990s: ~6%
+- 2000s: ~7%
+- 2010s: ~6–7%
+- 2020s so far: ~7–10% (recent surge driven by global energy + food + currency factors)
+
+For our purposes, **assume Bangladesh inflation is roughly 8–9% per year right now.** Higher than countries like Singapore (1%) or US (3%), lower than Argentina (200%+) or Lebanon.
+
+### Why inflation happens (briefly)
+
+Three main drivers, simplified:
+1. **More money chasing same goods** (when the central bank prints / lends too much, or when demand outpaces supply)
+2. **Cost-push** (energy / commodities get more expensive, all goods made with them get expensive)
+3. **Currency weakening** (Bangladesh's taka has weakened against the US dollar over time — imported goods cost more in taka)
+
+You don't need to master macro-economics. You just need to **assume inflation is always happening** and plan around it.
+
+### Real return (প্রকৃত return)
+
+**Definition:**
+> Real return = Nominal return − Inflation
+>
+> (Or more precisely: Real return ≈ (1 + nominal) / (1 + inflation) − 1, but the subtraction is close enough for most decisions.)
+
+**Nominal return** is what's printed on the label — "this DPS pays 10%."
+
+**Real return** is what you actually gained in purchasing power.
+
+If your DPS earns 10% nominal and inflation is 9%, your real return is:
+> 10% − 9% = **1% real**
+
+You feel like you grew 10%. But you only grew 1% in terms of what you can actually buy. The other 9% of your "return" just kept you even with the rising tide of prices.
+
+### The hidden tax of cash
+
+If you keep money in cash (under the mattress) or in a 0%-interest checking account, your nominal return is 0%. So your real return is:
+> 0% − 9% inflation = **−9% per year**
+
+You're losing 9% of your real wealth every year you hold cash that isn't growing.
+
+This is the **single most important insight of Day 3:** doing nothing with money is not "safe." It's an active loss of approximately 9% per year. It just feels safe because the *number* doesn't change.
+
+---
+
+## 3. Worked examples
+
+### Example A — The "savings" that lost money
+
+Imagine your mother put 1,00,000 BDT in a regular savings account in 2010 earning 4%/year nominal. Inflation averaged ~7% over that period.
+
+In 2025 (15 years later) at 4% compounded:
+- Nominal balance: 1,00,000 × (1.04)^15 = **1,80,094 BDT**
+- Looks like she nearly doubled her money!
+
+But measured in 2010 purchasing power:
+- The 1,80,094 in 2025 has the buying power of 1,00,000 × (1.04/1.07)^15 ≈ **65,000 BDT in 2010 terms**
+
+She *lost* 35,000 BDT of real wealth while feeling like she gained 80,000. **This is what happens to people who park money in low-yielding savings accounts during inflation.**
+
+### Example B — The real return of common Bangladeshi instruments
+
+Assume Bangladesh inflation is 9% per year. Let's grade each instrument:
+
+| Instrument | Nominal | Inflation | Real return |
+|---|---|---|---|
+| Cash (mattress / bKash wallet) | 0% | 9% | **−9%** ⚠️ |
+| Standard savings account (Sonali Bank, etc.) | 3–4% | 9% | **−5 to −6%** |
+| IBBL Mudaraba Savings | ~6% | 9% | **−3%** |
+| IBBL Mudaraba Term Deposit (1-year) | ~7–8% | 9% | **−1 to −2%** |
+| DPS / FDR (5–10 yr lock) | ~10–11% | 9% | **+1 to +2%** |
+| Sanchaypatra (5-year) | ~11% | 9% | **+2%** |
+| DSE blue-chip stocks (long-term avg) | ~12–15% | 9% | **+3 to +6%** |
+| International halal ETF (Wahed, ISWD) | ~8–10% USD | 9% BDT* | depends on taka exposure |
+
+*The international comparison gets complex because of currency. For now: most Bangladeshi instruments *just barely* beat inflation. Some lose to it. Cash always loses.
+
+### Example C — The proper way to think about an offer
+
+Suppose a relative says: *"I have a great real estate scheme. You give me 5 lakh today, in 5 years I give you 8 lakh. Guaranteed."*
+
+Sounds great? Let's compute.
+
+Nominal return: (8 / 5)^(1/5) − 1 = 9.86% per year compound
+
+Subtract inflation at 9%: real return ≈ **0.86% per year**
+
+You'd be locking up 5 lakh for 5 years to gain less than 1% in real purchasing power — *if* the deal is real and *if* inflation stays at 9%. If inflation is 10%, you lose. If inflation is 11%, you definitely lose.
+
+**Versus:** a 5-year Sanchaypatra would give you roughly the same real return with zero risk and government backing.
+
+The "great" 8-lakh-in-5-years deal isn't great. It's barely matching inflation. And it carries the risk that the relative defaults. Once you learn to convert nominal to real, all kinds of offers reveal themselves as bad deals.
+
+### Example D — The 30-year purchasing power trap
+
+Yesterday's example said a 2,000 BDT/month DPS becomes 45,40,000 BDT in 30 years at 10% nominal.
+
+Now adjust for 9% inflation:
+- Real growth rate ≈ 1% per year
+- Real value at year 30 ≈ what 8,80,000 BDT can buy in *today's* purchasing power
+
+So that "45 lakh in 30 years" actually has the purchasing power of about **8.8 lakh today**. Still meaningful — much better than zero — but a far cry from what the nominal number suggests.
+
+**This isn't a reason to not save.** It's a reason to:
+1. Save in instruments that beat inflation (DPS > savings account > cash)
+2. Eventually move into things with higher real return (stocks, business ownership) once you're past Stage 3
+3. Stop being impressed by big nominal numbers without checking the real return
+
+---
+
+## 4. Common mistakes
+
+### Mistake 1: Thinking 0% is "safe"
+
+Keeping cash in a non-interest account feels safe because the number doesn't go down. But in real terms, it goes down by inflation every year. A "safe" wallet of 1,00,000 today is 92,000 of purchasing power next year — and you didn't notice.
+
+### Mistake 2: Falling for nominal "doubling" promises
+
+"Your money doubles in 5 years!" Sounds amazing.
+> Nominal return = 72/5 = 14.4% per year
+> Real return at 9% inflation = ~5.4% per year
+
+Better than savings, comparable to stocks, much worse than the hype suggests.
+
+### Mistake 3: Comparing returns from different eras
+
+Your father might remember "I got 13% on my FDR in 1995." But inflation in 1995 was also high. The real return then might have been similar to today's. Don't anchor to nominal numbers from past decades — adjust mentally for that era's inflation.
+
+### Mistake 4: Ignoring inflation in long-term plans
+
+"In 20 years, my kid will need 10 lakh for university." Probably true in *today's* taka. But 20 years from now, university will cost more like 40–60 lakh. If you plan for 10 lakh, you'll be short by 30–50 lakh when the bill arrives.
+
+**The rule:** any future expense estimate should grow at inflation. "I need X today" + 20 years = "I'll need X × (1 + inflation)²⁰ then." At 9% inflation, X roughly **multiplies by 5.6 over 20 years.**
+
+### Mistake 5: Saving in the wrong currency
+
+If you're saving for a future expense priced in USD (like an international trip, foreign tuition, an imported laptop), then BDT savings face additional risk: not just BDT inflation, but BDT-USD weakening. Sometimes saving partly in USD-denominated instruments (or just thinking in USD terms for those goals) makes sense once you're at Stage 4+.
+
+### Mistake 6: Believing "the 9% is just temporary"
+
+Every year, people say "inflation is unusually high right now, it'll go back down." Maybe. But planning your life around "any moment now inflation will return to 3%" is wishful. Plan for what's actually happening, and be pleasantly surprised if it improves.
+
+---
+
+## 5. Try this today (the 30-minute exercise)
+
+### Step A — Compute the real return of your own money (10 min)
+
+Right now, where is most of your "money sitting around"? Add up everything:
+- Cash on hand
+- bKash / Nagad wallet
+- Bank checking account (probably 0%)
+- Bank savings account (probably 2-4%)
+- Any DPS / FDR (probably 6-11%)
+
+For each, write the **nominal return** (use a typical rate if you don't know exactly).
+
+Now compute the real return for each: nominal minus 9% (Bangladesh inflation).
+
+Total it up, weighted by how much is in each:
+
+> "My weighted average real return on my current money is approximately ___ % per year."
+
+Most people: this number is **negative**. Don't be surprised. Now you know.
+
+### Step B — The future-cost exercise (10 min)
+
+List 3 expenses you'll definitely have in the future:
+
+| Expense | When | Today's cost | Inflation factor | Real future cost |
+|---|---|---|---|---|
+| Kid's college | 15 years from now | 10,00,000 | (1.09)^15 ≈ 3.64 | **36,40,000** |
+| Hajj for you + spouse | 20 years from now | 8,00,000 | (1.09)^20 ≈ 5.60 | **44,80,000** |
+| Your retirement income (per year) | 30 years from now | 6,00,000 / yr | (1.09)^30 ≈ 13.27 | **79,60,000 / yr** |
+
+Don't be alarmed by the numbers. They're not predictions of disaster — they're just the math of inflation. The point of computing them is so that when you eventually start planning for these, you plan with the right target.
+
+> Write down 3 of *your* future expenses with adjusted figures.
+
+### Step C — Identify your "real loss" zones (5 min)
+
+Look at your money:
+- Anything sitting in cash, bKash, or 0% accounts? → That's losing 9% real per year. Identify how much.
+- Anything in a 2-4% savings account? → Losing 5-6% real per year.
+
+> "I am currently losing approximately ___ BDT per year in real terms by holding money in low/no-yield places."
+
+This isn't a guilt trip. It's a measurement. You can't fix what you can't measure.
+
+### Step D — Mark concepts in tracker
+
+- Concepts tab: mark **Inflation** and **Real return** as Learning or Mastered
+- Notes tab: write reflections
+- Study Log: add today as Done
+
+---
+
+## 6. Reflection prompts (write in Notes tab)
+
+Pick 2. Tag with `#day3`.
+
+1. *Knowing about real return, what would I do differently with the money I'm holding now?*
+2. *How does the 5.6× future-cost multiplier change how I think about saving for my kid?*
+3. *What's an investment "offer" I've heard about (real estate, scheme, etc.) that I should now mentally recompute in real terms?*
+4. *If I keep 50,000 BDT in cash for a year at 9% inflation, what do I lose in real terms?* (Answer: ~4,500 BDT of purchasing power)
+5. *What's one new behavior I'll start because of today's lesson?*
+
+---
+
+## 7. Companion content (optional, ~15 min)
+
+After the exercise:
+
+- **English:** "What is Inflation?" — Investopedia video (10 min). Solid, clean primer.
+- **English:** "Why You Should Care About Inflation" — The Plain Bagel on YouTube. Excellent host, simple visuals.
+- **Bengali:** Search "মূল্যস্ফীতি ব্যাখ্যা" on YouTube. Khan Academy Bangla and Finance Bangla both have explainers.
+- **Bangladesh-specific:** Look up Bangladesh Bureau of Statistics (BBS) inflation reports. You don't need to read them in depth — just notice the official monthly numbers. (bbs.gov.bd)
+
+---
+
+## 8. Self-check
+
+1. What is inflation, in one sentence?
+2. If a DPS earns 11% nominal and inflation is 9%, what is the real return?
+3. Why is keeping money in cash losing you money, even if the number doesn't change?
+4. Bangladesh inflation runs roughly what % per year?
+5. If your kid will need 10 lakh in today's taka for college 15 years from now, roughly how much will you actually need to have saved? (Use 9% inflation.)
+
+If you can answer all 5, mark **Inflation** and **Real return** as **Mastered** in the Concepts tab.
+
+---
+
+## Closing thought
+
+You now have a lens that most people in your country don't carry. From today on, when someone shows you a "great return," you'll quietly subtract 9% in your head. When you see your bank account "stable" at 50,000 for a year, you'll know you actually lost 4,500 of real purchasing power. When you plan future expenses, you'll multiply by the right factor.
+
+This is what real financial literacy looks like: not knowing more numbers, but knowing how to read the numbers other people show you.
+
+Tomorrow: **Time Value of Money.** A deeper version of what we touched on today — and the basis for evaluating any financial decision that involves "now versus later."
+</script>
+<script type="text/markdown" id="lesson-4"># Day 4 — Time Value of Money
+
+You've now seen compound interest (Day 2) and inflation (Day 3). Today we combine them into the single tool that powers every financial decision: time value of money. Once you can use this, you can evaluate any loan, any insurance plan, any "great deal" — and tell whether it's actually a great deal.
+
+---
+
+## 1. Why this matters
+
+Three real situations you (or someone you know) will face this year:
+
+**Situation A:** A client offers you 30,000 BDT today for a project, or 36,000 BDT in 3 months "with a small bonus for waiting." Which do you take?
+
+**Situation B:** An insurance agent pitches a plan: pay 30,000 BDT/year for 10 years; get 5,00,000 BDT back at year 20. Sounds like free money?
+
+**Situation C:** Someone offers to buy your laptop now for 40,000 BDT, or pay you 50,000 in 6 months. They seem honest. Which is better for you?
+
+Without time value of money, you'd answer these based on gut feel. With it, you'd answer them with a calculation. **Gut feel is often wrong**, especially when long time horizons or big inflation numbers are involved.
+
+This is the single most useful "spreadsheet skill" most adults never learn. Let's fix that.
+
+---
+
+## 2. The concept
+
+### The core idea (সময়ের মূল্য)
+
+> **A taka in your hand today is worth more than a taka promised to you in the future.**
+
+Three reasons why:
+
+1. **Opportunity cost.** Today's taka could be invested to become more. A taka next year can't go back in time to do that.
+2. **Inflation.** Tomorrow's taka buys less than today's because of rising prices.
+3. **Risk.** A promise of future money carries the risk that something happens between now and then — the payer defaults, the deal collapses, plans change. Today's cash has zero such risk.
+
+The size of this gap between "today's taka" and "future taka" depends on:
+- The interest rate / return rate available (your opportunity cost)
+- The inflation rate
+- The risk involved
+- How long you have to wait
+
+### Two key terms
+
+**Present Value (PV)** — what something in the future is worth *today*.
+**Future Value (FV)** — what something today will be worth *later*.
+
+The formulas (don't memorize, but understand):
+
+> **FV = PV × (1 + r)ⁿ** (compound a present amount forward in time)
+>
+> **PV = FV / (1 + r)ⁿ** (discount a future amount back to today)
+
+Where:
+- **r** = your "discount rate" per period — usually a realistic rate of return you could otherwise earn
+- **n** = number of periods (usually years)
+
+### The discount rate
+
+This is the trickiest part — and the most important.
+
+Your **discount rate** is roughly: *the return you could realistically earn on money if you had it today, accounting for inflation and risk.*
+
+For a Bangladeshi freelancer with limited investment access today, a reasonable personal discount rate is approximately:
+- **9%** if comparing to inflation alone (you'd need to beat that just to break even)
+- **11%** if you'd realistically use the money to buy Sanchaypatra
+- **13–15%** if you'd realistically deploy it into something productive (a niche course that raises your rate, a tool that earns you back)
+- **30%** if you'd realistically pay down credit card debt with it
+
+**The right discount rate depends on what you'd actually do with the money.**
+
+For most of today's exercises, **use 12% as your default discount rate** unless the situation makes another rate clearly correct.
+
+---
+
+## 3. Worked examples
+
+### Example A — Client offer (Situation A from above)
+
+**The offer:** 30,000 today vs 36,000 in 3 months.
+
+**Method:** find the present value of the 36,000 future amount, then compare.
+
+> PV of 36,000 in 3 months at 12%/year discount rate (1% per month):
+> PV = 36,000 / (1.01)³ = 36,000 / 1.0303 = **34,940 BDT**
+
+The future 36,000 is worth 34,940 in today's taka. That's MORE than the 30,000 offered today.
+
+**Verdict:** take the 36,000 in 3 months. (Assuming the client is trustworthy. Risk shifts the answer.)
+
+But here's a subtlety: what if your "discount rate" is really high because you have a 60% APR chit-fund debt? Then 1 month of waiting costs you 5%, and 3 months costs you 15.7% of buying power *because* of your debt situation. Then:
+
+> PV at 60%/year (5% per month):
+> PV = 36,000 / (1.05)³ = 36,000 / 1.1576 = **31,098 BDT**
+
+Even at that horrific discount rate, future 36,000 is barely better than today's 30,000. The chit-fund debt makes "wait 3 months" much more expensive — because every month means another 5% interest hit.
+
+**This is why your personal discount rate matters.** Someone with no debt and good investment options has a different right answer than someone with a high-rate loan.
+
+### Example B — The insurance plan (Situation B)
+
+**The pitch:** pay 30,000/year for 10 years (total 3,00,000), get 5,00,000 at year 20.
+
+Looks like 5 lakh for 3 lakh — 67% gain! But:
+1. You're putting in 30,000 each year, not all at once
+2. The payoff is at year 20, not year 10
+3. We need to compare what else you could have done with that 30,000/year
+
+**Two-step calculation:**
+
+Step 1: what would 30,000/year invested at 12% for 10 years, then left to grow for another 10 years, become?
+
+After 10 years of contributions:
+> FV of 30,000/yr at 12% for 10 yr = approximately 5,26,000 BDT
+
+That 5,26,000 then sitting for another 10 years at 12%:
+> 5,26,000 × (1.12)^10 = 5,26,000 × 3.11 = approximately **16,35,000 BDT**
+
+The insurance pays 5,00,000 BDT at year 20. The alternative (investing same money yourself in a DPS) would have given you **about 3× as much**.
+
+**Verdict:** the insurance plan is mathematically a poor "investment." It may still make sense if you actually need the *insurance* (death benefit, for example) — but as a savings vehicle, it's losing to a simple DPS.
+
+This is the trick most life insurance / endowment plans use: they show you a big nominal number ("5 lakh!") without showing what your same money would have done elsewhere. Now you can see through it.
+
+### Example C — Laptop offer (Situation C)
+
+40,000 today vs 50,000 in 6 months. Use 12% discount rate (1% per month):
+
+> PV of 50,000 in 6 months = 50,000 / (1.01)^6 = 50,000 / 1.0615 = **47,098 BDT**
+
+Future 50k = 47,098 in today's terms. That's more than 40,000 today.
+
+**Verdict:** take the 50,000 in 6 months, *if* you trust the buyer.
+
+But risk matters. If you give it a 20% chance the buyer doesn't pay (changes mind, disappears, etc.), then:
+> Risk-adjusted value = 47,098 × 0.80 = 37,678 BDT
+
+Now it's LESS than the 40,000 today.
+
+**Lesson:** time value of money is a starting point. You always also have to subtract for risk.
+
+### Example D — Your own freelance pricing
+
+A productized service template:
+- Option 1: 70,000 BDT, paid 100% upfront before work starts
+- Option 2: 80,000 BDT, paid 50% upfront and 50% on delivery (project takes ~2 months)
+
+For the client, Option 1 is more attractive (10,000 cheaper). For you?
+
+Option 1: 70,000 today.
+Option 2: 40,000 today + 40,000 in 2 months.
+
+> PV of Option 2 at 12% discount: 40,000 + 40,000 / (1.01)² = 40,000 + 39,212 = **79,212 BDT**
+
+Option 2 is worth 9,212 BDT more in present value terms. **So when you offer "10% discount for paying upfront," you're actually losing slightly less than 10% of value — the discount almost matches your real opportunity cost.**
+
+If you'd been at a higher discount rate (because of debt or great alternative uses), the analysis changes. Your discount rate is your competitive lever.
+
+---
+
+## 4. Common mistakes
+
+### Mistake 1: Comparing future amounts to present amounts directly
+
+"5 lakh in 20 years is better than 3 lakh today." False — until you discount the future amount back. The whole point of time value of money is that you can't compare them directly.
+
+### Mistake 2: Using the wrong discount rate
+
+People use 0% (treating future money as equal to present money) or 30% (their credit card rate, when they wouldn't actually pay off the card) — both wrong. **Your discount rate should be what you'd realistically do with the money.** For most life decisions, 10-15% is reasonable in Bangladesh's environment.
+
+### Mistake 3: Ignoring inflation in long-horizon decisions
+
+For decisions 1-3 years out, inflation is small. For decisions 10+ years out, inflation dominates. A "5 lakh in 25 years" promise is worth — in today's purchasing power — maybe 60,000 BDT. People hear 5 lakh and feel rich. Now you won't.
+
+### Mistake 4: Forgetting risk
+
+Every future payment carries risk. The further out, the riskier. The less established the counterparty, the riskier. Discount for risk on top of time. Most insurance, lending, and investment sales pitches assume zero risk in their projections — that's why projected returns always look better than realized returns.
+
+### Mistake 5: Discounting too aggressively
+
+The flip side: someone uses a 30% discount rate when their realistic alternative is a 4% savings account. They reject good long-term deals because they over-discount. Common in people who've been burned before and now distrust the future.
+
+### Mistake 6: Treating money you'll get as money you already have
+
+A client signed a contract for 1,00,000 to be paid in 3 months. You don't have 1,00,000 — you have a *claim* on 1,00,000 that's worth about 97,000 today (and less when risk is factored in). Don't spend it before it arrives.
+
+---
+
+## 5. Try this today (the 35-minute exercise)
+
+### Step A — Evaluate one real "offer" you're aware of (15 min)
+
+Pick one from your life:
+- A freelance contract that pays "in 60 days net"
+- An insurance plan someone pitched you
+- A "scheme" a relative is involved in
+- A buy-now-pay-later option a store offered you
+- A relative offering you "1 lakh in 2 years" if you give 70k now
+
+Compute its present value. Show your work:
+
+> 1. **What's being offered?** Future amount: _______. When: _______.
+> 2. **Discount rate to use:** ______ % per year. (Default: 12%.)
+> 3. **Periods:** ______ months / ______ years.
+> 4. **PV calculation:** _____ / (1 + 0.12/12)^months = _______
+> 5. **Verdict:** Is the present-value worth more or less than what they're asking?
+
+Write it out in the Notes tab. Tag it `#day4-exercise`.
+
+### Step B — Compute the "right" discount for your discount (10 min)
+
+Suppose a client wants to pay you 1 month later than you'd prefer. What discount can you offer (or what surcharge can you charge) to make it neutral?
+
+Use 12% annual rate (1% monthly):
+- 1 month delay → 1% discount you'd take to be made whole
+- 3 month delay → ~3% discount
+- 6 month delay → ~6% discount
+
+If you're at a 30% rate because of debt — those numbers double or triple.
+
+> "My current 'monthly discount rate' (what 1 month of delay costs me) is approximately ___ %."
+
+If high, this argues for asking 100% upfront or charging a meaningful late surcharge.
+
+### Step C — Build your "future expense" plan (10 min)
+
+Re-do yesterday's future-expense table — but now using PV thinking.
+
+For each future expense, ask: *what would I need to put away today, growing at 11% (Sanchaypatra), to have enough by then?*
+
+| Expense | When | Future cost | Today's deposit needed at 11% |
+|---|---|---|---|
+| Kid's college | 15 years | 36,40,000 | 36,40,000 / (1.11)^15 = **7,60,000** |
+| Hajj | 20 years | 44,80,000 | 44,80,000 / (1.11)^20 = **5,55,000** |
+| ... | | | |
+
+Don't be alarmed — you don't need to deposit 7.6 lakh today. The math shows that you'd need to deposit, say, **35,000/year for 15 years** to reach that same future amount. Time + monthly investments do the work.
+
+This is just to give you a feel for how PV thinking works at long horizons.
+
+### Step D — Update the tracker
+
+- Concepts tab: mark **Time value of money** as Learning or Mastered
+- Notes tab: write the reflection from Step A
+- Study Log: add today as Done
+
+---
+
+## 6. Reflection prompts (write in Notes tab)
+
+Pick 2. Tag with `#day4`.
+
+1. *What's one offer or decision in my recent past that I'd evaluate differently now using TVM?*
+2. *How does my chit-fund debt change my personal discount rate?*
+3. *If a client offers to pay me 50% extra to wait 6 months for payment, am I willing? Why or why not?*
+4. *In one sentence: why is "5 lakh in 20 years" not worth 5 lakh of celebrating today?*
+5. *What's a financial product I've heard pitched (insurance, scheme) that I now realize I should mentally discount?*
+
+---
+
+## 7. Companion content (optional, ~15 min)
+
+- **English:** Khan Academy — "Time Value of Money" series. Free, 5-minute videos. The cleanest explanation anywhere.
+- **English:** "Present Value Explained" — Two Cents on YouTube. Quick and visual.
+- **English (deeper):** "What is Time Value of Money?" — The Plain Bagel.
+- **Bengali:** Search "time value of money বাংলা" — there are 10 Minute School and Finance Bangla explainers, though not as polished as the English ones.
+
+---
+
+## 8. Self-check
+
+1. What is time value of money in one sentence?
+2. Name three reasons why a taka today is worth more than a taka next year.
+3. What is "present value" and what is "future value"?
+4. If your discount rate is 12% per year, what is the present value of 1,00,000 BDT promised in 5 years?
+   *(Answer: 100,000 / (1.12)^5 = ~56,743 BDT.)*
+5. Why does someone with high-interest debt have a higher personal discount rate than someone without?
+
+If you can answer all 5, mark **Time value of money** as **Mastered** in the Concepts tab.
+
+---
+
+## Closing thought
+
+Halfway through the course. You now have four of the most useful concepts in personal finance: cash flow, net worth, compound interest, inflation/real return, and time value of money. That's already more than most adults will ever know.
+
+From now on, when someone shows you a "big number," you'll instinctively:
+1. **Compound forward** to see growth
+2. **Discount inflation** to see real value
+3. **Discount to present** to see what it's worth today
+4. **Check the risk** before believing it at all
+
+That's the mental toolkit. Tomorrow we sharpen the distinction between what makes you wealthy and what doesn't — **Assets vs Liabilities + Income vs Wealth.**
+</script>
+<script type="text/markdown" id="lesson-5"># Day 5 — Assets vs Liabilities + Income vs Wealth
+
+Today is a mindset shift, not a math lesson. You'll learn to look at every object, every account, every job through a single lens: **does this put money in my pocket or take it out?** That one question, applied consistently for the next 30 years, will change everything.
+
+---
+
+## 1. Why this matters
+
+A real story (composite of many).
+
+Ahmed earns 1,80,000 BDT/month as a senior engineer in Dhaka. He drives a 25-lakh car (financed). Lives in a 35,000/month flat. iPhone 15. Sends his kid to an English-medium school for 25,000/month. Vacations in Cox's Bazar twice a year. To anyone looking, Ahmed is "doing well."
+
+Karim earns 50,000 BDT/month as a small-business shopkeeper. He owns the shop (parents helped him buy it). Drives a 4-year-old motorcycle, no loan. Lives in a 12,000/month flat in Mirpur. iPhone is 4 generations old, works fine. Sends his kid to a Bengali-medium good school for 4,000/month.
+
+Who's wealthier?
+
+After 10 years:
+- **Ahmed** has 18 lakh in debt (car still has 4 years on the loan), 80,000 in savings, lives paycheck-to-paycheck. Total **net worth: −16 lakh** (after all assets and debts).
+- **Karim** owns a shop worth ~30 lakh now (it appreciated), has 8 lakh in DPS + Sanchaypatra, no debt. **Net worth: +38 lakh**.
+
+Ahmed earned 3.6× more. Karim is 54 lakh ahead.
+
+Why? Because:
+- Ahmed accumulated *liabilities that look like assets* (financed car, leased lifestyle)
+- Karim accumulated *real assets* (a shop that produces income)
+- Ahmed has high income, low wealth
+- Karim has modest income, growing wealth
+
+**The lesson:** what you own determines whether your income builds you up or burns out. Most people in middle-income jobs in Bangladesh accumulate liabilities for 30 years and end up Ahmed. A small percentage accumulate assets and end up Karim. The difference isn't earning power. It's understanding the difference between the two.
+
+---
+
+## 2. The concept
+
+### Assets vs Liabilities — the simple definition
+
+The most useful definition (popularized by Robert Kiyosaki in *Rich Dad Poor Dad*, but the idea is older):
+
+> **An asset puts money in your pocket.**
+> **A liability takes money out of your pocket.**
+
+This is different from the accounting definition you might find in a textbook. Both are valid; this one is more useful for personal financial decisions.
+
+**Examples of true assets** (put money in your pocket):
+- A rental property earning monthly rent
+- A DPS or Sanchaypatra earning interest
+- A stock portfolio paying dividends
+- A skill you can sell (your dev skill → freelance income)
+- A business that produces profit
+- Royalties from a book, course, or product
+- A productive piece of equipment (a sewing machine for a tailor, a delivery vehicle for a courier)
+
+**Examples of true liabilities** (take money out of your pocket):
+- A car (insurance, fuel, maintenance, depreciation, loan EMI)
+- A house you live in (maintenance, property tax, opportunity cost)
+- A phone (monthly bill, depreciates fast, replacement)
+- Most subscriptions (Netflix, gym, etc.)
+- Credit card debt (interest)
+- Personal loans
+- A boat, a luxury watch, designer clothes
+
+**Things that can be either, depending on how you use them:**
+- A car used for Uber/Pathao → asset (produces income beyond its cost)
+- A car used only to commute → liability
+- A laptop you freelance with → asset (if it generates more income than its cost)
+- A laptop you use only for entertainment → liability
+- A house you rent out → asset
+- A house you live in → mostly liability (but with some asset-like value as forced savings if it appreciates)
+
+### Why people get this wrong
+
+Banks, sellers, and society have an interest in calling liabilities "assets":
+- A car salesman calls a car "an investment in mobility"
+- A bank shows your home loan as an "asset" in your name
+- People proudly call their house their "biggest asset" — when the bank actually owns most of it and they pay the mortgage
+
+The world wants you to buy things. Calling those things "assets" makes you feel good about the purchase. **The simple test cuts through this: did the money flow toward you or away from you in the past month because of this thing?**
+
+If it flowed away (insurance, maintenance, EMI, depreciation): liability.
+If it flowed toward you (rent collected, interest earned, income produced): asset.
+
+### Income vs Wealth
+
+Closely related but distinct:
+
+**Income** — money arriving on a regular basis (salary, freelance payments, business profit, interest from investments). A *flow*.
+
+**Wealth** — accumulated assets minus debts. A *stock*. What you have, not what's coming in.
+
+**Two failure modes:**
+
+1. **High income + Low wealth.** The doctor making 5 lakh/month but spending all of it. The Bollywood star who goes bankrupt three years after the last hit. Earned a lot. Owns nothing.
+
+2. **Low wealth + No income.** The retiree whose savings ran out at age 70 because nothing was producing income anymore. Once-had-it-all became has-nothing.
+
+**The goal** is to convert income into wealth — specifically, into income-producing assets that will themselves earn income later.
+
+> Income → Buy assets → Assets produce more income → Buy more assets → Wealth.
+
+This loop is the entire game. Income that doesn't get converted to assets just leaves through your spending. Most adults run this loop in reverse (income → buy liabilities → liabilities cost more money → need more income → buy more liabilities) and wonder why they never get ahead.
+
+### The wealth equation, simplified
+
+> **Wealth at year N = (Initial wealth) + Σ (each year's cash flow → asset purchase) × (compound growth of those assets)**
+
+Translation: wealth = how long you've been converting positive cash flow into productive assets × the growth those assets produced.
+
+This is also why time is so important (Day 2): the assets bought in year 1 have compounded more by year 30 than the assets bought in year 25.
+
+---
+
+## 3. Worked examples
+
+### Example A — The "smart" car decision
+
+Ahmed buys a 25-lakh car on a 20% down + 5-year loan at 12% interest.
+- Down payment: 5,00,000 (cash gone)
+- Monthly EMI: ~44,500 BDT for 60 months
+- Annual fuel + maintenance + insurance: ~80,000 BDT
+- Depreciation: a 25-lakh car is worth maybe 15 lakh after 5 years
+
+Total cost over 5 years:
+- Down payment: 5,00,000
+- EMIs total: 44,500 × 60 = 26,70,000
+- Operating costs: 80,000 × 5 = 4,00,000
+- **Total spent: 35,70,000 BDT**
+- Asset value after 5 years: 15,00,000 BDT
+- **Net outflow over 5 years: 20,70,000 BDT**
+
+Now imagine instead: Ahmed bought a 5-lakh used motorcycle in cash and invested the rest at 11% Sanchaypatra over 5 years:
+- Initial investment available: 25,00,000 − 5,00,000 (motorcycle) = 20,00,000 invested
+- After 5 years at 11%: 20,00,000 × (1.11)^5 ≈ 33,70,000
+- Motorcycle worth: 2,50,000 (used)
+- **Net position: +36,20,000**
+
+The two paths differ by approximately **57,00,000 BDT over 5 years.** That's why "the right car decision" is one of the most important early-life financial decisions you make.
+
+### Example B — Skill as your biggest asset
+
+Your freelance dev skill: assume 70,000 BDT/month average.
+
+Annual income from this skill: ~8,40,000 BDT
+Over 30 years (rough estimate, assuming you maintain it): ~2.5 *crore* total earnings.
+
+**Your skill is a 2.5 crore asset.**
+
+Bigger than most houses people buy. Bigger than most cars. Bigger than most stock portfolios people ever build.
+
+How are you investing in it?
+- Daily skill upgrade? (Maintains/grows the asset's earning power)
+- Niche development? (Doubles or triples the asset's hourly rate)
+- Productization? (Converts hourly capacity into scalable revenue)
+
+**Most people treat their skill as fixed and try to optimize everything else.** The reverse is more powerful: treat skill as the #1 asset, and invest in growing it relentlessly. Day 8 (which you'll do in `08-skill-and-income.md`) is the deep dive on this.
+
+### Example C — The household audit
+
+Let's audit a hypothetical household's "stuff":
+
+| Item | Value | Asset or Liability? | Monthly impact |
+|---|---|---|---|
+| Bank account (savings) | 4,500 | Asset (tiny one) | +20 (interest) |
+| DPS / Sanchaypatra | 0 | — | 0 |
+| Laptop (used for freelance) | 50,000 | **Asset** (enables income) | +70,000 income/month |
+| Phone | 25,000 | Liability | −500 bill + −fast depreciation |
+| Motorcycle | 1,00,000 | Liability | −3,000 fuel + maintenance |
+| Furniture | 80,000 | Liability | depreciation |
+| Credit card balance | −90,000 | **Liability** | −2,250/mo interest |
+| Personal loan | −2,80,000 | **Liability** | −EMI/mo |
+| Market loan | −1,90,000 | **Liability** | −9,500/mo interest |
+| Family loan | −1,40,000 | **Liability** | −interest free, but social cost |
+| Skill (freelance dev) | ~25,00,000 (5-yr earning power) | **Asset (#1)** | +70,000/month |
+
+**Insight:** the most valuable asset isn't anything physical. It's the skill. It produces 70k/month — more than everything else combined. So the question isn't "how do I save more" but "how do I grow this asset and stop letting liabilities drain the surplus it produces?"
+
+### Example D — Income vs Wealth illustrated
+
+Two people, both age 35.
+
+**Person X:** salaried executive, 2,00,000 BDT/month, spending 1,80,000. No debt, but no investments either. Owns furniture, phone, modest car (financed, almost paid off). After 10 years (age 45): wealth ≈ 24 lakh (mostly in slightly-appreciated apartment they bought).
+
+**Person Y:** small business owner, 60,000 BDT/month from the business. Spends 40,000. Re-invests 10,000 in business growth and saves/invests 10,000/month. After 10 years (age 45): business is now generating 1,80,000/month, has 18 lakh in DPS/stocks, total net worth ~80 lakh.
+
+Same starting age. Person X earned much more income but accumulated barely more wealth. Person Y converted positive cash flow into productive assets year after year. **Income lost the race against wealth.**
+
+---
+
+## 4. Common mistakes
+
+### Mistake 1: Calling a primary residence "your biggest asset"
+
+A home you live in:
+- Costs maintenance every year (1-2% of value)
+- Costs property taxes
+- Costs interest if mortgaged
+- Has opportunity cost (the down payment could have been invested)
+
+It does *appreciate* slowly in some markets, which has asset-like value. But the day-to-day cash flow is negative. Calling it an "asset" makes you feel rich while you're spending money to live in it. Honest framing: a place to live, with some forced-savings benefit, and meaningful liability characteristics.
+
+### Mistake 2: Confusing cash with wealth
+
+"I have 50,000 BDT in my bKash" doesn't mean you're wealthy. It means you have 50,000 in liquid cash. Wealth requires accumulated *productive* assets. Cash is one type of asset, but a poor one (it doesn't grow, and inflation eats it — see Day 3).
+
+### Mistake 3: Earning more without converting it
+
+A common pattern: someone gets a raise from 50k to 80k. They feel richer immediately. Within 6 months, their expenses have risen to consume the extra 30k. **Net wealth-building from the raise: 0.**
+
+The discipline of converting raises into asset accumulation — not lifestyle inflation — is what separates wealth-builders from treadmill-runners.
+
+### Mistake 4: Thinking jewelry / gold / collectibles are assets
+
+Gold has a slightly asset-like quality (often beats inflation over very long horizons). But it doesn't *produce* income — it just sits there. Wedding jewelry typically has even worse economics (markup at purchase, discount at resale, no income). These can be cultural / safety stores of value, but they're inferior assets compared to DPS, sukuk, stocks.
+
+### Mistake 5: Buying liabilities to "feel successful"
+
+A common loop: you make some money → buy a watch / car / phone / clothing item → feel like you're "arriving" → repeat. Each purchase is a liability. Each makes you poorer, not richer. The genuine signal of wealth is *what you DON'T have to buy to feel okay about yourself*.
+
+### Mistake 6: Underestimating your own skill as an asset
+
+People will spend hours optimizing a 5% savings rate on 50,000 (yielding maybe 200/month extra) while never spending one hour learning a skill upgrade that could raise their income by 20%. The skill-asset is usually the highest-leverage place to invest your time. Don't ignore it.
+
+---
+
+## 5. Try this today (the 40-minute exercise)
+
+### Step A — The honest asset/liability audit (15 min)
+
+List every "thing" you own or owe. For each:
+1. Is this thing currently putting money in your pocket or taking money out?
+2. Net monthly cash impact (positive or negative)?
+3. Classify as Asset or Liability.
+
+Be brutal. Most people are surprised how few real assets they have.
+
+| Item | Monthly impact (+ or −) | Asset or Liability |
+|---|---|---|
+| | | |
+| | | |
+| | | |
+| | | |
+
+When you're done, sum the monthly impacts.
+
+> "My possessions net: ___ BDT/month."
+
+For most people, this is *negative* — the things they own cost them more than they generate. The job/skill makes up for it. Sometimes barely.
+
+### Step B — Identify your real assets (10 min)
+
+Now make a list of just the assets — things that put money in your pocket:
+
+1. _________________
+2. _________________
+3. _________________
+
+If your list is empty except for "my skill" — that's normal at Stage 0-1. Your job now is to start building one more asset over the next 2 years. Just one. Could be:
+- A small DPS that starts producing interest
+- A productized service template that earns recurring income
+- A micro-SaaS that earns MRR
+- A skill specialty that earns 2-3x the generalist rate
+
+> "By end of Stage 3, the second productive asset I want to own is: _________________"
+
+### Step C — Income vs Wealth check (10 min)
+
+Compute:
+
+> **Income** (monthly): ___________
+> **Wealth** (net worth from Day 1): ___________
+>
+> Wealth ÷ Income ratio = ___________
+
+A healthy ratio at different life stages:
+- 20s: any positive number is great (you're young)
+- 30s: ideally 1-3× annual income in net worth by mid-30s
+- 40s: ideally 5-8× annual income
+- 50s: ideally 10-15× annual income (to enable retirement)
+- 60s: ideally 15-25× annual income
+
+If you're below the typical range for your age — that's information, not a verdict. The next 5 years of conversion (income → assets) is where the catch-up happens.
+
+### Step D — The one decision rule (5 min)
+
+For the rest of this course, and ideally the rest of your life, apply this rule to every significant purchase:
+
+> *Will this item, on net, put money in my pocket or take money out?*
+>
+> If "put money in" → consider it carefully (and check if it's overpriced)
+> If "take money out" → that's fine if it's a need, dangerous if it's a want being justified
+
+This isn't anti-consumption. You will buy phones, eat out, take vacations. The point is to do those things with eyes open — not while telling yourself "this is an investment" when it isn't.
+
+### Step E — Update the tracker
+
+- Concepts tab: mark **Asset vs Liability** and **Income vs Wealth** as Learning or Mastered
+- Notes tab: write reflections
+- Study Log: add today as Done
+
+---
+
+## 6. Reflection prompts (write in Notes tab)
+
+Pick 2. Tag with `#day5`.
+
+1. *What "asset" of mine is actually a liability when I apply the cash-flow test honestly?*
+2. *What's the second productive asset (beyond my skill) I want to own in 2 years? Why?*
+3. *If my income doubled tomorrow, what would I do differently to ensure it converts to wealth and not lifestyle?*
+4. *Who do I know who's wealthy in the "Karim" sense (modest income, real assets)? What can I learn from them?*
+5. *In one sentence: why is my freelance dev skill my single biggest asset?*
+
+---
+
+## 7. Companion content (optional, ~15 min)
+
+- **English:** "Rich Dad Poor Dad — Animated Book Summary" (multiple on YouTube). Watch one. The core insight is exactly what we covered today. (Note: the book has weaknesses — but the asset/liability framing is gold.)
+- **English:** "Naval Ravikant — How to Get Rich" (lecture series, available on YouTube). Watch any 10-minute clip. Heavy on the "skill as asset" framing.
+- **English:** Two Cents — "Assets vs Liabilities" episode on YouTube.
+- **Bengali:** Search "asset vs liability বাংলা" — 10 Minute School has a relevant clip. Adib's Finance covers it.
+
+---
+
+## 8. Self-check
+
+1. State the simple test for whether something is an asset or a liability.
+2. Give 3 examples of true assets and 3 examples of true liabilities.
+3. Why is a primary residence often called an "asset" but functions more like a liability in cash flow terms?
+4. What is the difference between income and wealth?
+5. Why is the skill you use to earn income your single most important asset?
+
+If you can answer all 5, mark **Asset vs Liability** and **Income vs Wealth** as **Mastered** in the Concepts tab.
+
+---
+
+## Closing thought
+
+You're 5 days in. You've learned how to measure your finances (cash flow, net worth), how growth and decay compound over time (compound interest), how inflation eats nominal numbers (real return), how to evaluate "now vs later" decisions (time value of money), and now — what should actually be accumulating in your life (assets, not liabilities).
+
+Two more days. Tomorrow you'll learn to evaluate any "opportunity" — and spot the fakes. **Day 6: Risk vs Return.**
+</script>
+<script type="text/markdown" id="lesson-6"># Day 6 — Risk vs Return
+
+Today you build a scam detector. Permanently. Anyone showing you an investment, a "scheme," a "tip," or a "guaranteed return" will be processed through the framework you learn today. After this lesson, the noise of the financial world becomes a lot quieter, because most of what's being sold to you reveals itself as either bad math or outright fraud.
+
+---
+
+## 1. Why this matters
+
+A Facebook ad: *"30% monthly returns through forex! Send only 50,000 BDT to get started. I made 5 lakh in my first 3 months!"*
+
+Without today's lesson, you might think: "Maybe? Worth a shot?"
+
+With today's lesson, you'll instantly know: 30% per month = 2,229% per year (compounded). That's so high it would mean the person could turn 50,000 BDT into approximately 11 *crore* in a single year. If this worked, the person posting wouldn't be on Facebook trying to recruit you for 50k — they'd already own a private island.
+
+It's a scam. Always. Without exception.
+
+That's just one example. Today's lesson is the systematic framework — not just for spotting forex scams, but for evaluating *every* investment, opportunity, business pitch, and "deal" that will come at you for the rest of your life.
+
+The framework has two parts:
+1. **The risk-return spectrum** — where any opportunity sits, and what return is plausible at that risk
+2. **The scam detection checklist** — what red flags reveal that something isn't what it claims
+
+By the end of today, both will be permanently installed.
+
+---
+
+## 2. The concept
+
+### The fundamental law of finance
+
+> **Higher returns require higher risk. There are no exceptions.**
+
+This is as close to a universal law as exists in finance. It's not "usually true." It's "always true, in proportion."
+
+If anyone offers you a return higher than you'd typically get from the broader market at that risk level, they're either:
+1. **Wrong** (don't understand the risk they're taking)
+2. **Lucky** (got a result that won't repeat)
+3. **Lying** (a scam, a Ponzi, or wishful sales pitch)
+
+There is no fourth option called "genuine, sustainable, low-risk high return." It doesn't exist. If it did, every institutional investor in the world would already be using it, and you wouldn't be hearing about it from a relative's WhatsApp message.
+
+### The risk-return spectrum
+
+Here's the spectrum, with realistic Bangladesh examples for each level:
+
+#### Tier 1: Essentially Risk-Free (3-7% nominal)
+- Bank savings accounts (3-4%)
+- Sukuk / government bonds
+- Bangladesh Bank deposits
+- Mudaraba savings at major Islamic banks (5-6%)
+
+You're effectively lending money to a very safe entity. Your money is *very* unlikely to disappear. But it barely beats (or loses to) inflation.
+
+#### Tier 2: Very Low Risk (7-11% nominal)
+- DPS / FDR (Mudaraba Term Deposit) at established banks (~7-10%)
+- 5-Year Bangladesh Sanchaypatra (~11%)
+- High-grade corporate sukuk
+- Money market funds
+
+Small lock-in period or some restrictions, but principal is nearly guaranteed by major institutions or government.
+
+#### Tier 3: Low to Medium Risk (10-15% expected, long-term)
+- Diversified blue-chip Bangladeshi stocks held 10+ years (Square Pharma, BATBC, Renata, GP, etc.) — *average* return ~12-15%
+- Diversified halal equity index funds (Wahed, etc.)
+- Real estate in established Dhaka areas — *long-term* return roughly inflation + 3-5%
+
+Year-to-year fluctuation can be big (a stock might drop 30% in a year and recover later), but *long-term* and *diversified*, returns are meaningfully better than Tier 1-2.
+
+#### Tier 4: Medium to High Risk (15-25% expected, but variable)
+- Concentrated single-stock positions
+- Small-cap stocks in DSE
+- Speculative real estate (flipping, undeveloped land)
+- Buying into a friend's small business
+- Cryptocurrency held long-term (controversial — also illegal in Bangladesh)
+
+Outcomes vary enormously. Some years +50%, some years −50%. Long-term average for *skilled* investors might reach 18-20%. Long-term average for *unskilled* investors is much worse — often negative.
+
+#### Tier 5: Very High Risk / Gambling (could be anything from −100% to massive gain)
+- Active forex trading
+- Day trading individual stocks
+- Crypto trading (not holding — trading)
+- Lottery tickets
+- Trying to predict short-term market moves
+- Most "schemes"
+
+Expected long-term return for retail participants: **negative**. Most lose. A few get lucky. The lucky ones post on social media. The losers stay silent. This is survivorship bias in action.
+
+#### Tier 6: Fraud / Ponzi territory (advertised 30%+ monthly, "guaranteed")
+- MLM schemes that pay early entrants from later entrants' deposits
+- "Forex signals" / "trading bots" / "managed accounts" with guaranteed returns
+- "Investment clubs" your relative is now promoting heavily
+- WhatsApp / Telegram "exclusive opportunities"
+
+These have a mathematical inevitability: anyone who joins early gets paid (for a while). Anyone who joins late loses everything. The system collapses when new deposits can't cover old withdrawals.
+
+---
+
+### How to use the spectrum
+
+When anyone offers you anything:
+
+1. **Locate it on the spectrum.** What tier does the *claimed* return suggest?
+2. **Locate the *actual* risk.** Is the risk being honestly disclosed?
+3. **If claimed return > what that tier delivers** → red flag. The claim is too good for the stated risk.
+
+Example: someone offers you "12-15% return on lending to my small business." That's a Tier 3 / Tier 4 risk (small business lending — they could fail). 12-15% is plausible for that risk level. **Plausible** doesn't mean "do it" — but the math isn't fishy.
+
+Example: someone offers "12-15% per *month* on lending to their business." That's claiming Tier 5+ returns. 144-180% annualized. **Impossible for a legitimate business to pay sustainably.** Either they're using new money to pay old money (Ponzi), or they're lying about their numbers.
+
+---
+
+### Volatility vs Permanent Loss
+
+A subtle but crucial distinction:
+
+**Volatility** = the price goes up and down. Doesn't necessarily mean you lose. If you hold through dips, you still get the long-term return.
+
+**Permanent loss** = the asset itself fails. The company goes bankrupt. The scheme collapses. You don't recover.
+
+A diversified portfolio of blue-chip stocks: **high volatility, low permanent-loss risk**. (Even if 1-2 companies fail, the portfolio survives.)
+
+A single small-cap stock: **high volatility, meaningful permanent-loss risk**. (The one company can fail entirely.)
+
+A Ponzi scheme: **looks like low volatility until it collapses, then 100% permanent loss**. (The most dangerous combination — feels safe right up until catastrophe.)
+
+**Most beginners are terrified of volatility and underestimate permanent loss.** They sell stocks during a dip (volatility scared them) and then buy into Ponzi schemes (low volatility right up until total loss). The opposite is correct: tolerate volatility in *good* investments; avoid anything with permanent-loss risk.
+
+---
+
+### Survivorship bias
+
+You'll hear "my friend invested in [X] and made 5 lakh in 6 months."
+
+You **never** hear "my friend invested in [Y] and lost everything." Because:
+1. People don't post about their losses
+2. Losers often disappear from the community
+3. The wins are publicized, the losses are private
+
+This means **everything you hear about "great investments" is filtered through a winner-survivor lens.** The 100 people who lost everything in the same scheme are invisible. The 1 who won shows up on Facebook with a Mercedes photo.
+
+**Defense:** assume that for every "winner" you hear about in a non-broad-market investment, there are 10-50 silent losers. If you wouldn't take the bet at those odds, don't take it because of one visible winner.
+
+---
+
+## 3. Worked examples
+
+### Example A — Evaluating a "lend to my friend's business at 18% per year" offer
+
+Friend's business: 4-year-old shop. Friend wants to expand. Offers you 18% per year on a 2-year loan, paid quarterly.
+
+**Risk analysis:**
+- Small business default risk: meaningful (maybe 15-25% of small businesses in Bangladesh fail in any given 5-year window)
+- Friend is trustworthy but not infallible
+- Your money is locked up — no early withdrawal
+- 18% per year is a Tier 3-4 return
+
+**Plausibility:** Yes. 18% is plausible compensation for the risk you're taking. The math is honest.
+
+**Should you do it?** Depends:
+- Can you afford to lose this money? (If it's 50% of your savings — no. If it's 5% of your savings — maybe.)
+- Do you trust the friend AND the business?
+- Have you seen the business's actual financials?
+- Is there a written agreement?
+
+**Verdict:** plausible offer, but only at a small portion of your wealth, with full information. Pass otherwise.
+
+### Example B — The "forex / signals" scam
+
+Telegram group: "We share trading signals. Last month our group made average 40% return. Join for 5,000 BDT/month subscription."
+
+**Math:**
+- 40% per month = 5,599% per year compounded
+- Tier 6 territory. Impossible.
+
+**Where the money actually comes from:**
+- Subscriptions from new members (the real "product")
+- Affiliate commissions from forex brokers (who profit from your losing trades)
+- Many of the "winning trade" screenshots are faked or cherry-picked
+
+**Verdict:** scam. Walk away. Block the contact. Don't engage to "see how it works" — engagement leads to harder pitches.
+
+### Example C — A relative's MLM pitch
+
+Relative says: "I joined this network. You buy a 30,000 BDT 'starter kit,' then recruit 3 people who each buy a kit, and you earn 5,000 from each recruit. Plus your downline keeps earning."
+
+**Math:**
+- For everyone in the group to make money, the network must grow exponentially
+- 3 people → 9 → 27 → 81 → 243 → 729 → 2,187 (level 7)
+- Within 8-10 levels, you've recruited more people than the population of Dhaka
+- Mathematically impossible to sustain → someone at the bottom always loses
+
+**The product** ("kit") is usually overpriced trinkets or low-quality goods. The real "product" is the recruitment.
+
+**Verdict:** classic pyramid / MLM. Even if technically not illegal, the math guarantees losses for most participants. Decline politely. Don't argue (relatives feel attacked). Just don't join.
+
+### Example D — A "great" real estate deal
+
+Real estate agent: "I have a plot in Purbachal, will appreciate 30% in 18 months. 8 lakh down payment now, balance later. Guaranteed."
+
+**Analysis:**
+- 30% in 18 months = ~19% annualized
+- Bangladesh real estate has historically returned roughly inflation + 3-5% = ~12-14% per year long-term
+- 19% is high but not impossible — if it's in a developing area with strong infrastructure plans
+- "Guaranteed" appreciation is a **lie** — no investment has guaranteed price changes
+- Liquidity is poor — you can't easily exit
+- Lots of legal documentation risks in Bangladesh real estate
+
+**Verdict:** the *number* is plausible, but the "guarantee" is fiction. Real estate has volatility, fraud risk (fake titles, double-sold plots), and illiquidity. Investigate the agent, the project, RAJUK approval, title chain — or pass.
+
+### Example E — Your own DPS at IBBL
+
+IBBL Mudaraba DPS: ~10% nominal expected.
+
+- Locate on spectrum: Tier 2 (very low risk — bank-backed, Shariah-compliant)
+- Realistic for tier? Yes — 7-11% is typical for Tier 2
+- Volatility? Essentially none
+- Permanent loss risk? Very low (IBBL is a major bank)
+- "Hidden" downsides? Lock-in period, early withdrawal penalty
+
+**Verdict:** a perfectly honest, modest, real return investment. The numbers match the tier. No red flags. *This is what a legitimate investment looks like* — boring, modest, reliable. Compare to the "exciting" offers above and notice how dramatically different the marketing energy is. **Boring is good.**
+
+---
+
+## 4. Common mistakes
+
+### Mistake 1: Equating high return with smart investing
+
+People sometimes brag about a 60% gain on a stock they picked. What they don't share is the 7 other stocks they bought that lost money. **Net portfolio return is what matters, not the best winner.**
+
+### Mistake 2: Being scared of all risk
+
+The opposite extreme: someone learns about scams and decides "all investing is risky, I'll keep everything in cash." Now they lose 9% to inflation every year. **Some risk is necessary** to beat inflation. The skill is calibrating risk, not avoiding it.
+
+### Mistake 3: Trusting people more than systems
+
+"My uncle would never cheat me." Maybe not intentionally. But your uncle can also be wrong about his investment. People often invest based on relationship trust ("I trust him") when they should invest based on system trust ("I understand the underlying business / instrument / risk").
+
+### Mistake 4: Thinking "I'll just try a small amount"
+
+Many people get sucked in this way. "Just 5,000 to test it." Then it "works" (the early entrants of a Ponzi always get paid). Then they put in 50,000. Then 5 lakh. Then they tell relatives. Then it collapses. **If you wouldn't invest 5 lakh in it, don't invest 5,000 either** — the small-amount entry is the scam's recruitment mechanism.
+
+### Mistake 5: Following loud people instead of evidence
+
+A loud, confident person promoting an investment scheme is *more* suspicious, not less. Real long-term wealth-builders are usually quiet about it. The people shouting on social media about their "investment system" are almost always selling courses, recruiting downlines, or running schemes.
+
+### Mistake 6: Believing past performance guarantees future returns
+
+"This stock has gone up 30% per year for 3 years." That's information. It is **not** a prediction. Past performance is famously a weak predictor of future returns. Especially for individual stocks or small markets. Every prospectus literally has to say this in fine print — and everyone ignores it.
+
+---
+
+## 5. Try this today (the 40-minute exercise)
+
+### Step A — The Red Flag Checklist (10 min)
+
+Print this or write it in your tracker's Notes tab. Any of these = walk away:
+
+**The 7 Red Flags**
+
+1. ⚠️ **Returns above 20-25% per year claimed as "typical"** — almost certainly impossible or unsustainable
+2. ⚠️ **The word "guaranteed" attached to any number above the Sanchaypatra rate** — guarantees at high returns don't exist
+3. ⚠️ **Pressure to "join now" / "limited spots" / "act fast"** — legitimate investments don't run on FOMO
+4. ⚠️ **You earn more by recruiting others than from the product itself** — classic pyramid
+5. ⚠️ **The "product" is mostly the system / training / kit (not a real underlying asset or business)** — Ponzi/MLM signal
+6. ⚠️ **You can't easily understand where the returns come from** — if you can't explain the source of profit, you don't know what you're invested in
+7. ⚠️ **Returns are consistently positive month after month, with no down periods** — real investments have ups and downs. Steady-high-returns = fraud (Madoff's classic giveaway)
+
+If any 1 of these is present → walk away. If 3+ are present → run.
+
+### Step B — Audit "investments" you've been pitched (15 min)
+
+Think back: in the last year, what financial opportunities have been pitched to you? List them.
+
+For each, ask:
+1. What tier of the spectrum?
+2. What return was claimed?
+3. Is the claimed return plausible for that tier?
+4. How many red flags from the checklist?
+5. Decision (in hindsight): join, decline, monitor?
+
+Example format:
+
+| Pitch | Tier | Claimed return | Plausible? | Red flags | Decision |
+|---|---|---|---|---|---|
+| Relative's MLM | T6 | 200%+/yr | No | 4-5 of 7 | Decline |
+| IBBL DPS | T2 | 10%/yr | Yes | 0 | Join (in Stage 3) |
+| Friend's business | T3 | 18%/yr | Yes | 0-1 (verify) | Maybe |
+
+Write 3-5 examples in your tracker's Notes tab. Tag with `#day6-audit`.
+
+### Step C — Build your "personal investment ladder" (10 min)
+
+Based on the spectrum, what should YOUR investment ladder look like as you progress through stages?
+
+| Stage | Tier | Examples | Approx % of monthly surplus to allocate here |
+|---|---|---|---|
+| Stage 3 (start) | T1-T2 | Mudaraba Savings, DPS, Sanchaypatra | 80-100% |
+| Stage 3-4 | + T3 | DSE blue-chip halal stocks, sukuk | start adding 10-20% |
+| Stage 4-5 | + T3 deeper | Diversified equity, international ETFs | adjust as comfort grows |
+| Anywhere | NEVER | T5-T6 instruments | 0% — these aren't investments |
+
+Write your own version. Adjust percentages based on your risk tolerance. *Crucially:* Tier 5-6 stays at 0% **forever**, regardless of stage. There's never a stage where forex trading becomes a good idea.
+
+### Step D — Update the tracker
+
+- Concepts tab: mark **Risk vs Return** as Learning or Mastered
+- Notes tab: write reflections + Red Flag Checklist
+- Study Log: add today as Done
+
+---
+
+## 6. Reflection prompts (write in Notes tab)
+
+Pick 2. Tag with `#day6`.
+
+1. *Looking back, what's the closest I've come to falling for a scheme? What pulled me back?*
+2. *Which red flag from the checklist is the easiest one for me to miss in real life?*
+3. *Why is "boring" the right adjective for legitimate investments at my stage?*
+4. *Who in my circle is currently pitching me / promoting something I now realize is Tier 5-6? How will I handle the conversation?*
+5. *What's one investment I might NOT have done if I'd known this framework 2 years ago?*
+
+---
+
+## 7. Companion content (optional, ~20 min)
+
+- **English:** "How Ponzi Schemes Work" — Two Cents on YouTube. Cleanest possible explanation.
+- **English:** "Survivorship Bias" — Veritasium on YouTube. 8 min, brilliant.
+- **English:** Bernard Madoff documentary clips (search "Madoff biggest fraud" on YouTube). The most famous Ponzi in history. Notice the red flags people missed.
+- **English:** "Why Forex is a Scam for Retail Traders" — multiple finance YouTubers cover this. Pick one.
+- **Bengali:** Search "MLM scam বাংলা" or "forex scam বাংলা" — there are several BD-context videos exposing local schemes. Watch one.
+- **Bangladesh-specific:** Bangladesh Securities and Exchange Commission (BSEC) website has an "investor alerts" section listing companies/schemes flagged as fraudulent. Skim it once. Pattern-match the language used.
+
+---
+
+## 8. Self-check
+
+1. State the fundamental law of risk vs return.
+2. Name the 6 tiers of the risk-return spectrum with one example each.
+3. What is the difference between volatility and permanent loss?
+4. Why is survivorship bias a problem when evaluating investment opportunities?
+5. List 4 of the 7 red flags. If you can name all 7, even better.
+6. Why is "guaranteed 30% per month" mathematically impossible to sustain?
+
+If you can answer these, mark **Risk vs Return** as **Mastered** in the Concepts tab.
+
+---
+
+## Closing thought
+
+You now carry a built-in fraud detector. The schemes and pitches that catch most people will reveal themselves to you as obvious. This is a gift you can't unlearn — and in Bangladesh's environment of growing crypto pitches, forex schemes, and MLM promotions, it might be the most practically valuable single thing in this course.
+
+One more day. Tomorrow we cover **Halal vs Haram Finance** — bringing the Shariah lens to everything you've learned — and we synthesize the whole 7-day course into a unified framework you'll carry forward.
+
+See you for Day 7.
+</script>
+<script type="text/markdown" id="lesson-7"># Day 7 — Halal vs Haram Finance + Course Synthesis
+
+Last day. You've built the conceptual foundation across 6 days. Today you add the Shariah lens — essential context if you intend to build wealth in a way consistent with Islamic principles — and then you synthesize everything into a unified framework you'll carry forward.
+
+---
+
+## 1. Why this matters
+
+Two reasons today's lesson matters even if you're not deeply religious about money:
+
+**Reason 1: Practical.** Many of the most attractive, stable, and accessible financial instruments in Bangladesh are Shariah-compliant — IBBL, Al-Arafah, EXIM, City Islami, First Security Islami, Social Islami, Standard Bank Islamic. To use them effectively, you need to understand what makes them different from conventional banks, what they're actually doing with your money, and how to evaluate whether a product is genuinely Shariah-compliant or just labeled as such.
+
+**Reason 2: Strategic.** Bangladesh's Islamic finance industry is growing 10-15% annually. The global Islamic finance market is over $4 trillion and expanding. If your long-term ambitions include the income-side of Stage 4-5 (advisory, fintech products), Islamic finance literacy is a genuine career edge — especially in your specific cultural and linguistic context.
+
+This lesson covers both the principles and the practical mechanics so you can evaluate any "Islamic" product critically — including spotting the ones that are halal in name only.
+
+---
+
+## 2. The concept
+
+### The core prohibitions
+
+Islamic finance is defined by what it forbids. Three things are core:
+
+#### 1. Riba (সুদ) — Prohibition of interest
+
+> **Riba** is any predetermined excess paid to a lender for the use of money, with no underlying productive risk-sharing.
+
+The classical example: you lend 1,00,000 BDT to someone, and they agree to pay back 1,10,000 in a year. That extra 10,000 — paid simply for the passage of time, not because of any shared risk — is *riba al-nasi'a* (the most common form). It's prohibited in Islam.
+
+The deeper logic: money by itself is not productive. It only becomes productive when combined with effort, risk, and a real economic activity. Earning a return just because you had money (no effort, no risk) violates the Islamic principle that wealth should flow from real productive activity.
+
+**Modern examples of riba:**
+- Conventional savings account interest (4% on your balance)
+- Bank fixed deposit interest
+- Credit card interest charges
+- Conventional bond coupons
+- Personal loan interest
+- Mortgage interest
+
+#### 2. Gharar (অতিরিক্ত অনিশ্চয়তা) — Excessive uncertainty
+
+> **Gharar** is excessive ambiguity or uncertainty in a contract.
+
+Some uncertainty in business is unavoidable and acceptable. But contracts where the terms, the goods, the price, or the outcome are deeply unclear are forbidden.
+
+**Modern examples of gharar:**
+- Conventional insurance (premium pays for an uncertain future event, structured as a one-sided transfer)
+- Forex speculation (you're not trading real goods, just betting on price moves)
+- Most derivatives, futures, and options
+- Gambling in any form
+- Lottery tickets
+
+#### 3. Maysir (জুয়া) — Gambling / pure speculation
+
+> **Maysir** is gain achieved purely by chance, without productive economic activity.
+
+Closely related to gharar but specifically about chance-based gain.
+
+**Modern examples of maysir:**
+- Casino games
+- Lottery
+- Day trading where you're not analyzing fundamentals, just betting on short-term moves
+- Cryptocurrency trading (controversial — some scholars say crypto itself is haram due to gharar/maysir, others say it depends on use case)
+
+### Additional prohibitions
+
+- **Investment in haram industries**: alcohol, pork, gambling, conventional banking/insurance, weapons, adult entertainment, etc.
+- **Riba al-fadl**: unequal exchange of like-for-like commodities (technical; less relevant for personal finance)
+
+---
+
+### Halal alternatives — how Islamic finance works
+
+The core innovation: instead of lending at interest, Islamic finance uses **partnership and trade structures** where the lender shares both profit and loss.
+
+#### Mudaraba — Profit-sharing partnership
+
+> One party provides capital (*rab-al-mal*), the other provides effort/expertise (*mudarib*). They agree to share *profit* by a ratio (e.g., 60/40). Losses are borne entirely by the capital provider; the worker loses their time and effort.
+
+**Modern application:** Islamic banks like IBBL operate Mudaraba savings/term deposit accounts. You (depositor) are the capital provider. The bank is the mudarib. The bank invests your money in halal businesses, and you share in the profits — not at a guaranteed rate, but as a share of actual returns. The rate is *expected* but not contractually guaranteed (which is what makes it halal).
+
+#### Musharaka — Joint partnership
+
+> Both parties contribute capital AND share in the management. Profits shared by agreed ratio, losses shared in proportion to capital contribution.
+
+**Modern application:** used for business partnerships, home financing (where the bank and you co-own a property), and joint ventures. The bank doesn't "lend" you money to buy a house — it *buys* part of the house with you, then you gradually buy out its share.
+
+#### Sukuk — Islamic "bonds"
+
+> Sukuk are certificates of *ownership* in real assets or productive ventures. You own a piece of something tangible, and you receive a share of the rent / profit it generates.
+
+**Difference from conventional bonds:** a conventional bond is a loan with interest. A sukuk is fractional ownership of a productive asset. You're entitled to the asset's returns, but you also bear its risk.
+
+**Modern application:** Bangladesh has issued sovereign sukuk. Many Islamic banks offer sukuk-based investment products. Globally, sukuk market is hundreds of billions of dollars.
+
+#### Murabaha — Cost-plus sale
+
+> The bank buys an asset you want, then sells it to you at a marked-up price, payable in installments. Critically: it's a *sale*, not a loan.
+
+**Modern application:** Islamic auto financing — the bank actually buys the car, then sells it to you at a higher fixed price you pay in monthly installments. No interest, just a marked-up sale.
+
+**Critical question:** is this *really* different from a conventional loan? Scholars debate. The form is different (sale vs lending), the substance often resembles interest. Most major scholars accept it as halal *if* the bank takes actual ownership for at least a moment and bears the asset's risk during that time.
+
+#### Ijara — Leasing
+
+> The bank buys an asset and leases it to you. Like a long-term rental. You make payments, and at the end you may or may not own the asset (depending on the contract type).
+
+**Modern application:** equipment financing, vehicle leasing, sometimes home financing (Ijara Muntahia Bittamlik = lease ending in ownership).
+
+#### Wadiah — Safekeeping
+
+> Pure deposit with no return guaranteed. You give the bank money for safekeeping; they may use it but owe you the full amount back on demand. Any "gift" (hibah) from the bank to depositors is at the bank's discretion, not contractual.
+
+**Modern application:** some basic Islamic checking accounts.
+
+---
+
+### Bangladesh halal banks compared
+
+| Bank | Notable feature |
+|---|---|
+| **IBBL** (Islami Bank Bangladesh Ltd) | Largest, oldest, most established Islamic bank in BD. Wide branch network. Mudaraba Savings, Term Deposits, DPS, Hajj scheme |
+| **Al-Arafah Islami Bank** | Strong DPS products. Conservative reputation. |
+| **EXIM Bank** | Started conventional, fully converted to Islamic. Strong export financing. |
+| **First Security Islami** | Smaller. Comprehensive Islamic products. |
+| **Social Islami Bank** | Community-development emphasis. Smaller but well-regarded. |
+| **City Islami** | Islamic window of City Bank. Increasingly comprehensive. |
+| **Standard Bank Islamic** | Islamic window of Standard Bank. |
+
+Each has Mudaraba savings, term deposits, DPS, Hajj savings, and various financing products (murabaha, musharaka, ijara). Rates are similar across them. Pick based on branch convenience, online banking quality, and customer service — not on small rate differences.
+
+---
+
+### How to evaluate "Is this product really halal?"
+
+Many products are *labeled* Islamic without being substantively different from conventional ones. To check:
+
+1. **What's the underlying contract?** Mudaraba, musharaka, murabaha, ijara, sukuk — these are the legitimate structures. If the brochure doesn't say which one, ask.
+
+2. **Is there a Shariah board overseeing it?** Reputable Islamic banks have Shariah Supervisory Boards of qualified scholars. If a product isn't under such oversight, be cautious.
+
+3. **Is the return guaranteed or expected?** A *guaranteed* fixed return on a deposit is structurally riba. An *expected* return (with the disclaimer that it depends on actual underlying business performance) is halal.
+
+4. **Who bears the risk?** In legitimate Islamic finance, the capital provider bears risk. If a product promises capital protection AND a fixed return — it's mimicking conventional interest, which scholars disagree about.
+
+5. **What does the underlying activity look like?** Mudaraba savings are halal because the bank invests in halal businesses. Sukuk are halal because they're tied to real productive assets. If you can't identify the underlying real economic activity, be cautious.
+
+6. **AAOIFI compliance.** AAOIFI (Accounting and Auditing Organization for Islamic Financial Institutions) sets the standards. Products certified AAOIFI-compliant have rigorous oversight. This is the gold standard in Islamic finance.
+
+---
+
+### Areas of ongoing scholarly debate
+
+Not everything is settled. Educated Muslims often disagree on:
+
+- **Conventional bank stocks** — some scholars allow buying stocks of conventional banks if revenue from interest is below a threshold (often 5%); others say no
+- **Cryptocurrency** — some scholars say haram (excessive gharar, no real underlying asset); others say it can be halal depending on use case
+- **Stock market participation generally** — most accept buying shares of halal businesses; some are stricter on screening
+- **Insurance** — conventional insurance is broadly considered haram; Takaful (Islamic mutual insurance, where participants pool funds to help each other) is the halal alternative, but Takaful options in Bangladesh are still developing
+
+When in doubt, consult a qualified scholar or stick to the most conservative position until you have more information. **"I'm not sure" is a valid reason to pass on a financial product.**
+
+---
+
+## 3. Worked examples
+
+### Example A — IBBL Mudaraba Savings Account
+
+You deposit 10,000 BDT.
+
+**Conventional bank:** They guarantee 4% per year. You get 400 BDT regardless of bank performance. **Structurally:** lending at interest → riba.
+
+**IBBL Mudaraba:** They expect ~6% per year, but it's a *profit share*. The bank invests your money (and others') in halal businesses. At year-end, they calculate actual profit, give you your share. In a great year, maybe you earn 7%. In a bad year, maybe 5% or less. **Structurally:** partnership in business → halal.
+
+**The catch:** in practice, IBBL's Mudaraba rates have been very stable, mimicking conventional deposits. Some scholars worry this is "halal in form, conventional in substance." But the *contract* is legitimate, and the bank does have a Shariah board. Most scholars accept it.
+
+### Example B — A "Forex Trading is Halal" claim
+
+Someone says: "Forex trading is halal because I'm trading real currencies."
+
+**Analysis:**
+- Spot forex (immediate physical exchange of currencies) → generally halal
+- Leveraged retail forex trading (margin trading, holding positions overnight with swap fees) → almost universally considered haram due to:
+  - **Riba** (overnight swap fees are interest)
+  - **Gharar** (excessive uncertainty, high leverage)
+  - **Maysir** (pure speculation on short-term moves)
+
+**Verdict:** the "I'm trading real currencies" defense doesn't hold up. Modern retail forex trading is haram by nearly all mainstream scholars. Add to that: it's also illegal in Bangladesh and a financial loss-maker for 90%+ of retail traders (from Day 6). Triple reason to avoid.
+
+### Example C — "Islamic" credit card
+
+A bank advertises an "Islamic credit card."
+
+**How can it possibly be halal?** Conventional credit cards charge interest on unpaid balances — clear riba.
+
+**The Islamic version** typically works on Murabaha or Ujrah (fee-based):
+- You make purchases, the bank pays the merchant
+- You owe the bank the amount
+- If you pay on time → no extra charge
+- If you pay late → a fee (not interest, structured as a penalty / administrative charge)
+
+**Critical question:** is the "late fee" really different from interest? Scholars debate. Some argue if the late fee accrues regularly and proportionally to the unpaid amount, it's interest in disguise. Others accept it if it's a flat fee.
+
+**Practical guidance:** if you're going to use a credit card at all, an "Islamic" version is probably better than a conventional one. But even better: don't carry credit card balances at all. The structural debate disappears if you pay in full every month.
+
+### Example D — Sanchaypatra (Bangladesh government savings certificate)
+
+5-Year Bangladesh Sanchaypatra. Pays ~11% per year.
+
+**Is this halal?**
+
+This is contested. The government pays a fixed predetermined return — which structurally looks like interest. Some scholars consider it haram for this reason.
+
+Others argue that:
+- It's a sovereign financial instrument
+- The "interest" is partly a subsidy / welfare mechanism
+- It's permissible under certain interpretations of dar-ul-harb / dar-ul-Islam frameworks (though Bangladesh doesn't strictly fit either)
+
+**Common practical position:** many Bangladeshi Muslims do use Sanchaypatra. Others prefer to stick strictly to Mudaraba-based products. If you want to be strictly conservative, use IBBL/Al-Arafah Mudaraba Term Deposits instead.
+
+**No definitive answer here.** This is a case where you should consult a scholar you trust. The course's role is to make you aware of the question, not to answer it for you.
+
+### Example E — DSE blue-chip stocks
+
+You want to buy 1,000 BDT of Square Pharma stock.
+
+**Halal screening:**
+1. Is Square Pharma's primary business halal? → Yes (pharmaceuticals)
+2. Does it have significant haram revenue streams? → Need to check (interest from cash holdings, etc.)
+3. Is its debt/asset ratio acceptable? → Common screen: total interest-bearing debt < 33% of total assets
+
+For most major DSE blue-chips, these screens pass with the standard AAOIFI / Dow Jones Islamic Market screening. You can find Shariah-compliance lists from local Islamic finance advisors.
+
+**Verdict:** likely halal. Worth confirming through formal screening before significant investment.
+
+---
+
+## 4. Common mistakes
+
+### Mistake 1: Assuming all Islamic banks are equally Shariah-compliant
+
+Not all Islamic banks have equally rigorous Shariah boards or oversight. Some have stricter implementations than others. Do basic due diligence.
+
+### Mistake 2: Treating "Islamic" as a marketing label
+
+A product labeled "Islamic" isn't automatically halal. Always ask about the underlying contract structure.
+
+### Mistake 3: Ignoring halal options assuming they're worse
+
+Many Muslims default to conventional banks because "it's easier" — but Islamic alternatives in Bangladesh are mature and comparable. The slight differences in rates / convenience are often worth it for the peace of mind.
+
+### Mistake 4: Being so strict you never invest
+
+The flip side: some people find every halal product to have *some* scholarly debate, so they never invest at all. They keep money in cash, lose 9% to inflation, and stay poor. **Following a mainstream-acceptable position is better than paralysis.** Pick a position you can justify, and proceed.
+
+### Mistake 5: Mixing your conventional and Islamic accounts casually
+
+If you maintain both for any reason (work salary at a conventional bank, etc.), be intentional. Most scholars suggest: receive salary in conventional bank if required, but accumulate / invest savings through Islamic channels.
+
+### Mistake 6: Forgetting that Islamic finance has the same risk-return tradeoffs
+
+Halal doesn't mean risk-free. A Mudaraba account can have a low-profit year. A halal stock can decline. A sukuk issuer can default. Apply Day 6's risk-return framework to halal options too. Don't assume "Islamic = safe."
+
+---
+
+## 5. The Course Synthesis
+
+Seven days. Ten concepts. Let me tie them together so you have one mental model going forward.
+
+### The unified framework
+
+Every financial decision you'll ever make can be evaluated by these questions:
+
+1. **What's my cash flow direction?** (Day 1) — am I building surplus or draining?
+2. **What's my net worth doing over time?** (Day 1) — moving toward positive or negative?
+3. **Am I letting compounding work for or against me?** (Day 2) — savings/investments compound up, debts compound up too
+4. **What's the real return after inflation?** (Day 3) — nominal numbers lie
+5. **What's this thing worth in present terms?** (Day 4) — discount future to today
+6. **Am I accumulating assets or liabilities?** (Day 5) — the simple cash-flow test
+7. **Am I converting income to wealth or burning it?** (Day 5) — flow vs stock
+8. **What's the risk-return tier? Plausible for that tier?** (Day 6) — scam filter
+9. **Is the structure halal — not just the label?** (Day 7) — Shariah lens
+
+That's the framework. Nine questions. Apply them to anything that involves money. You will be ahead of 95% of people who never run any of these checks.
+
+### The order of operations (your decade-long plan)
+
+1. **Today through Month 2:** Stage 0 — master the 10 concepts (this course is the first half of that)
+2. **Month 2-3:** Stage 1 — practice tracking; see your real numbers
+3. **Month 3-9:** Stage 2 — grow income through skill leverage (Day 8 file is the deep-dive)
+4. **Month 6-18:** Stage 3 — small investing experiments (DPS, Sanchaypatra, observed DSE)
+5. **Year 2:** Stage 4 — deeper financial knowledge (financial statements, valuation, halal advanced)
+6. **Year 3+:** Stage 5 — wealth compounds. Debt is mostly cleared as side-effect.
+
+You're not racing. You're walking — but in the right direction. Time + discipline + correct concepts = wealth, almost mechanically.
+
+---
+
+## 6. Try this today — the Capstone Exercise (45 min)
+
+This is bigger than previous exercises. Make space.
+
+### Step A — Self-test on all 10 concepts (15 min)
+
+Without referring to the lessons, write a 2-3 sentence definition of each concept in your own words:
+
+1. Cash flow:
+2. Net worth:
+3. Compound interest:
+4. Inflation:
+5. Real return:
+6. Time value of money:
+7. Asset vs Liability (the simple test):
+8. Income vs Wealth (the difference):
+9. Risk vs Return (the law):
+10. Halal vs Haram (one prohibition and one alternative):
+
+If any feel weak, go back to that day's lesson and re-read.
+
+### Step B — Make your 5-year vision (15 min)
+
+Knowing what you know now, write what you want your money life to look like 5 years from now.
+
+Not numerical goals — *quality of life* descriptions:
+- What stage of the roadmap will you be in?
+- What habits will be automatic?
+- What new assets will exist?
+- What debts will be gone?
+- What income will be coming in?
+- What knowledge will you have that you don't now?
+
+Write 3-4 paragraphs in the Notes tab. Tag `#vision-5yr`. Date it. You'll re-read this in 5 years and see how far you've come.
+
+### Step C — Set one concrete commitment for the next 7 days (5 min)
+
+Not 30. Not a year. Just the next 7 days.
+
+> "Between [today's date] and [date 7 days from now], I commit to: _______________________________"
+
+Examples:
+- "Track every expense for 7 consecutive days"
+- "Have the family meeting about Stage 0 with my spouse"
+- "Open a Sanchaypatra account" (if you're ready for it)
+- "Send 5 niche outreach messages for freelance" (Stage 2 early)
+
+Make it small, concrete, and verifiable.
+
+### Step D — Update the tracker fully
+
+- Concepts tab: mark **Halal vs Haram Finance** as Mastered. Aim for all 10 mastered if you've absorbed the course.
+- Study Log: add "7-Day Foundation Course" as Done. Completion date today.
+- Notes tab: capstone reflection (next step)
+- Goals tab: create one new goal based on Step C above
+
+---
+
+## 7. Final reflection prompts
+
+Pick 2-3 of these. Tag `#day7` and `#course-end`. Write longer than usual — these are worth marinating on.
+
+1. *Across the whole course, which concept changed the way I look at money the most? Why?*
+2. *What's one belief about money I held a week ago that I now know was wrong?*
+3. *If I taught one person what I learned in this course, who would it be and which concept would I lead with?*
+4. *What does "rich" mean to me now — and how is that different from what I thought it meant 7 days ago?*
+5. *In one paragraph: what is my financial purpose? What am I building toward, and why?*
+
+---
+
+## 8. Companion content (optional)
+
+You've done a lot today already. If you have energy for one more thing:
+
+- **English:** Watch the Naval Ravikant "How to Get Rich" lecture series in full — about 90 minutes total across short clips. The single best free wealth-building content on the internet. (Search "Naval Ravikant How to Get Rich" on YouTube.)
+- **English:** Read the *Wikipedia article* on Islamic finance — for a more thorough academic grounding. Skim — don't get bogged down.
+- **Bengali:** Watch any one full-length Adib's Finance video. Notice how everything they say maps to the concepts you now know.
+
+---
+
+## 9. Final self-check
+
+Can you explain — in plain language — to a friend who hasn't taken this course:
+
+1. Why cash flow is the heartbeat of your finances
+2. Why compound interest is the most important force in money
+3. Why inflation makes cash a losing position
+4. How to convert a future amount to its present value
+5. The difference between accumulating assets vs liabilities
+6. Why a "guaranteed 30% monthly return" claim is mathematically impossible
+7. The difference between riba and a Mudaraba profit-share
+8. What stage of the roadmap you're in right now, and what the next stage requires
+
+If you can do all 8 confidently — you are *literate*. That's a meaningful milestone. Mark every concept in the tracker as **Mastered**.
+
+If some still feel shaky — that's normal. Re-read those specific lessons. The 10 concepts are designed to interlock — once a few solidify, the others get easier.
+
+---
+
+## Closing thought — for the whole course
+
+You started 7 days ago likely never having computed your own cash flow or net worth. You're ending with a complete framework for evaluating any financial decision, a scam-detection system, a Shariah lens, and an honest measure of where you stand.
+
+**This is what financial literacy looks like.** Not memorizing a hundred terms. Not following ten YouTube channels. Not picking the right stock. Just internalizing 10 concepts deeply, applying them honestly to your own life, and proceeding patiently from there.
+
+The next 5-10 years of your financial life will look completely different from the last 5-10. Not because you got rich quickly — you won't. But because you'll be *moving in the right direction*, consistently, with eyes open, in a world where most people stumble in the dark.
+
+**One last piece of advice:** re-read this course every 6 months. Things you skimmed past today will land differently when you have more tracking data, more savings, more experience with your own money. The concepts are static; your relationship with them grows.
+
+Now close this file. Go open your tracker. Do Step C (the 7-day commitment) right now while motivation is high. Start moving.
+
+You're ready.
+
+> **"The best investment you can make is in your own understanding of money. Everything else is downstream of that."**
+
+---
+
+### Course complete. ✅
+
+Day 1: Cash Flow + Net Worth ✓
+Day 2: Compound Interest ✓
+Day 3: Inflation + Real Return ✓
+Day 4: Time Value of Money ✓
+Day 5: Assets vs Liabilities + Income vs Wealth ✓
+Day 6: Risk vs Return ✓
+Day 7: Halal vs Haram + Synthesis ✓
+
+**Welcome to the path.**
+</script>
+
+<script>
+const LESSONS = [
+  { id: '00', day: 'Start Here',  title: 'How to take this course', est: '5 min' },
+  { id: '1',  day: 'Day 1',       title: 'Cash Flow + Net Worth',          est: '45 min' },
+  { id: '2',  day: 'Day 2',       title: 'Compound Interest',              est: '45 min' },
+  { id: '3',  day: 'Day 3',       title: 'Inflation + Real Return',        est: '45 min' },
+  { id: '4',  day: 'Day 4',       title: 'Time Value of Money',            est: '45 min' },
+  { id: '5',  day: 'Day 5',       title: 'Assets / Liabilities + Income / Wealth', est: '45 min' },
+  { id: '6',  day: 'Day 6',       title: 'Risk vs Return (scam detector)', est: '45 min' },
+  { id: '7',  day: 'Day 7',       title: 'Halal vs Haram + Course Synthesis', est: '60 min' },
+];
+
+const STORAGE_KEY = 'finance-lessons-v1';
+let state = loadState();
+let currentLessonId = null;
+
+function loadState() {
+  try {
+    const s = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if (s) return { read: s.read || {}, theme: s.theme || 'dark', last: s.last || null };
+  } catch (e) {}
+  return { read: {}, theme: 'dark', last: null };
+}
+function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+
+function toggleTheme() {
+  state.theme = state.theme === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', state.theme);
+  saveState();
+}
+document.documentElement.setAttribute('data-theme', state.theme || 'dark');
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+}
+
+function resetProgress() {
+  if (!confirm('Clear all lesson-complete marks? Your reading progress will reset (but the lesson content stays).')) return;
+  state.read = {};
+  saveState();
+  renderSidebar();
+  if (currentLessonId) openLesson(currentLessonId);
+  toast('Progress reset');
+}
+
+function toast(msg) {
+  document.querySelectorAll('.toast').forEach(t => t.remove());
+  const d = document.createElement('div');
+  d.className = 'toast';
+  d.textContent = msg;
+  document.body.appendChild(d);
+  setTimeout(() => d.remove(), 2200);
+}
+
+function countDoneLessons() {
+  return LESSONS.filter(l => l.id !== '00' && state.read[l.id]).length;
+}
+function renderProgress() {
+  const done = countDoneLessons();
+  const total = 7;
+  const pct = Math.round((done / total) * 100);
+  document.getElementById('progress-label').textContent = `${done} of ${total} day-lessons complete`;
+  document.getElementById('progress-pct').textContent = pct + '%';
+  document.getElementById('progress-fill').style.width = pct + '%';
+}
+
+function renderSidebar() {
+  const list = document.getElementById('lesson-list');
+  list.innerHTML = LESSONS.map(l => {
+    const isDone = !!state.read[l.id];
+    const isActive = currentLessonId === l.id;
+    const tick = isDone ? '✓' : '';
+    return `<li class="${isDone ? 'done' : ''} ${isActive ? 'active' : ''}" onclick="openLesson('${l.id}')">
+      <div class="status">${tick}</div>
+      <div class="meta">
+        <div class="day-label">${l.day} · ${l.est}</div>
+        <div class="title">${l.title}</div>
+      </div>
+    </li>`;
+  }).join('');
+  renderProgress();
+}
+
+function findIndex(id) { return LESSONS.findIndex(l => l.id === id); }
+
+function openLesson(id) {
+  currentLessonId = id;
+  state.last = id;
+  saveState();
+  const md = document.getElementById('lesson-' + id)?.textContent || '';
+  const lesson = LESSONS.find(l => l.id === id);
+  const idx = findIndex(id);
+  const prev = idx > 0 ? LESSONS[idx - 1] : null;
+  const next = idx < LESSONS.length - 1 ? LESSONS[idx + 1] : null;
+  const isDone = !!state.read[id];
+  const reading = document.getElementById('reading');
+  reading.innerHTML = `
+    <div class="content">${renderMarkdown(md)}</div>
+    <div class="lesson-footer">
+      <div class="complete-banner ${isDone ? 'done' : ''}">
+        <div>
+          <div class="msg">${isDone ? '✓ Lesson marked complete' : 'Finished this lesson?'}</div>
+          <div class="sub">${isDone ? 'You can re-read anytime. Your progress is saved.' : 'Mark it complete to track your progress.'}</div>
+        </div>
+        <button onclick="toggleComplete('${id}')">${isDone ? 'Mark as not done' : '✓ Mark as complete'}</button>
+      </div>
+      <div class="nav-row">
+        ${prev ?
+          `<a class="nav-btn" onclick="event.preventDefault(); openLesson('${prev.id}')" href="#">
+            <span class="nav-label">← Previous</span>
+            <span class="nav-title">${prev.day}: ${prev.title}</span>
+          </a>` :
+          `<div class="nav-btn disabled"><span class="nav-label">← Previous</span><span class="nav-title">Beginning of course</span></div>`
+        }
+        ${next ?
+          `<a class="nav-btn right" onclick="event.preventDefault(); openLesson('${next.id}')" href="#">
+            <span class="nav-label">Next →</span>
+            <span class="nav-title">${next.day}: ${next.title}</span>
+          </a>` :
+          `<div class="nav-btn right disabled"><span class="nav-label">Next →</span><span class="nav-title">Course complete</span></div>`
+        }
+      </div>
+    </div>
+  `;
+  document.getElementById('sidebar').classList.remove('open');
+  renderSidebar();
+  reading.scrollTop = 0;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleComplete(id) {
+  state.read[id] = !state.read[id];
+  saveState();
+  toast(state.read[id] ? '✓ Marked complete' : 'Marked not done');
+  openLesson(id);
+}
+
+function showWelcome() {
+  const done = countDoneLessons();
+  const next = LESSONS.find(l => l.id !== '00' && !state.read[l.id]);
+  const continueId = state.last && state.last !== '00' ? state.last : (next ? next.id : '00');
+  document.getElementById('reading').innerHTML = `
+    <div class="welcome">
+      <h1>The 7-Day <span class="accent">Foundation Course</span></h1>
+      <p class="lead">Actual finance lessons — not a list of books to go read. Each day is a self-contained ~45-minute lesson covering one foundational concept with worked examples and a hands-on exercise.</p>
+      ${done > 0
+        ? `<p style="margin-bottom:18px; color: var(--green); font-weight:600;">You've completed ${done} of 7 lessons.</p>
+           <button class="start-btn" onclick="openLesson('${continueId}')">${state.last ? 'Continue where you left off →' : 'Continue →'}</button>`
+        : `<button class="start-btn" onclick="openLesson('00')">Start the course →</button>`
+      }
+      <div style="margin-top: 40px; text-align: left; background: var(--bg-card); border: 1px solid var(--border); padding: 20px; border-radius: 12px;">
+        <h3 style="margin-bottom: 12px; color: var(--accent);">The 7 Lessons</h3>
+        <ol style="margin-left: 20px; line-height: 2;">
+          <li><strong>Cash Flow + Net Worth</strong> — the two numbers that define your finances</li>
+          <li><strong>Compound Interest</strong> — the most powerful force in money</li>
+          <li><strong>Inflation + Real Return</strong> — why money sitting still actually shrinks</li>
+          <li><strong>Time Value of Money</strong> — why a taka today ≠ a taka tomorrow</li>
+          <li><strong>Assets vs Liabilities + Income vs Wealth</strong> — what to actually accumulate</li>
+          <li><strong>Risk vs Return</strong> — evaluating investments + spotting scams</li>
+          <li><strong>Halal vs Haram Finance + Course Synthesis</strong> — Shariah lens + final wrap</li>
+        </ol>
+      </div>
+    </div>
+  `;
+}
+
+// ====== Markdown renderer ======
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' })[c]);
+}
+function renderMarkdown(md) {
+  if (!md) return '<p style="color: var(--text-dim);">(empty)</p>';
+  let s = md.trim();
+
+  // Code blocks
+  const codeBlocks = [];
+  s = s.replace(/```([\s\S]*?)```/g, (m, c) => {
+    codeBlocks.push(`<pre><code>${escapeHtml(c.trim())}</code></pre>`);
+    return ` CODE${codeBlocks.length - 1} `;
+  });
+
+  // Tables — must be processed before paragraph splitting
+  s = s.replace(/((?:^\|.+\|\n?){1,})\|[-:\s|]+\|\n((?:^\|.+\|\n?)+)/gm, (match, header, body) => {
+    const headerCells = header.trim().split('|').slice(1, -1).map(c => c.trim());
+    const rows = body.trim().split('\n').map(line => line.split('|').slice(1, -1).map(c => c.trim()));
+    return `<table><thead><tr>${headerCells.map(h => `<th>${inline(h)}</th>`).join('')}</tr></thead><tbody>${rows.map(r => `<tr>${r.map(c => `<td>${inline(c)}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+  });
+
+  const lines = s.split('\n');
+  let out = '', inList = null, paraBuf = [];
+  const flushPara = () => {
+    if (paraBuf.length) {
+      const text = paraBuf.join(' ').trim();
+      if (text) out += `<p>${inline(text)}</p>`;
+      paraBuf = [];
+    }
+  };
+  const closeList = () => {
+    if (inList) { out += inList === 'ul' ? '</ul>' : '</ol>'; inList = null; }
+  };
+
+  for (let i = 0; i < lines.length; i++) {
+    const L = lines[i];
+
+    // Code-block placeholder
+    if (/ CODE\d+ /.test(L)) {
+      flushPara(); closeList();
+      out += L.replace(/ CODE(\d+) /g, (m, idx) => codeBlocks[+idx]);
+      continue;
+    }
+
+    // Pre-rendered table
+    if (/^<table/.test(L)) {
+      flushPara(); closeList();
+      out += L; continue;
+    }
+
+    // Headers
+    const hm = L.match(/^(#{1,6}) (.*)/);
+    if (hm) { flushPara(); closeList(); out += `<h${hm[1].length}>${inline(hm[2])}</h${hm[1].length}>`; continue; }
+
+    // Horizontal rule
+    if (/^---+\s*$/.test(L)) { flushPara(); closeList(); out += '<hr>'; continue; }
+
+    // Blockquote
+    if (/^> /.test(L)) {
+      flushPara(); closeList();
+      let q = [L.replace(/^> /, '')];
+      while (i + 1 < lines.length && /^> /.test(lines[i + 1])) { q.push(lines[++i].replace(/^> /, '')); }
+      out += `<blockquote>${inline(q.join(' '))}</blockquote>`;
+      continue;
+    }
+
+    // Lists — unordered (- * +) and "task list" with [ ] / [x]
+    const ulMatch = L.match(/^([-*+]) (.*)/);
+    if (ulMatch) {
+      flushPara();
+      if (inList !== 'ul') { closeList(); out += '<ul>'; inList = 'ul'; }
+      let item = ulMatch[2];
+      item = item.replace(/^\[([ x])\] /, (m, c) => c === 'x' ? '☑ ' : '☐ ');
+      out += `<li>${inline(item)}</li>`;
+      continue;
+    }
+    const olMatch = L.match(/^\d+\. (.*)/);
+    if (olMatch) {
+      flushPara();
+      if (inList !== 'ol') { closeList(); out += '<ol>'; inList = 'ol'; }
+      out += `<li>${inline(olMatch[1])}</li>`;
+      continue;
+    }
+
+    // Blank line
+    if (L.trim() === '') { flushPara(); closeList(); continue; }
+
+    paraBuf.push(L);
+  }
+  flushPara(); closeList();
+
+  // Replace code-block placeholders in remaining text
+  out = out.replace(/ CODE(\d+) /g, (m, idx) => codeBlocks[+idx]);
+  return out;
+}
+function inline(s) {
+  if (!s) return '';
+  return s
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/(?<!\*)\*([^*\n]+)\*(?!\*)/g, '<em>$1</em>')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+}
+
+// ====== Keyboard ======
+document.addEventListener('keydown', e => {
+  if (e.target.matches('input, textarea, select')) return;
+  if (!currentLessonId) return;
+  const idx = findIndex(currentLessonId);
+  if (e.key === 'ArrowRight' || e.key === 'j') {
+    if (idx < LESSONS.length - 1) openLesson(LESSONS[idx + 1].id);
+  } else if (e.key === 'ArrowLeft' || e.key === 'k') {
+    if (idx > 0) openLesson(LESSONS[idx - 1].id);
+  } else if (e.key === 'x' || e.key === ' ') {
+    e.preventDefault();
+    toggleComplete(currentLessonId);
+  }
+});
+
+// ====== Init ======
+renderSidebar();
+if (state.last) openLesson(state.last);
+else showWelcome();
+</script>
+
+</body>
+</html>

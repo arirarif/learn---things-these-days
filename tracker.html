@@ -192,6 +192,7 @@ hr.thin { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
       <button data-view="notes">Notes</button>
     </nav>
     <div class="header-actions">
+      <a href="lessons.html" style="background:var(--accent);color:white;border:1px solid var(--accent);padding:6px 12px;border-radius:6px;text-decoration:none;font-size:0.85rem;font-weight:600;" title="Open the 7-day course">📚 Lessons</a>
       <button onclick="toggleTheme()" title="Toggle theme">🌓</button>
       <button onclick="exportData()" title="Backup">⬇️</button>
       <button onclick="document.getElementById('import-file').click()" title="Restore">⬆️</button>
@@ -209,7 +210,10 @@ hr.thin { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
       <div class="banner-text" id="banner-text">Stage 0 — Learn the language.</div>
       <div class="banner-sub" id="banner-sub">Knowledge first. Practice second. Money third. Debt last.</div>
     </div>
-    <button class="ghost" style="background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.3); color: white;" onclick="showView('checklists')">View checklist →</button>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <a href="lessons.html" style="background: rgba(255,255,255,0.25); border: 1px solid rgba(255,255,255,0.4); color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.9rem;">📚 Start 7-Day Course →</a>
+      <button class="ghost" style="background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.3); color: white;" onclick="showView('checklists')">View checklist →</button>
+    </div>
   </div>
 
   <!-- Learning-first hero stats -->
